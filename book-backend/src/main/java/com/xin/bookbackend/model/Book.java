@@ -1,0 +1,20 @@
+package com.xin.bookbackend.model;
+
+import org.springframework.data.mongodb.core.mapping.MongoId;
+
+import java.util.List;
+
+public record Book(@MongoId String id, String googleBookId, String title, List<String> authors, String publisher,
+                   String publishedDate, String description, String imageUrl, String userId) {
+
+    public Book(String googleBookId, String title, List<String> authors, String publisher,
+                String publishedDate, String description, String imageUrl) {
+        this(null, googleBookId, title, authors, publisher, publishedDate, description, imageUrl, null);
+    }
+
+    public Book withUserId(String userId) {
+        return new Book(null, googleBookId, title, authors, publisher, publishedDate, description, imageUrl, userId);
+    }
+
+}
+

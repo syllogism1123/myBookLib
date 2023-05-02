@@ -1,0 +1,61 @@
+.App {
+    text-align: center;
+    justify-content: center;
+}
+
+.book-gallery {
+    padding-left: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:start;
+    gap: 20px;
+}
+
+.p-font {
+    font-weight: bold;
+
+}
+
+.no-book-found {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+#outlined-required {
+    background-color: beige;
+}
+
+.form {
+    margin-top: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+.link {
+    justify-content: right;
+    display: flex;
+}
+
+.card {
+
+    padding-top: 10px;
+
+}
+
+#book-img {
+    height: 150px;
+    width: 120px;
+}
+.book-details{
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+
+
