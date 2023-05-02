@@ -1,7 +1,6 @@
 import {FormEvent} from "react";
 import {useNavigate} from "react-router-dom";
 import {Button, FormControl} from "@mui/material";
-import {toast} from "react-toastify";
 
 type Props = {
     onLogout: () => Promise<void>
@@ -13,19 +12,10 @@ export const LogoutPage = (props: Props) => {
     function onSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
         props.onLogout().then(() => {
-            toast.success('You have successfully logged out!', {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
             navigate("/login")
-
-        })
+        }).catch((error) => {
+            console.error(error);
+        });
     }
 
     return (

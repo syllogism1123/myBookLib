@@ -24,7 +24,9 @@ export const LoginPage = (props: Props) => {
                 setError(true);
                 console.log("invalid")
             }
-        })
+        }).catch((error) => {
+            console.error(error);
+        });
     }
 
     return (

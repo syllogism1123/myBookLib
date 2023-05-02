@@ -38,7 +38,9 @@ export const SignUpPage = (props: createUserProps) => {
                     setError(true);
                     console.log("invalid")
                 }
-            })
+            }).catch((error) => {
+                console.error(error);
+            });
         }
     }
 

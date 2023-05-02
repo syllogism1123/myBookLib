@@ -27,8 +27,6 @@ Z
 *book-frontend/src/componet/BookDetails.tsx,b\6\b6506aa3365dde352b39d755281ba385df1564ed
 b
 2book-frontend/src/componet/PrimarySearchAppBar.tsx,7\5\753774e622fbdccb9f30afa99acf998a2bddf38f
-Y
-)book-frontend/src/componet/SignUpPage.tsx,b\3\b3cd63a18b4b6dd26a82844b68e1e0aa37e41440
 Q
 !book-frontend/src/hook/useBook.ts,e\9\e9614405f46eaf66152e92caca590a9f2ba3b5e0
 I
@@ -37,7 +35,3 @@ w
 Gbook-backend/src/main/java/com/xin/bookbackend/service/UserService.java,6\a\6a41fbdf439ffd6164bad08b9c8610ccd0104e73
 ƒ
 Sbook-backend/src/main/java/com/xin/bookbackend/service/MongoUserDetailsService.java,b\9\b9d7d0a208a32d9347d31f19a0bbf261b39d7329
-Y
-)book-frontend/src/componet/LogoutPage.tsx,5\0\5023c4f502b8667d9ad914d0c2739b86ebccaf1c
-X
-(book-frontend/src/componet/LoginPage.tsx,b\8\b86e6ea168fbd1d731b4dc11ee1e7cff8733e4b2
