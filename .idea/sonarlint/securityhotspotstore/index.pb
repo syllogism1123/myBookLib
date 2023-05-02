@@ -7,8 +7,6 @@ U
 %book-frontend/src/model/UserModel.tsx,1\a\1a2594f883189b9df43ccb67513bee8cdd6fd696
 t
 Dbook-backend/src/main/java/com/xin/bookbackend/model/ImageLinks.java,6\6\6667265a542418046915462927420e243b26dde1
-n
->book-backend/src/main/java/com/xin/bookbackend/model/Book.java,f\0\f0981b9854d54b25827efc75d406b7892c6de59f
 Q
 !book-frontend/src/hook/useUser.ts,e\e\ee14eda2b37df2725e3a812927219b6ed8507f6d
 P
@@ -37,3 +35,15 @@ Q
 Wbook-backend/src/test/java/com/xin/bookbackend/service/MongoUserDetailsServiceTest.java,5\c\5cbf6ca8001a7d1cb24993a0be93c22f6a939390
 {
 Kbook-backend/src/test/java/com/xin/bookbackend/service/UserServiceTest.java,3\9\39350c575a13db0f199e32c027610e6ea6d6a295
+I
+book-frontend/src/App.tsx,5\b\5b6d17f3f5aa0717c69d17c94c231edb4b52226d
+w
+Gbook-backend/src/main/java/com/xin/bookbackend/service/UserService.java,6\a\6a41fbdf439ffd6164bad08b9c8610ccd0104e73
+ƒ
+Sbook-backend/src/main/java/com/xin/bookbackend/service/MongoUserDetailsService.java,b\9\b9d7d0a208a32d9347d31f19a0bbf261b39d7329
+Y
+)book-frontend/src/componet/LogoutPage.tsx,5\0\5023c4f502b8667d9ad914d0c2739b86ebccaf1c
+X
+(book-frontend/src/componet/LoginPage.tsx,b\8\b86e6ea168fbd1d731b4dc11ee1e7cff8733e4b2
+D
+book-backend/pom.xml,6\7\678b38964deea50792d08b2552ae7520497c965d

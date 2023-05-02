@@ -12,6 +12,12 @@ public record Book(@MongoId String id, String googleBookId, String title, List<S
         this(null, googleBookId, title, authors, publisher, publishedDate, description, imageUrl, null);
     }
 
+    public Book(String googleBookId, String title, List<String> authors, String publisher,
+                String publishedDate, String userId) {
+        this(null, googleBookId, title, authors, publisher, publishedDate, null, null, userId);
+    }
+
+
     public Book withUserId(String userId) {
         return new Book(null, googleBookId, title, authors, publisher, publishedDate, description, imageUrl, userId);
     }
