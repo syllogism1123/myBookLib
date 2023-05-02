@@ -8,9 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 
 @RestController
@@ -19,8 +19,6 @@ import java.util.NoSuchElementException;
 public class BookController {
     private final BookService bookService;
     private final UserService userService;
-
-    private static final String NO_BOOK_FOUND = "Book not found";
 
     public BookController(BookService bookService, UserService userService) {
         this.bookService = bookService;
@@ -70,20 +68,17 @@ public class BookController {
             String userId = user.id();
             updatedBook.withUserId(userId);
             return new ResponseEntity<>(bookService.updateBookById(id, updatedBook), HttpStatus.OK);
+        } else {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The id in the url does not match the request body's id");
         }
-        throw new NoSuchElementException(NO_BOOK_FOUND);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBookById(@PathVariable String id) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         MongoUser user = userService.findUserByUsername(username);
-        if (bookService.getBookById(id) != null) {
-            String userId = user.id();
-            bookService.deleteBookByIdAndUserId(id, userId);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            throw new NoSuchElementException(NO_BOOK_FOUND);
-        }
+        String userId = user.id();
+        bookService.deleteBookByIdAndUserId(id, userId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

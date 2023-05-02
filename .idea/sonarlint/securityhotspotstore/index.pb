@@ -31,10 +31,6 @@ Y
 )book-frontend/src/componet/SignUpPage.tsx,b\3\b3cd63a18b4b6dd26a82844b68e1e0aa37e41440
 Q
 !book-frontend/src/hook/useBook.ts,e\9\e9614405f46eaf66152e92caca590a9f2ba3b5e0
-‡
-Wbook-backend/src/test/java/com/xin/bookbackend/service/MongoUserDetailsServiceTest.java,5\c\5cbf6ca8001a7d1cb24993a0be93c22f6a939390
-{
-Kbook-backend/src/test/java/com/xin/bookbackend/service/UserServiceTest.java,3\9\39350c575a13db0f199e32c027610e6ea6d6a295
 I
 book-frontend/src/App.tsx,5\b\5b6d17f3f5aa0717c69d17c94c231edb4b52226d
 w
@@ -45,5 +41,3 @@ Y
 )book-frontend/src/componet/LogoutPage.tsx,5\0\5023c4f502b8667d9ad914d0c2739b86ebccaf1c
 X
 (book-frontend/src/componet/LoginPage.tsx,b\8\b86e6ea168fbd1d731b4dc11ee1e7cff8733e4b2
-D
-book-backend/pom.xml,6\7\678b38964deea50792d08b2552ae7520497c965d
