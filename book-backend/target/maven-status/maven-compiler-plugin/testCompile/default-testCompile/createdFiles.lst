@@ -1,4 +1,6 @@
-com\xin\bookbackend\controller\UserControllerTest.class
+com\xin\bookbackend\controller\BookControllerTest.class
 com\xin\bookbackend\service\UserServiceTest.class
-com\xin\bookbackend\service\MongoUserDetailsServiceTest.class
 com\xin\bookbackend\BookBackendApplicationTests.class
+com\xin\bookbackend\controller\UserControllerTest.class
+com\xin\bookbackend\service\MongoUserDetailsServiceTest.class
+com\xin\bookbackend\service\BookServiceTest.class

@@ -1,4 +1,5 @@
 C:\Users\klein\java\Book-API\book-backend\src\main\java\com\xin\bookbackend\model\GoogleBookResponse.java
+C:\Users\klein\java\Book-API\book-backend\src\main\java\com\xin\bookbackend\config\ReactRoutingForwarding.java
 C:\Users\klein\java\Book-API\book-backend\src\main\java\com\xin\bookbackend\model\MongoUser.java
 C:\Users\klein\java\Book-API\book-backend\src\main\java\com\xin\bookbackend\repo\BookRepository.java
 C:\Users\klein\java\Book-API\book-backend\src\main\java\com\xin\bookbackend\repo\MongoUserRepository.java
@@ -8,9 +9,11 @@ C:\Users\klein\java\Book-API\book-backend\src\main\java\com\xin\bookbackend\secu
 C:\Users\klein\java\Book-API\book-backend\src\main\java\com\xin\bookbackend\model\GoogleBook.java
 C:\Users\klein\java\Book-API\book-backend\src\main\java\com\xin\bookbackend\model\MongoUserDTO.java
 C:\Users\klein\java\Book-API\book-backend\src\main\java\com\xin\bookbackend\service\UserService.java
+C:\Users\klein\java\Book-API\book-backend\src\main\java\com\xin\bookbackend\exception\ApiError.java
 C:\Users\klein\java\Book-API\book-backend\src\main\java\com\xin\bookbackend\model\ImageLinks.java
 C:\Users\klein\java\Book-API\book-backend\src\main\java\com\xin\bookbackend\service\MongoUserDetailsService.java
 C:\Users\klein\java\Book-API\book-backend\src\main\java\com\xin\bookbackend\model\Book.java
 C:\Users\klein\java\Book-API\book-backend\src\main\java\com\xin\bookbackend\controller\UserController.java
 C:\Users\klein\java\Book-API\book-backend\src\main\java\com\xin\bookbackend\controller\BookController.java
+C:\Users\klein\java\Book-API\book-backend\src\main\java\com\xin\bookbackend\exception\GlobalExceptionHandler.java
 C:\Users\klein\java\Book-API\book-backend\src\main\java\com\xin\bookbackend\BookBackendApplication.java
