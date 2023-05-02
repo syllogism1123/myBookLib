@@ -1,0 +1,16 @@
+com\xin\bookbackend\model\GoogleBook.class
+com\xin\bookbackend\service\MongoUserDetailsService.class
+com\xin\bookbackend\model\MongoUser.class
+com\xin\bookbackend\repo\MongoUserRepository.class
+com\xin\bookbackend\BookBackendApplication.class
+com\xin\bookbackend\model\Book.class
+com\xin\bookbackend\model\VolumeInfo.class
+com\xin\bookbackend\model\MongoUserDTO.class
+com\xin\bookbackend\security\SecurityConfig.class
+com\xin\bookbackend\model\GoogleBookResponse.class
+com\xin\bookbackend\model\ImageLinks.class
+com\xin\bookbackend\service\UserService.class
+com\xin\bookbackend\controller\BookController.class
+com\xin\bookbackend\controller\UserController.class
+com\xin\bookbackend\repo\BookRepository.class
+com\xin\bookbackend\service\BookService.class
