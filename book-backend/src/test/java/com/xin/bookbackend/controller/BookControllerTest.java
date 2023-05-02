@@ -135,6 +135,7 @@ class BookControllerTest {
                         with(csrf())).
                 andExpect(status().isBadRequest());
     }
+
     @Test
     @DirtiesContext
     @WithMockUser
@@ -143,5 +144,40 @@ class BookControllerTest {
         mvc.perform(delete("/api/books/" + id).
                         contentType(MediaType.APPLICATION_JSON).with(csrf())).
                 andExpect(status().isOk());
+    }
+
+    @Test
+    @DirtiesContext
+    @WithMockUser
+    void search() throws Exception {
+        String query = "java";
+
+        mvc.perform(get("/api/books/search?query=" + query).
+                        contentType(MediaType.APPLICATION_JSON)).
+                andExpect(status().isOk());
+    }
+
+    @Test
+    @DirtiesContext
+    @WithMockUser
+    void findBookByGoogleBookId() throws Exception {
+        String googleBookId = "5eDWcLzdAcYC";
+        mvc.perform(get("/api/books/search/" + googleBookId).
+                        contentType(MediaType.APPLICATION_JSON)).
+                andExpect(status().isOk())
+                .andExpect(content().
+                        json("""
+                                {
+                                 "googleBookId": "5eDWcLzdAcYC",
+                                 "title": "Java von Kopf bis Fuß",
+                                 "authors": [
+                                        "Kathy Sierra",
+                                        "Bert Bates"
+                                    ],
+                                 "publisher": "O'Reilly Germany",
+                                 "publishedDate": "2006"
+                                 }
+                                 """)).
+                andExpect(jsonPath("$.googleBookId").isNotEmpty());
     }
 }

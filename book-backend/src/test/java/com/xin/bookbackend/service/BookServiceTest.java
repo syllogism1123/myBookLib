@@ -113,4 +113,31 @@ class BookServiceTest {
         verify(bookRepo).deleteByIdAndUserId(id, userId);
 
     }
+
+    @Test
+    void searchBooks() {
+        String query = "java";
+
+        List<Book> books = service.searchBooks(query);
+
+        assertEquals(30, books.size());
+    }
+
+
+    @Test
+    void getBookByGoogleBookId() {
+        String googleBookId = "5eDWcLzdAcYC";
+        Book expected = new Book("5eDWcLzdAcYC",
+                "Java von Kopf bis Fuß",
+                List.of("Kathy Sierra", "Bert Bates"),
+                "O'Reilly Germany",
+                "2006", null, null);
+
+        Book actual = service.getBookByGoogleBookId(googleBookId);
+
+        assertEquals(expected.authors(), actual.authors());
+        assertEquals(expected.title(), actual.title());
+        assertEquals(expected.publishedDate(), actual.publishedDate());
+        assertEquals(expected.publisher(), actual.publisher());
+    }
 }
