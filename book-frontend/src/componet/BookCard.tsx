@@ -1,15 +1,23 @@
 import {Button, Card, CardContent} from "@mui/material";
 import {Book} from "../model/Book";
-import React from "react";
 import {useNavigate} from "react-router-dom";
+import {useBook} from "../hook/useBook";
 
 type BookCardProps = {
     book: Book,
 }
 export default function BookCard(props: BookCardProps) {
+    const {addBook} = useBook();
     const navi = useNavigate();
     const toDetail = () => {
         navi("/home/" + props.book.googleBookId)
+    }
+
+    const addToLib = () => {
+        addBook(props.book).then(() => {
+                navi("/books/")
+            }
+        ).catch((r) => console.error(r));
     }
 
 
@@ -21,7 +29,7 @@ export default function BookCard(props: BookCardProps) {
             <Button variant="text" type="submit" size="small" onClick={toDetail}>
                 Details
             </Button>
-            <Button variant="text" type="submit" size="small">
+            <Button variant="text" type="submit" size="small" onClick={addToLib}>
                 Add to Lib
             </Button>
         </Card>

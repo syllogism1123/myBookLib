@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import {User, UserModel} from "../model/UserModel";
 
 export default function useUser() {
-    const [user, setUser] = useState<User>();
+    const [user, setUser] = useState<User | null>(null);
     const [error, setError] = useState<boolean>();
     const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [username, setUsername] = useState("");
@@ -53,11 +53,6 @@ export default function useUser() {
             (e) => console.error(e)
         )
     }, [username]);
-
-    useEffect(() => {
-        console.log(user?.id);
-    }, [user]);
-
     const createUser = async (newUser: UserModel) => {
         return await axios.post("http://localhost:8080/api/users/signup", newUser, {
             withCredentials: true
@@ -82,7 +77,7 @@ export default function useUser() {
     }
 
 
-    return {user, login, logout, createUser, error, setError, isLoggedIn}
+    return {user, username, setUser, login, logout, createUser, error, setError, isLoggedIn, loadUser}
 }
 
 

@@ -35,7 +35,7 @@ public class BookService {
 
     public List<Book> searchBooks(String query) {
         ResponseEntity<GoogleBookResponse> responseEntity = webClient.get().
-                uri("?q=" + query + "&maxResults=30").
+                uri("?q=" + query + "&maxResults=40").
                 retrieve().
                 toEntity(GoogleBookResponse.class).
                 block();

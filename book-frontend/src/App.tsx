@@ -5,9 +5,10 @@ import {SignUpPage} from "./componet/SignUpPage";
 import {LoginPage} from "./componet/LoginPage";
 import useUser from "./hook/useUser";
 import Header from "./componet/Header";
-import BooKGallery from "./componet/BooKGallery";
+import BookGallery from "./componet/BookGallery";
 import React from "react";
 import {BookDetails} from "./componet/BookDetails";
+import UserBookGallery from "./componet/UserBookGallery";
 
 function App() {
     const {login, logout, createUser} = useUser();
@@ -22,9 +23,10 @@ function App() {
                     </Route>
                     <Route path="/signup" element={<SignUpPage createUser={createUser}/>}>
                     </Route>
-                    <Route path="/home" element={<BooKGallery/>}>
+                    <Route path="/home" element={<BookGallery/>}>
                     </Route>
-
+                    <Route path="/books" element={<UserBookGallery/>}>
+                    </Route>
                     <Route path="/" element={<Navigate to="/home"/>}>
                     </Route>
                     <Route path="/home/:id" element={<BookDetails/>}/>

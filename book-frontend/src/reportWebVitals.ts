@@ -11,7 +11,6 @@ const reportWebVitals = (onPerfEntry?: ReportHandler) => {
         }).catch((error) => {
             console.error(error);
         });
-        ;
     }
 };
 

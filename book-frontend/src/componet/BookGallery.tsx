@@ -5,7 +5,7 @@ import axios from "axios";
 import {Book} from "../model/Book";
 
 
-export default function BooKGallery() {
+export default function BookGallery() {
     const {books, setBooks, query, setQuery} = useBook();
     const onTextChange = (event: ChangeEvent<HTMLInputElement>) => {
         setQuery(event.target.value);
@@ -24,7 +24,7 @@ export default function BooKGallery() {
                 })
         }
     }
-    const booksWithView: Book[] = books.filter((book) => (book.imageUrl !== null));
+    const booksWithView: Book[] = books.filter((book) => (book.imageUrl !== null && book.description !== null));
 
     return (
         <div>
