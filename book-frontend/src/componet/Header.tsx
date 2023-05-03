@@ -7,12 +7,13 @@ export default function Header() {
         <div>
             <Breadcrumbs maxItems={4} aria-label="breadcrumb" className='link'>
                 <Link to='/books'>Book Library</Link>
+                <Link to='/home'>Home</Link>
                 <Link to='/login'>Login</Link>
                 <Link to='/logout'>Logout</Link>
                 <Link to='/signup'>Signup</Link>
                 <Typography color="text.primary"></Typography>
             </Breadcrumbs>
-            <Typography variant="h2" style={{color: "brown"}}>
+            <Typography variant="h1" style={{color: "brown"}}>
                 BOOK LIBRARY
             </Typography>
         </div>

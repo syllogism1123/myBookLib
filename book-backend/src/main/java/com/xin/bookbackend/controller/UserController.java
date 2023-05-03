@@ -4,6 +4,7 @@ import com.xin.bookbackend.model.MongoUser;
 import com.xin.bookbackend.model.MongoUserDTO;
 import com.xin.bookbackend.service.UserService;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -31,14 +32,14 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<MongoUser> createUser(@RequestBody MongoUserDTO mongoUserDTO) {
-        userService.createMongoUser(mongoUserDTO);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<MongoUserDTO> createUser(@RequestBody MongoUserDTO mongoUserDTO) {
+        MongoUser mongoUser = userService.createMongoUser(mongoUserDTO);
+        return new ResponseEntity<>(convertMongoUserToMongoUserDTO(mongoUser), HttpStatus.CREATED);
     }
 
     @GetMapping("/{username}")
-    public MongoUser loadMongoUserByName(@PathVariable String username) {
-        return userService.findUserByUsername(username);
+    public MongoUserDTO loadMongoUserByName(@PathVariable String username) {
+        return convertMongoUserToMongoUserDTO(userService.findUserByUsername(username));
     }
 
 
@@ -46,6 +47,13 @@ public class UserController {
     public void logout(HttpSession httpSession) {
         httpSession.invalidate();
         SecurityContextHolder.clearContext();
+    }
+
+
+    private MongoUserDTO convertMongoUserToMongoUserDTO(MongoUser mongoUser) {
+        MongoUserDTO mongoUserDTO = new MongoUserDTO();
+        BeanUtils.copyProperties(mongoUser, mongoUserDTO);
+        return mongoUserDTO;
     }
 
 }

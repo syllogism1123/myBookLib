@@ -5,6 +5,9 @@ public record MongoUserDTO(String id, String username, String password, String f
         this(null, username, password, firstname, lastname);
     }
 
+    public MongoUserDTO() {
+        this(null, null, null, null, null);
+    }
 }
 
 

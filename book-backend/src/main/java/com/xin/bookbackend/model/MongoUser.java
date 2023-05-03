@@ -27,4 +27,8 @@ public record MongoUser(
     public MongoUser(String username, String password, String firstname, String lastname) {
         this(null, username, password, firstname, lastname);
     }
+
+    public MongoUser() {
+        this(null, null, null, null, null);
+    }
 }

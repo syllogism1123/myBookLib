@@ -7,8 +7,6 @@ U
 %book-frontend/src/model/UserModel.tsx,1\a\1a2594f883189b9df43ccb67513bee8cdd6fd696
 t
 Dbook-backend/src/main/java/com/xin/bookbackend/model/ImageLinks.java,6\6\6667265a542418046915462927420e243b26dde1
-w
-Gbook-backend/src/main/java/com/xin/bookbackend/service/UserService.java,6\a\6a41fbdf439ffd6164bad08b9c8610ccd0104e73
 É
 Sbook-backend/src/main/java/com/xin/bookbackend/service/MongoUserDetailsService.java,b\9\b9d7d0a208a32d9347d31f19a0bbf261b39d7329
 {
@@ -17,8 +15,6 @@ Kbook-backend/src/main/java/com/xin/bookbackend/security/SecurityConfig.java,9\
 Q.idea/sonarlint/securityhotspotstore/b/9/b9d7d0a208a32d9347d31f19a0bbf261b39d7329,b\f\bf699dab9da1d1b410bdf2fa4c95ea30851b48b5
 w
 G.idea/sonarlint/issuestore/b/9/b9d7d0a208a32d9347d31f19a0bbf261b39d7329,4\9\492fee6064286b321e1a8962a1aef0edd94d5dec
-|
-Lbook-backend/src/main/java/com/xin/bookbackend/repo/MongoUserRepository.java,1\6\16d1cd453098fce20eaef8448022879bf8629f17
 Å
 Qbook-backend/src/test/java/com/xin/bookbackend/controller/UserControllerTest.java,5\1\51bef1530df1f8e3ae2bfa7f5a0f09d76fdd8387
 á
