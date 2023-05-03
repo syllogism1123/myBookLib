@@ -1,6 +1,6 @@
 package com.xin.bookbackend.repo;
 
-import com.xin.bookbackend.model.Book;
+import com.xin.bookbackend.model.book.Book;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

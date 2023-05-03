@@ -1,7 +1,7 @@
 package com.xin.bookbackend.service;
 
-import com.xin.bookbackend.model.MongoUser;
-import com.xin.bookbackend.model.MongoUserDTO;
+import com.xin.bookbackend.model.user.MongoUser;
+import com.xin.bookbackend.model.user.MongoUserDTO;
 import com.xin.bookbackend.repo.MongoUserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

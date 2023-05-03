@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BookService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">book-backend</a> &gt; <a href="index.source.html" class="el_package">com.xin.bookbackend.service</a> &gt; <span class="el_source">BookService.java</span></div><h1>BookService.java</h1><pre class="source lang-java linenums">package com.xin.bookbackend.service;
 
-import com.xin.bookbackend.model.Book;
-import com.xin.bookbackend.model.GoogleBook;
-import com.xin.bookbackend.model.GoogleBookResponse;
+import com.xin.bookbackend.model.book.Book;
+import com.xin.bookbackend.model.book.GoogleBook;
+import com.xin.bookbackend.model.book.GoogleBookResponse;
 import com.xin.bookbackend.repo.BookRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -22,66 +24,72 @@ public class BookService {
     private final BookRepository bookRepos;
     @Value(&quot;${google.api.key}&quot;)
     private String apiKey;
+<span class="fc" id="L27">    private static final Logger log = LoggerFactory.getLogger(BookService.class);</span>
 
-<span class="fc" id="L26">    public BookService(BookRepository bookRepository) {</span>
-<span class="fc" id="L27">        this.webClient = WebClient.builder()</span>
-<span class="fc" id="L28">                .baseUrl(&quot;https://www.googleapis.com/books/v1/volumes&quot;)</span>
-<span class="fc" id="L29">                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)</span>
-<span class="fc" id="L30">                .defaultUriVariables(Collections.singletonMap(&quot;url&quot;, &quot;https://www.googleapis.com&quot;))</span>
-<span class="fc" id="L31">                .defaultUriVariables(Collections.singletonMap(&quot;key&quot;, apiKey))</span>
-<span class="fc" id="L32">                .build();</span>
-<span class="fc" id="L33">        this.bookRepos = bookRepository;</span>
-<span class="fc" id="L34">    }</span>
+<span class="fc" id="L29">    public BookService(BookRepository bookRepository) {</span>
+<span class="fc" id="L30">        this.webClient = WebClient.builder()</span>
+<span class="fc" id="L31">                .baseUrl(&quot;https://www.googleapis.com/books/v1/volumes&quot;)</span>
+<span class="fc" id="L32">                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)</span>
+<span class="fc" id="L33">                .defaultUriVariables(Collections.singletonMap(&quot;url&quot;, &quot;https://www.googleapis.com&quot;))</span>
+<span class="fc" id="L34">                .defaultUriVariables(Collections.singletonMap(&quot;key&quot;, apiKey))</span>
+<span class="fc" id="L35">                .build();</span>
+<span class="fc" id="L36">        this.bookRepos = bookRepository;</span>
+<span class="fc" id="L37">    }</span>
 
     public List&lt;Book&gt; searchBooks(String query) {
-<span class="fc" id="L37">        ResponseEntity&lt;GoogleBookResponse&gt; responseEntity = webClient.get().</span>
-<span class="fc" id="L38">                uri(&quot;?q=&quot; + query + &quot;&amp;maxResults=30&quot;).</span>
-<span class="fc" id="L39">                retrieve().</span>
-<span class="fc" id="L40">                toEntity(GoogleBookResponse.class).</span>
-<span class="fc" id="L41">                block();</span>
+<span class="fc" id="L40">        ResponseEntity&lt;GoogleBookResponse&gt; responseEntity = webClient.get().</span>
+<span class="fc" id="L41">                uri(&quot;?q=&quot; + query + &quot;&amp;maxResults=30&quot;).</span>
+<span class="fc" id="L42">                retrieve().</span>
+<span class="fc" id="L43">                toEntity(GoogleBookResponse.class).</span>
+<span class="fc" id="L44">                block();</span>
 
-<span class="fc" id="L43">        var body = Objects.requireNonNull(responseEntity).getBody();</span>
-<span class="fc" id="L44">        return Objects.requireNonNull(body).items().stream().map(GoogleBook::toBook).toList();</span>
+<span class="fc" id="L46">        var body = Objects.requireNonNull(responseEntity).getBody();</span>
+<span class="fc" id="L47">        return Objects.requireNonNull(body).items().stream().map(GoogleBook::toBook).toList();</span>
     }
 
 
     public Book getBookByGoogleBookId(String googleBookId) {
-<span class="fc" id="L49">        ResponseEntity&lt;GoogleBook&gt; responseEntity = webClient.get().</span>
-<span class="fc" id="L50">                uri(&quot;/&quot; + googleBookId).</span>
-<span class="fc" id="L51">                retrieve().</span>
-<span class="fc" id="L52">                toEntity(GoogleBook.class).</span>
-<span class="fc" id="L53">                block();</span>
-<span class="fc" id="L54">        var body = Objects.requireNonNull(responseEntity).getBody();</span>
-<span class="fc" id="L55">        return Objects.requireNonNull(body).toBook();</span>
+<span class="fc" id="L52">        ResponseEntity&lt;GoogleBook&gt; responseEntity = webClient.get().</span>
+<span class="fc" id="L53">                uri(&quot;/&quot; + googleBookId).</span>
+<span class="fc" id="L54">                retrieve().</span>
+<span class="fc" id="L55">                toEntity(GoogleBook.class).</span>
+<span class="fc" id="L56">                block();</span>
+<span class="fc" id="L57">        var body = Objects.requireNonNull(responseEntity).getBody();</span>
+<span class="fc" id="L58">        return Objects.requireNonNull(body).toBook();</span>
     }
 
 
     public List&lt;Book&gt; getAllBooksByUserId(String id) {
-<span class="fc" id="L60">        return bookRepos.findByUserId(id);</span>
+<span class="fc" id="L63">        return bookRepos.findByUserId(id);</span>
     }
 
 
     public Book addBook(Book book, String userId) {
-<span class="fc" id="L65">        Book bookToSave = book.withUserId(userId);</span>
-<span class="fc" id="L66">        return bookRepos.save(bookToSave);</span>
+<span class="fc" id="L68">        Book bookToSave = book.withUserId(userId);</span>
+<span class="fc" id="L69">        if (getAllBooksByUserId(userId).stream().</span>
+<span class="pc bpc" id="L70" title="1 of 2 branches missed.">                anyMatch(b -&gt; b.googleBookId().equals(bookToSave.googleBookId()))) {</span>
+<span class="nc" id="L71">            log.warn(&quot;This Book is already in your Library!&quot;);</span>
+<span class="nc" id="L72">            return null;</span>
+        }
+<span class="fc" id="L74">        return bookRepos.save(bookToSave);</span>
     }
 
     public Book getBookById(String id) {
-<span class="fc" id="L70">        return bookRepos.findById(id).orElseThrow();</span>
+<span class="fc" id="L78">        return bookRepos.findById(id).orElseThrow();</span>
     }
 
     public Book updateBookById(String id, Book newBook) {
-<span class="pc bpc" id="L74" title="1 of 2 branches missed.">        if (getBookById(id) != null) {</span>
-<span class="fc" id="L75">            return bookRepos.save(newBook);</span>
+<span class="pc bpc" id="L82" title="1 of 2 branches missed.">        if (getBookById(id) != null) {</span>
+<span class="fc" id="L83">            return bookRepos.save(newBook);</span>
 
         } else {
-<span class="nc" id="L78">            throw new NoSuchElementException(&quot;Book not found!&quot;);</span>
+<span class="nc" id="L86">            throw new NoSuchElementException(&quot;Book not found!&quot;);</span>
         }
     }
 
     public void deleteBookByIdAndUserId(String id, String userId) {
-<span class="fc" id="L83">        bookRepos.deleteByIdAndUserId(id, userId);</span>
-<span class="fc" id="L84">    }</span>
+<span class="fc" id="L91">        bookRepos.deleteByIdAndUserId(id, userId);</span>
+<span class="fc" id="L92">    }</span>
 
 
 }

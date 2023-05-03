@@ -1,6 +1,6 @@
 package com.xin.bookbackend.service;
 
-import com.xin.bookbackend.model.Book;
+import com.xin.bookbackend.model.book.Book;
 import com.xin.bookbackend.repo.BookRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

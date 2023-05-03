@@ -7,8 +7,6 @@ U
 %book-frontend/src/model/UserModel.tsx,1\a\1a2594f883189b9df43ccb67513bee8cdd6fd696
 t
 Dbook-backend/src/main/java/com/xin/bookbackend/model/ImageLinks.java,6\6\6667265a542418046915462927420e243b26dde1
-É
-Sbook-backend/src/main/java/com/xin/bookbackend/service/MongoUserDetailsService.java,b\9\b9d7d0a208a32d9347d31f19a0bbf261b39d7329
 {
 Kbook-backend/src/main/java/com/xin/bookbackend/security/SecurityConfig.java,9\6\96d72523b6c95c3360dc90d2c2e32dd7897ecf10
 Å
@@ -21,12 +19,6 @@ T
 $.github/workflows/sonar-frontend.yml,9\c\9c51df10072e3ef6ef5b5789444db6cb38bef828
 H
 sonar-project.properties,2\5\2538046035efb77ecc44e1fd2eec1e2641594d4c
-á
-Wbook-backend/src/test/java/com/xin/bookbackend/service/MongoUserDetailsServiceTest.java,5\c\5cbf6ca8001a7d1cb24993a0be93c22f6a939390
-{
-Kbook-backend/src/test/java/com/xin/bookbackend/service/UserServiceTest.java,3\9\39350c575a13db0f199e32c027610e6ea6d6a295
-Å
-Qbook-backend/src/test/java/com/xin/bookbackend/controller/UserControllerTest.java,5\1\51bef1530df1f8e3ae2bfa7f5a0f09d76fdd8387
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302

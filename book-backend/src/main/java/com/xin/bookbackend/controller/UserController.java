@@ -1,7 +1,7 @@
 package com.xin.bookbackend.controller;
 
-import com.xin.bookbackend.model.MongoUser;
-import com.xin.bookbackend.model.MongoUserDTO;
+import com.xin.bookbackend.model.user.MongoUser;
+import com.xin.bookbackend.model.user.MongoUserDTO;
 import com.xin.bookbackend.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.BeanUtils;

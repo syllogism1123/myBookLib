@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">book-backend</a> &gt; <a href="index.source.html" class="el_package">com.xin.bookbackend.controller</a> &gt; <span class="el_source">UserController.java</span></div><h1>UserController.java</h1><pre class="source lang-java linenums">package com.xin.bookbackend.controller;
 
-import com.xin.bookbackend.model.MongoUser;
-import com.xin.bookbackend.model.MongoUserDTO;
+import com.xin.bookbackend.model.user.MongoUser;
+import com.xin.bookbackend.model.user.MongoUserDTO;
 import com.xin.bookbackend.service.UserService;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,37 +17,44 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     private final UserService userService;
 
-<span class="fc" id="L19">    public UserController(UserService userService) {</span>
-<span class="fc" id="L20">        this.userService = userService;</span>
-<span class="fc" id="L21">    }</span>
+<span class="fc" id="L20">    public UserController(UserService userService) {</span>
+<span class="fc" id="L21">        this.userService = userService;</span>
+<span class="fc" id="L22">    }</span>
 
     @PostMapping(&quot;/login&quot;)
     public String login() {
-<span class="fc" id="L25">        return SecurityContextHolder.getContext().getAuthentication().getName();</span>
+<span class="fc" id="L26">        return SecurityContextHolder.getContext().getAuthentication().getName();</span>
     }
 
     @GetMapping(&quot;/me&quot;)
     public String getMe() {
-<span class="fc" id="L30">        return SecurityContextHolder.getContext().getAuthentication().getName();</span>
+<span class="fc" id="L31">        return SecurityContextHolder.getContext().getAuthentication().getName();</span>
     }
 
     @PostMapping(&quot;/signup&quot;)
-    public ResponseEntity&lt;MongoUser&gt; createUser(@RequestBody MongoUserDTO mongoUserDTO) {
-<span class="fc" id="L35">        userService.createMongoUser(mongoUserDTO);</span>
-<span class="fc" id="L36">        return new ResponseEntity&lt;&gt;(HttpStatus.CREATED);</span>
+    public ResponseEntity&lt;MongoUserDTO&gt; createUser(@RequestBody MongoUserDTO mongoUserDTO) {
+<span class="fc" id="L36">        MongoUser mongoUser = userService.createMongoUser(mongoUserDTO);</span>
+<span class="fc" id="L37">        return new ResponseEntity&lt;&gt;(convertMongoUserToMongoUserDTO(mongoUser), HttpStatus.CREATED);</span>
     }
 
     @GetMapping(&quot;/{username}&quot;)
-    public MongoUser loadMongoUserByName(@PathVariable String username) {
-<span class="fc" id="L41">        return userService.findUserByUsername(username);</span>
+    public MongoUserDTO loadMongoUserByName(@PathVariable String username) {
+<span class="fc" id="L42">        return convertMongoUserToMongoUserDTO(userService.findUserByUsername(username));</span>
     }
 
 
     @PostMapping(&quot;/logout&quot;)
     public void logout(HttpSession httpSession) {
-<span class="fc" id="L47">        httpSession.invalidate();</span>
-<span class="fc" id="L48">        SecurityContextHolder.clearContext();</span>
-<span class="fc" id="L49">    }</span>
+<span class="fc" id="L48">        httpSession.invalidate();</span>
+<span class="fc" id="L49">        SecurityContextHolder.clearContext();</span>
+<span class="fc" id="L50">    }</span>
+
+
+    private MongoUserDTO convertMongoUserToMongoUserDTO(MongoUser mongoUser) {
+<span class="fc" id="L54">        MongoUserDTO mongoUserDTO = new MongoUserDTO();</span>
+<span class="fc" id="L55">        BeanUtils.copyProperties(mongoUser, mongoUserDTO);</span>
+<span class="fc" id="L56">        return mongoUserDTO;</span>
+    }
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

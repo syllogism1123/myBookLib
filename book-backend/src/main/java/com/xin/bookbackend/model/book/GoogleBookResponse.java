@@ -1,4 +1,4 @@
-package com.xin.bookbackend.model;
+package com.xin.bookbackend.model.book;
 
 import java.util.List;
 

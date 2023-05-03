@@ -1,4 +1,4 @@
-package com.xin.bookbackend.model;
+package com.xin.bookbackend.model.book;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;

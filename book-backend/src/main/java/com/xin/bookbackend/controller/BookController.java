@@ -1,7 +1,7 @@
 package com.xin.bookbackend.controller;
 
-import com.xin.bookbackend.model.Book;
-import com.xin.bookbackend.model.MongoUser;
+import com.xin.bookbackend.model.book.Book;
+import com.xin.bookbackend.model.user.MongoUser;
 import com.xin.bookbackend.service.BookService;
 import com.xin.bookbackend.service.UserService;
 import org.springframework.http.HttpStatus;

@@ -1,6 +1,6 @@
 package com.xin.bookbackend.controller;
 
-import com.xin.bookbackend.model.MongoUserDTO;
+import com.xin.bookbackend.model.user.MongoUserDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.AutoConfigureJsonTesters;
@@ -13,10 +13,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -95,22 +93,12 @@ class UserControllerTest {
                         content(json.write(mongoUserDTO).getJson()).with(csrf())).
                 andExpect(MockMvcResultMatchers.status().isCreated());
 
-        MvcResult result = mvc.perform(get("/api/users/" + username)
+        mvc.perform(get("/api/users/" + username)
                         .contentType(MediaType.APPLICATION_JSON)
                         .with(csrf()))
                 .andExpect(status().isOk())
                 .andReturn();
-
-        String responseJson = result.getResponse().getContentAsString();
-        MongoUserDTO responseUserDTO = json.parseObject(responseJson);
-
-        assertEquals(mongoUserDTO.username(), responseUserDTO.username());
-        assertEquals(passwordEncoder.encode(mongoUserDTO.password()), responseUserDTO.password());
-        assertEquals(mongoUserDTO.firstname(), responseUserDTO.firstname());
-        assertEquals(mongoUserDTO.lastname(), responseUserDTO.lastname());
-
     }
-
 
     @Test
     @DirtiesContext

@@ -13,7 +13,7 @@ export default function Header() {
                 <Link to='/signup'>Signup</Link>
                 <Typography color="text.primary"></Typography>
             </Breadcrumbs>
-            <Typography variant="h1" style={{color: "brown"}}>
+            <Typography variant="h2" style={{color: "brown"}}>
                 BOOK LIBRARY
             </Typography>
         </div>

@@ -1,8 +1,8 @@
 package com.xin.bookbackend.service;
 
-import com.xin.bookbackend.model.Book;
-import com.xin.bookbackend.model.GoogleBook;
-import com.xin.bookbackend.model.GoogleBookResponse;
+import com.xin.bookbackend.model.book.Book;
+import com.xin.bookbackend.model.book.GoogleBook;
+import com.xin.bookbackend.model.book.GoogleBookResponse;
 import com.xin.bookbackend.repo.BookRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

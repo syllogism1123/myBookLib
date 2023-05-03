@@ -1,4 +1,4 @@
-package com.xin.bookbackend.model;
+package com.xin.bookbackend.model.user;
 
 public record MongoUserDTO(String id, String username, String password, String firstname, String lastname) {
     public MongoUserDTO(String username, String password, String firstname, String lastname) {

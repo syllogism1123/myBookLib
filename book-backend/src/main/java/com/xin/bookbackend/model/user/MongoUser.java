@@ -1,4 +1,4 @@
-package com.xin.bookbackend.model;
+package com.xin.bookbackend.model.user;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
