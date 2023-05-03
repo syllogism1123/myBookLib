@@ -1,9 +1,11 @@
 package com.xin.bookbackend.model;
 
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.util.List;
 
+@Document
 public record Book(@MongoId String id, String googleBookId, String title, List<String> authors, String publisher,
                    String publishedDate, String description, String imageUrl, String userId) {
 

@@ -6,7 +6,7 @@ export default function Header() {
     return (
         <div>
             <Breadcrumbs maxItems={4} aria-label="breadcrumb" className='link'>
-                <Link to='/home'>Book Library</Link>
+                <Link to='/books'>Book Library</Link>
                 <Link to='/login'>Login</Link>
                 <Link to='/logout'>Logout</Link>
                 <Link to='/signup'>Signup</Link>

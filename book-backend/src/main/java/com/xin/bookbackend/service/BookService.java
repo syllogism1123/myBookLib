@@ -4,6 +4,8 @@ import com.xin.bookbackend.model.Book;
 import com.xin.bookbackend.model.GoogleBook;
 import com.xin.bookbackend.model.GoogleBookResponse;
 import com.xin.bookbackend.repo.BookRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -22,6 +24,7 @@ public class BookService {
     private final BookRepository bookRepos;
     @Value("${google.api.key}")
     private String apiKey;
+    private static final Logger log = LoggerFactory.getLogger(BookService.class);
 
     public BookService(BookRepository bookRepository) {
         this.webClient = WebClient.builder()
@@ -63,6 +66,11 @@ public class BookService {
 
     public Book addBook(Book book, String userId) {
         Book bookToSave = book.withUserId(userId);
+        if (getAllBooksByUserId(userId).stream().
+                anyMatch(b -> b.googleBookId().equals(bookToSave.googleBookId()))) {
+            log.warn("This Book is already in your Library!");
+            return null;
+        }
         return bookRepos.save(bookToSave);
     }
 
