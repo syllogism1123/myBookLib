@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GoogleBook.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">book-backend</a> &gt; <a href="index.source.html" class="el_package">com.xin.bookbackend.model.book</a> &gt; <span class="el_source">GoogleBook.java</span></div><h1>GoogleBook.java</h1><pre class="source lang-java linenums">package com.xin.bookbackend.model.book;
+
+import java.util.List;
+
+<span class="pc" id="L5">public record GoogleBook(String id, VolumeInfo volumeInfo) {</span>
+
+    public Book toBook() {
+<span class="fc" id="L8">        String id = this.id();</span>
+<span class="fc" id="L9">        String tittle = volumeInfo.title();</span>
+<span class="fc" id="L10">        List&lt;String&gt; authors = volumeInfo.authors();</span>
+<span class="fc" id="L11">        String publisher = volumeInfo.publisher();</span>
+<span class="fc" id="L12">        String publishedDate = volumeInfo.publishedDate();</span>
+<span class="fc" id="L13">        String description = volumeInfo.description();</span>
+<span class="fc bfc" id="L14" title="All 2 branches covered.">        Double averageRating = volumeInfo.averageRating() == null ? (Math.random() * 5)</span>
+<span class="fc" id="L15">                : volumeInfo.averageRating();</span>
+<span class="fc bfc" id="L16" title="All 2 branches covered.">        String imageUrl = volumeInfo.imageLinks() != null ? volumeInfo.imageLinks().thumbnail() : null;</span>
+<span class="fc" id="L17">        return new Book(id, tittle, authors, publisher, publishedDate, description, averageRating, imageUrl);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
