@@ -2,6 +2,9 @@ import {Button, Card, CardContent} from "@mui/material";
 import {Book} from "../model/Book";
 import {useNavigate} from "react-router-dom";
 import {useBook} from "../hook/useBook";
+import Stack from "@mui/material/Stack";
+import Rating from "@mui/material/Rating";
+import * as React from "react";
 
 type BookCardProps = {
     book: Book,
@@ -32,6 +35,9 @@ export default function UserBookCard(props: BookCardProps) {
             <Button variant="text" type="submit" size="small" onClick={removeFromLib}>
                 Remove
             </Button>
+            <Stack spacing={1} className='rating'>
+                <Rating name="half-rating-read" defaultValue={props.book.averageRating} precision={0.5}/>
+            </Stack>
         </Card>
     )
 }

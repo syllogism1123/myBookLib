@@ -33,7 +33,7 @@ class BookServiceTest {
                 "Java von Kopf bis Fuß",
                 List.of("Kathy Sierra", "Bert Bates"),
                 "O'Reilly Germany",
-                "2006", userId)));
+                "2006", 4.5, userId)));
         when(bookRepo.findByUserId(userId)).thenReturn(books);
 
 
@@ -52,7 +52,7 @@ class BookServiceTest {
                 "Java von Kopf bis Fuß",
                 List.of("Kathy Sierra", "Bert Bates"),
                 "O'Reilly Germany",
-                "2006", userId);
+                "2006", 4.5, userId);
         when(bookRepo.findById(id)).thenReturn(Optional.of(book));
 
         Book actual = service.getBookById(id);
@@ -68,7 +68,7 @@ class BookServiceTest {
                 "Java von Kopf bis Fuß",
                 List.of("Kathy Sierra", "Bert Bates"),
                 "O'Reilly Germany",
-                "2006", userId);
+                "2006", 4.5, userId);
 
         service.addBook(book, userId);
 
@@ -84,7 +84,7 @@ class BookServiceTest {
                 "Java von Kopf bis Fuß",
                 List.of("Kathy Sierra", "Bert Bates"),
                 "O'Reilly Germany",
-                "2006", userId);
+                "2006", 4.5, userId);
 
 
         String newUserId = UUID.randomUUID().toString();
@@ -92,7 +92,7 @@ class BookServiceTest {
                 "Java von Kopf bis Fuß",
                 List.of("Kathy Sierra", "Bert Bates"),
                 "O'Reilly Germany",
-                "2006", newUserId);
+                "2006", 4.5, newUserId);
 
         when(bookRepo.findById(id)).thenReturn(Optional.of(book));
 
@@ -131,7 +131,7 @@ class BookServiceTest {
                 "Java von Kopf bis Fuß",
                 List.of("Kathy Sierra", "Bert Bates"),
                 "O'Reilly Germany",
-                "2006", null, null);
+                "2006", null, 4.5, null);
 
         Book actual = service.getBookByGoogleBookId(googleBookId);
 

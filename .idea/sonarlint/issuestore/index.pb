@@ -7,14 +7,6 @@ U
 %book-frontend/src/model/UserModel.tsx,1\a\1a2594f883189b9df43ccb67513bee8cdd6fd696
 t
 Dbook-backend/src/main/java/com/xin/bookbackend/model/ImageLinks.java,6\6\6667265a542418046915462927420e243b26dde1
-t
-Dbook-backend/src/main/java/com/xin/bookbackend/model/VolumeInfo.java,a\b\abc6b906aacaffa29675c89b6071fa354cfea2fb
-|
-Lbook-backend/src/main/java/com/xin/bookbackend/model/GoogleBookResponse.java,9\1\9124a6121b0ee5a63709584a0c58483b6a77ed8f
-t
-Dbook-backend/src/main/java/com/xin/bookbackend/model/GoogleBook.java,3\6\367425e4d094e932454d6d114a74418b4e68395f
-b
-2book-frontend/src/componet/PrimarySearchAppBar.tsx,7\5\753774e622fbdccb9f30afa99acf998a2bddf38f
 É
 Sbook-backend/src/main/java/com/xin/bookbackend/service/MongoUserDetailsService.java,b\9\b9d7d0a208a32d9347d31f19a0bbf261b39d7329
 w
@@ -42,18 +34,10 @@ Qbook-backend/src/test/java/com/xin/bookbackend/controller/UserControllerTest.ja
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-P
- book-frontend/src/model/Book.tsx,a\2\a23279875a953092c8f18750a4f859f03e1d795e
 Q
 !book-frontend/src/hook/useBook.ts,e\9\e9614405f46eaf66152e92caca590a9f2ba3b5e0
-I
-book-frontend/src/App.css,8\4\845a2a84513531352f1ef1a80a8712b293ce18c9
-K
-book-frontend/src/index.css,9\5\9588222fdee5b8b1c4e13878320dbcae9e9b4345
 K
 book-frontend/src/index.tsx,e\c\ecf0bc71d83a09ea423c99988b5cc59bd41d6aea
-Å
-Qbook-backend/src/test/java/com/xin/bookbackend/controller/BookControllerTest.java,8\e\8e391f1fa8e78216fbcf864b8f0e18afc2f096b8
 D
 book-backend/pom.xml,6\7\678b38964deea50792d08b2552ae7520497c965d
 

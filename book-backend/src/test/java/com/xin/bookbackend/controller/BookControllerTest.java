@@ -51,7 +51,7 @@ class BookControllerTest {
                 "Java von Kopf bis Fuß",
                 List.of("Kathy Sierra", "Bert Bates"),
                 "O'Reilly Germany",
-                "2006", userId);
+                "2006",4.5, userId);
     }
 
     @Test
@@ -85,7 +85,8 @@ class BookControllerTest {
                                         "Bert Bates"
                                     ],
                                  "publisher": "O'Reilly Germany",
-                                 "publishedDate": "2006"
+                                 "publishedDate": "2006",
+                                 "averageRating": 4.5
                                  }
                                  """)).
                 andExpect(jsonPath("$.id").isNotEmpty());
@@ -118,7 +119,8 @@ class BookControllerTest {
                                        "Bert Bates"
                                    ],
                                 "publisher": "O'Reilly Germany",
-                                "publishedDate": "2006"
+                                "publishedDate": "2006",
+                                "averageRating": 4.5
                                 }
                                 """).with(csrf())).
                 andExpect(status().isOk());
@@ -175,7 +177,8 @@ class BookControllerTest {
                                         "Bert Bates"
                                     ],
                                  "publisher": "O'Reilly Germany",
-                                 "publishedDate": "2006"
+                                 "publishedDate": "2006",
+                                 "averageRating": 4.5
                                  }
                                  """)).
                 andExpect(jsonPath("$.googleBookId").isNotEmpty());

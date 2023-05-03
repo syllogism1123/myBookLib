@@ -6,6 +6,7 @@ export  type Book = {
     publisher: string,
     publishedDate: string,
     description: string
+    averageRating: number,
     imageUrl: string,
     userId: string
 
@@ -18,7 +19,8 @@ export  type BookModel = {
     authors: string[],
     publisher: string,
     publishedDate: string,
-    description: string
+    description: string,
+    averageRating: number,
     imageUrl: string,
     userId: string
 }

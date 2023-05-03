@@ -3,7 +3,8 @@ import React, {ChangeEvent} from "react";
 import {useBook} from "../hook/useBook";
 import axios from "axios";
 import {Book} from "../model/Book";
-
+import {Box, TextField} from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 
 export default function BookGallery() {
     const {books, setBooks, query, setQuery} = useBook();
@@ -28,7 +29,18 @@ export default function BookGallery() {
 
     return (
         <div>
-            <input type="text" value={query} placeholder="Seach..." onChange={onTextChange} onKeyDown={onKeyPress}/>
+            <div className="search">
+                <Box
+                    sx={{
+                        width: 500,
+                        maxWidth: '100%',
+                        position: 'relative'
+                    }}
+                ><TextField fullWidth id="search-book" value={query} placeholder="    Search Books..."
+                            onChange={onTextChange} onKeyDown={onKeyPress}/>
+                    <SearchIcon className="search-icon"/>
+                </Box>
+            </div>
             <div className="book-gallery">
                 {
                     booksWithView.map((book) => {

@@ -7,5 +7,6 @@ public record VolumeInfo(String title,
                          String publisher,
                          String publishedDate,
                          String description,
+                         Double averageRating,
                          ImageLinks imageLinks) {
 }

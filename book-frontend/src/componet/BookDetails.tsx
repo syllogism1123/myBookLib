@@ -35,6 +35,7 @@ export const BookDetails = () => {
                     className="p-font">PublisherDate: {book?.publishedDate}</Typography>
                 <img src={book?.imageUrl} alt={book?.title}/>
                 <Typography className="p-font">Description: {book?.description.replace(/<[^>]*>/g, "")}</Typography>
+                <Typography className="p-font">AverageRating: {book?.averageRating}</Typography>
             </Card>
         </div>
     );

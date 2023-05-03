@@ -15,7 +15,6 @@ function App() {
 
     return (
         <div className="App">
-          {/*  <PrimarySearchAppBar text={query} onTextChange={onTextChange}/>*/}
             <BrowserRouter>
                 <Header/>
                 <Routes>

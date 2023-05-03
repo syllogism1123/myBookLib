@@ -7,7 +7,7 @@
     padding-left: 20px;
     display: flex;
     flex-wrap: wrap;
-    justify-content:start;
+    justify-content: start;
     gap: 20px;
 }
 
@@ -16,7 +16,7 @@
 
 }
 
-.no-book-found {
+.no-book-found,.rating {
     justify-content: center;
     display: flex;
     align-items: center;
@@ -49,13 +49,25 @@
     height: 150px;
     width: 120px;
 }
-.book-details{
+
+.book-details {
     justify-content: center;
     align-items: center;
 }
 
+.search {
+    justify-content: center;
+    display: flex;
+}
 
+#search-book {
+    background: white;
+}
 
-
-
+.search-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
 
