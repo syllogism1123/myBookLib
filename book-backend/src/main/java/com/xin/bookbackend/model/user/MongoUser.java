@@ -28,7 +28,4 @@ public record MongoUser(
         this(null, username, password, firstname, lastname);
     }
 
-    public MongoUser() {
-        this(null, null, null, null, null);
-    }
 }
