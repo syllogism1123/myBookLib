@@ -33,7 +33,4 @@ public class UserService {
         return mongoUserRepository.findMongoUserByUsername(username).orElseThrow(NoSuchElementException::new);
     }
 
-
-
-
 }
