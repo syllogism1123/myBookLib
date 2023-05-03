@@ -9,10 +9,6 @@ t
 Dbook-backend/src/main/java/com/xin/bookbackend/model/ImageLinks.java,6\6\6667265a542418046915462927420e243b26dde1
 {
 Kbook-backend/src/main/java/com/xin/bookbackend/security/SecurityConfig.java,9\6\96d72523b6c95c3360dc90d2c2e32dd7897ecf10
-Å
-Q.idea/sonarlint/securityhotspotstore/b/9/b9d7d0a208a32d9347d31f19a0bbf261b39d7329,b\f\bf699dab9da1d1b410bdf2fa4c95ea30851b48b5
-w
-G.idea/sonarlint/issuestore/b/9/b9d7d0a208a32d9347d31f19a0bbf261b39d7329,4\9\492fee6064286b321e1a8962a1aef0edd94d5dec
 S
 #.github/workflows/sonar-backend.yml,6\d\6da5a3f76934916b670a730d02c25e0b3bb44410
 
