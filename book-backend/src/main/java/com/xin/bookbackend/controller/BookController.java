@@ -1,9 +1,11 @@
 package com.xin.bookbackend.controller;
 
 import com.xin.bookbackend.model.book.Book;
+import com.xin.bookbackend.model.book.BookDTO;
 import com.xin.bookbackend.model.user.MongoUser;
 import com.xin.bookbackend.service.BookService;
 import com.xin.bookbackend.service.UserService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -46,11 +48,12 @@ public class BookController {
     }
 
     @PostMapping()
-    public ResponseEntity<Book> addBook(@RequestBody Book book) {
+    public ResponseEntity<Book> addBook(@RequestBody BookDTO bookDTO) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         MongoUser user = userService.findUserByUsername(username);
         String userId = user.id();
-        book.withUserId(userId);
+        bookDTO = bookDTO.withUserId(userId);
+        Book book = convertBookDTOToBook(bookDTO);
         return new ResponseEntity<>(bookService.addBook(book, userId), HttpStatus.CREATED);
     }
 
@@ -61,12 +64,13 @@ public class BookController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Book> updateBookById(@PathVariable String id, @RequestBody Book updatedBook) {
+    public ResponseEntity<Book> updateBookById(@PathVariable String id, @RequestBody BookDTO updatedBookDTO) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         MongoUser user = userService.findUserByUsername(username);
         if (bookService.getBookById(id) != null) {
             String userId = user.id();
-            updatedBook.withUserId(userId);
+            updatedBookDTO = updatedBookDTO.withUserId(userId);
+            Book updatedBook = convertBookDTOToBook(updatedBookDTO);
             return new ResponseEntity<>(bookService.updateBookById(id, updatedBook), HttpStatus.OK);
         } else {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The id in the url does not match the request body's id");
@@ -81,4 +85,12 @@ public class BookController {
         bookService.deleteBookByIdAndUserId(id, userId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    private Book convertBookDTOToBook(BookDTO bookDTO) {
+        Book book = new Book();
+        BeanUtils.copyProperties(bookDTO, book);
+        return book;
+    }
+
+
 }
