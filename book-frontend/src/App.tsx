@@ -9,12 +9,14 @@ import BookGallery from "./componet/BookGallery";
 import React from "react";
 import {BookDetails} from "./componet/BookDetails";
 import UserBookGallery from "./componet/UserBookGallery";
+import {ToastContainer} from "react-toastify";
 
 function App() {
     const {login, logout, createUser} = useUser();
 
     return (
         <div className="App">
+            <ToastContainer />
             <BrowserRouter>
                 <Header/>
                 <Routes>

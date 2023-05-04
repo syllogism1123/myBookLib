@@ -25,8 +25,10 @@ export default function BookCard(props: BookCardProps) {
 
 
     return (
-        <Card className='bookCard' variant="elevation" style={{backgroundColor: 'cyan',
-            marginTop: "20px"}}>
+        <Card className='bookCard' variant="elevation" style={{
+            backgroundColor: 'cyan',
+            marginTop: "20px"
+        }}>
             <CardContent>
                 <img id='book-img' src={props.book.imageUrl} alt={props.book.title}/>
             </CardContent>

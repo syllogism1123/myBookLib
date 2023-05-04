@@ -3,6 +3,8 @@ import {useNavigate} from "react-router-dom";
 import {Alert, Button, FormControl, TextField} from "@mui/material";
 import 'react-toastify/dist/ReactToastify.css';
 import useUser from "../hook/useUser";
+import {toast} from "react-toastify";
+
 
 type Props = {
     onLogin: (username: string, password: string) => Promise<boolean>
@@ -20,6 +22,16 @@ export const LoginPage = (props: Props) => {
         props.onLogin(username, password).then((s) => {
             if (s) {
                 navigate("/home")
+                toast.success('You have successfully logged in!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
             } else {
                 setError(true);
                 console.log("invalid")

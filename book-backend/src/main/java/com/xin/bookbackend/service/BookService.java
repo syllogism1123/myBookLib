@@ -69,7 +69,7 @@ public class BookService {
         if (getAllBooksByUserId(userId).stream().
                 anyMatch(b -> b.googleBookId().equals(bookToSave.googleBookId()))) {
             log.warn("This Book is already in your Library!");
-            return null;
+            throw new IllegalArgumentException("This Book is already in your Library!");
         }
         return bookRepos.save(bookToSave);
     }
