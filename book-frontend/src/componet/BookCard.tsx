@@ -18,7 +18,7 @@ export default function BookCard(props: BookCardProps) {
 
     const addToLib = () => {
         addBook(props.book).then(() => {
-                navi("/books/")
+                navi("/dashboard/")
             }
         ).catch((r) => console.error(r));
     }

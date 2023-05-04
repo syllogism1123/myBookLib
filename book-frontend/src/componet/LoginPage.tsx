@@ -21,7 +21,7 @@ export const LoginPage = (props: Props) => {
         event.preventDefault();
         props.onLogin(username, password).then((s) => {
             if (s) {
-                navigate("/home")
+                navigate("/search")
                 toast.success('You have successfully logged in!', {
                     position: "top-right",
                     autoClose: 5000,
@@ -42,7 +42,7 @@ export const LoginPage = (props: Props) => {
     }
 
     return (
-        <div>
+        <div className="login-page-container">
             <FormControl component="form" onSubmit={onSubmit}>
                 <TextField
                     name='username'

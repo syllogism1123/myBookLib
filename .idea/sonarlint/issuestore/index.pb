@@ -26,8 +26,6 @@ Fbook-backend/src/main/java/com/xin/bookbackend/exception/ApiError.java,5\1\51e
 Tbook-backend/src/main/java/com/xin/bookbackend/exception/GlobalExceptionHandler.java,a\9\a95a3dda49cad4f6f90693774e1248bd687573ad
 K
 book-frontend/src/index.css,9\5\9588222fdee5b8b1c4e13878320dbcae9e9b4345
-I
-book-frontend/src/App.css,8\4\845a2a84513531352f1ef1a80a8712b293ce18c9
 w
 Gbook-backend/src/main/java/com/xin/bookbackend/repo/BookRepository.java,b\a\ba6b8d7ae6c8f60fd385ff2133c2ea47544da01b
 Å
