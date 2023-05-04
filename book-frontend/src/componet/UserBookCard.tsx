@@ -13,12 +13,12 @@ export default function UserBookCard(props: BookCardProps) {
     const navi = useNavigate();
     const {deleteBook} = useBook();
     const toDetail = () => {
-        navi("/books/" + props.book.googleBookId)
+        navi("/dashboard/" + props.book.googleBookId)
     }
 
     const removeFromLib = () => {
         deleteBook(props.book.id).then(() => {
-                navi("/books/")
+                navi("/dashboard/")
             }
         ).catch((r) => console.error(r));
     }

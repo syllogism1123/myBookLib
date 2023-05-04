@@ -18,7 +18,11 @@ import {useNavigate} from "react-router-dom";
 const pages = ['Login', 'SignUp', 'Home'];
 const settings = ['Search', 'Account', 'Dashboard', 'Logout'];
 
-function ResponsiveAppBar() {
+type Props = {
+    onLogout: () => Promise<void>
+}
+
+function ResponsiveAppBar(props: Props) {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -37,6 +41,14 @@ function ResponsiveAppBar() {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    function onClick() {
+        props.onLogout().then(() => {
+            navi("/login")
+        }).catch((error) => {
+            console.error(error);
+        });
+    }
 
     return (
         <AppBar position="static">
@@ -130,7 +142,7 @@ function ResponsiveAppBar() {
                     <Box sx={{flexGrow: 0}}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg"/>
+                                <Avatar alt="My Avatar" src="/static/images/avatar/2.png"/>
                             </IconButton>
                         </Tooltip>
                         <Menu
@@ -149,11 +161,22 @@ function ResponsiveAppBar() {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting}  onClick={() => navi(`/${setting.toLowerCase()}`)}>
-                                    <Typography textAlign="center">{setting}</Typography>
-                                </MenuItem>
-                            ))}
+
+                            {settings.map((setting) => {
+                                if (setting === 'Logout') {
+                                    return (
+                                        <MenuItem key={setting} onClick={onClick}>
+                                            <Typography textAlign="center">{setting}</Typography>
+                                        </MenuItem>
+                                    );
+                                }
+                                return (
+                                    <MenuItem key={setting} onClick={() => navi(`/${setting.toLowerCase()}`)}>
+                                        <Typography textAlign="center">{setting}</Typography>
+                                    </MenuItem>
+                                );
+                            })}
+
                         </Menu>
                     </Box>
                 </Toolbar>

@@ -1,6 +1,5 @@
 import './App.css';
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
-import {LogoutPage} from "./componet/LogoutPage";
 import {SignUpPage} from "./componet/SignUpPage";
 import {LoginPage} from "./componet/LoginPage";
 import useUser from "./hook/useUser";
@@ -20,7 +19,7 @@ function App() {
             <ToastContainer/>
             <BrowserRouter>
                 {/*   <Header/>*/}
-                <ResponsiveAppBar/>
+                <ResponsiveAppBar onLogout={logout}/>
                 <Routes>
                     <Route path="/login" element={<LoginPage onLogin={login}/>}>
                     </Route>
@@ -42,8 +41,6 @@ function App() {
 
                     <Route path="/dashboard/:id" element={<BookDetails/>}/>
 
-                    <Route path="/logout" element={<LogoutPage onLogout={logout}/>}>
-                    </Route>
                     {/*     </Route>*/}
 
                 </Routes>

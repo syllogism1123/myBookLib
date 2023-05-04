@@ -25,9 +25,12 @@ import java.util.List;
 <span class="fc" id="L25">        this(id, googleBookId, title, authors, publisher, publishedDate, null, averageRating, null, userId);</span>
 <span class="fc" id="L26">    }</span>
 
+    public Book() {
+<span class="fc" id="L29">        this(null, null, null, null, null, null, null, null, null, null);</span>
+<span class="fc" id="L30">    }</span>
 
     public Book withUserId(String userId) {
-<span class="fc" id="L30">        return new Book(null, googleBookId, title, authors, publisher, publishedDate, description, averageRating, imageUrl, userId);</span>
+<span class="fc" id="L33">        return new Book(null, googleBookId, title, authors, publisher, publishedDate, description, averageRating, imageUrl, userId);</span>
     }
 
 }

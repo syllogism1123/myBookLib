@@ -2,6 +2,7 @@ com\xin\bookbackend\exception\GlobalExceptionHandler.class
 com\xin\bookbackend\model\book\Book.class
 com\xin\bookbackend\config\ReactRoutingForwarding$ReactRoutingPathResourceResolver.class
 com\xin\bookbackend\config\ReactRoutingForwarding.class
+com\xin\bookbackend\model\book\BookDTO.class
 com\xin\bookbackend\service\MongoUserDetailsService.class
 com\xin\bookbackend\repo\MongoUserRepository.class
 com\xin\bookbackend\model\book\VolumeInfo.class

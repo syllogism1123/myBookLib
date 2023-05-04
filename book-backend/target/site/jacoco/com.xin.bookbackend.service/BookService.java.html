@@ -69,7 +69,7 @@ public class BookService {
 <span class="fc" id="L69">        if (getAllBooksByUserId(userId).stream().</span>
 <span class="pc bpc" id="L70" title="1 of 2 branches missed.">                anyMatch(b -&gt; b.googleBookId().equals(bookToSave.googleBookId()))) {</span>
 <span class="nc" id="L71">            log.warn(&quot;This Book is already in your Library!&quot;);</span>
-<span class="nc" id="L72">            return null;</span>
+<span class="nc" id="L72">            throw new IllegalArgumentException(&quot;This Book is already in your Library!&quot;);</span>
         }
 <span class="fc" id="L74">        return bookRepos.save(bookToSave);</span>
     }
