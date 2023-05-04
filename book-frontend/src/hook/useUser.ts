@@ -5,7 +5,7 @@ import {User, UserModel} from "../model/UserModel";
 export default function useUser() {
     const [user, setUser] = useState<User | null>(null);
     const [error, setError] = useState<boolean>();
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUsername] = useState("");
     const login = async (username: string, password: string) => {
         return await axios.post("http://localhost:8080/api/users/login", undefined, {
@@ -30,11 +30,11 @@ export default function useUser() {
         }).then(() => {
             setIsLoggedIn(false)
             setUsername("")
+            setUser(null)
         }).catch(error => {
             console.error(error);
         })
     }
-
     useEffect(() => {
         const data = window.localStorage.getItem('CURRENT_USER_ACTIVE');
         if (data) {
@@ -46,7 +46,6 @@ export default function useUser() {
     useEffect(() => {
         window.localStorage.setItem('CURRENT_USER_ACTIVE', JSON.stringify(isLoggedIn))
     }, [isLoggedIn]);
-
 
     useEffect(() => {
         loadUser(username).catch(
@@ -77,7 +76,7 @@ export default function useUser() {
     }
 
 
-    return {user, username, setUser, login, logout, createUser, error, setError, isLoggedIn, loadUser}
+    return {user, username, setUser, login, logout, createUser, error, setError, isLoggedIn, setIsLoggedIn,loadUser}
 }
 
 

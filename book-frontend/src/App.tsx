@@ -25,16 +25,26 @@ function App() {
                     </Route>
                     <Route path="/signup" element={<SignUpPage createUser={createUser}/>}>
                     </Route>
-                    <Route path="/home" element={<BookGallery/>}>
-                    </Route>
-                    <Route path="/books" element={<UserBookGallery/>}>
-                    </Route>
-                    <Route path="/" element={<Navigate to="/home"/>}>
-                    </Route>
-                    <Route path="/home/:id" element={<BookDetails/>}/>
-                    <Route path="/books/:id" element={<BookDetails/>}/>
-                    <Route path="/logout" element={<LogoutPage onLogout={logout}/>}>
-                    </Route>
+
+                   {/* <Route element={<ProtectedRoutes user={user}/>}>*/}
+
+                        <Route path="/home" element={<BookGallery/>}>
+                        </Route>
+
+                        <Route path="/books/" element={<UserBookGallery/>}>
+                        </Route>
+
+                        <Route path="/" element={<Navigate to="/home"/>}>
+                        </Route>
+
+                        <Route path="/home/:id" element={<BookDetails/>}/>
+
+                        <Route path="/books/:id" element={<BookDetails/>}/>
+
+                        <Route path="/logout" element={<LogoutPage onLogout={logout}/>}>
+                        </Route>
+               {/*     </Route>*/}
+
                 </Routes>
             </BrowserRouter>
         </div>

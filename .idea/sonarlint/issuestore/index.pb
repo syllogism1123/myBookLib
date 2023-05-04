@@ -1,8 +1,6 @@
 
 <
 Book-API.iml,9\b\9bd53a3b76a269c2e3bdfe043bcdaa5943699fe1
-J
-book-frontend/package.json,0\2\0233fa80db978b91d7ce810e3f985739ea52671f
 U
 %book-frontend/src/model/UserModel.tsx,1\a\1a2594f883189b9df43ccb67513bee8cdd6fd696
 {
@@ -16,8 +14,6 @@ H
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-K
-book-frontend/src/index.tsx,e\c\ecf0bc71d83a09ea423c99988b5cc59bd41d6aea
 
 Obook-backend/src/test/java/com/xin/bookbackend/BookBackendApplicationTests.java,0\c\0c5e8e2dbca9c5b1ade4f5e91348770ad74de246
 

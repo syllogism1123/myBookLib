@@ -1,8 +1,6 @@
 
 <
 Book-API.iml,9\b\9bd53a3b76a269c2e3bdfe043bcdaa5943699fe1
-J
-book-frontend/package.json,0\2\0233fa80db978b91d7ce810e3f985739ea52671f
 U
 %book-frontend/src/model/UserModel.tsx,1\a\1a2594f883189b9df43ccb67513bee8cdd6fd696
 {
@@ -22,8 +20,6 @@ H
 Qbook-backend/src/main/java/com/xin/bookbackend/config/ReactRoutingForwarding.java,e\b\ebacfebcc9e9a60ace2dd0e248b694d1ca704112
 T
 $book-frontend/src/reportWebVitals.ts,9\8\98f436cc8ae45dd7fa621188ce3af334a0bd59d0
-K
-book-frontend/src/index.tsx,e\c\ecf0bc71d83a09ea423c99988b5cc59bd41d6aea
 v
 Fbook-backend/src/main/java/com/xin/bookbackend/exception/ApiError.java,5\1\51ea1d855b5f80cd9319297fd91e130b09de8afb
 „

@@ -11,7 +11,6 @@ export default function BookGallery() {
     const onTextChange = (event: ChangeEvent<HTMLInputElement>) => {
         setQuery(event.target.value);
     }
-
     const onKeyPress = async (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
             await axios.get(`http://localhost:8080/api/books/search?query=${query}`, {
