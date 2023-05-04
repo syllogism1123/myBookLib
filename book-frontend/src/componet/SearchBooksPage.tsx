@@ -6,7 +6,7 @@ import {Book} from "../model/Book";
 import {Box, TextField} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
-export default function BookGallery() {
+export default function SearchBooksPage() {
     const {books, setBooks, query, setQuery} = useBook();
     const onTextChange = (event: ChangeEvent<HTMLInputElement>) => {
         setQuery(event.target.value);
@@ -39,6 +39,7 @@ export default function BookGallery() {
                             onChange={onTextChange} onKeyDown={onKeyPress}/>
                     <SearchIcon className="search-icon"/>
                 </Box>
+
             </div>
             <div className="book-gallery">
                 {
