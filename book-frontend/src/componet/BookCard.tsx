@@ -23,7 +23,6 @@ export default function BookCard(props: BookCardProps) {
         ).catch((r) => console.error(r));
     }
 
-
     return (
         <Card className='bookCard' variant="elevation" style={{
             backgroundColor: 'cyan',

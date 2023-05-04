@@ -14,9 +14,10 @@ import {ToastContainer} from "react-toastify";
 function App() {
     const {login, logout, createUser} = useUser();
 
+
     return (
         <div className="App">
-            <ToastContainer />
+            <ToastContainer/>
             <BrowserRouter>
                 <Header/>
                 <Routes>
@@ -31,6 +32,7 @@ function App() {
                     <Route path="/" element={<Navigate to="/home"/>}>
                     </Route>
                     <Route path="/home/:id" element={<BookDetails/>}/>
+                    <Route path="/books/:id" element={<BookDetails/>}/>
                     <Route path="/logout" element={<LogoutPage onLogout={logout}/>}>
                     </Route>
                 </Routes>

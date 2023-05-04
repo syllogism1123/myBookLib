@@ -12,8 +12,8 @@ type BookCardProps = {
 export default function UserBookCard(props: BookCardProps) {
     const navi = useNavigate();
     const {deleteBook} = useBook();
-    const toHome = () => {
-        navi("/home/")
+    const toDetail = () => {
+        navi("/books/" + props.book.googleBookId)
     }
 
     const removeFromLib = () => {
@@ -29,8 +29,8 @@ export default function UserBookCard(props: BookCardProps) {
             <CardContent>
                 <img id='book-img' src={props.book.imageUrl} alt={props.book.title}/>
             </CardContent>
-            <Button variant="text" type="submit" size="small" onClick={toHome}>
-                Home
+            <Button variant="text" type="submit" size="small" onClick={toDetail}>
+                Details
             </Button>
             <Button variant="text" type="submit" size="small" onClick={removeFromLib}>
                 Remove
