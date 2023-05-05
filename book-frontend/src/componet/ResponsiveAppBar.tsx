@@ -39,16 +39,14 @@ function ResponsiveAppBar(props: Props) {
     };
 
     const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
-    };
-
-    function onClick() {
         props.onLogout().then(() => {
             navi("/login")
         }).catch((error) => {
             console.error(error);
         });
-    }
+        setAnchorElUser(null);
+    };
+
 
     return (
         <AppBar position="static">
@@ -139,12 +137,15 @@ function ResponsiveAppBar(props: Props) {
                             </Button>
                         ))}
                     </Box>
+
+
                     <Box sx={{flexGrow: 0}}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
                                 <Avatar alt="My Avatar" src="/static/images/avatar/2.png"/>
                             </IconButton>
                         </Tooltip>
+
                         <Menu
                             sx={{mt: '45px'}}
                             id="menu-appbar"
@@ -165,24 +166,28 @@ function ResponsiveAppBar(props: Props) {
                             {settings.map((setting) => {
                                 if (setting === 'Logout') {
                                     return (
-                                        <MenuItem key={setting} onClick={onClick}>
+                                        <MenuItem key={setting} onClick={handleCloseUserMenu}>
                                             <Typography textAlign="center">{setting}</Typography>
                                         </MenuItem>
                                     );
                                 }
                                 return (
-                                    <MenuItem key={setting} onClick={() => navi(`/${setting.toLowerCase()}`)}>
+                                    <MenuItem key={setting} onClick={() => {
+                                        navi(`/${setting.toLowerCase()}`);
+                                        setAnchorElUser(null);
+                                    }
+                                    }>
                                         <Typography textAlign="center">{setting}</Typography>
                                     </MenuItem>
                                 );
                             })}
-
                         </Menu>
                     </Box>
                 </Toolbar>
             </Container>
         </AppBar>
-    );
+    )
+        ;
 }
 
 export default ResponsiveAppBar;

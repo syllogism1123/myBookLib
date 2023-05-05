@@ -6,7 +6,7 @@ export default function useUser() {
     const [user, setUser] = useState<User | null>(null);
     const [error, setError] = useState<boolean>();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [username, setUsername] = useState("");
+    const [username, setUsername] = useState<string>();
     const login = async (username: string, password: string) => {
         return await axios.post("http://localhost:8080/api/users/login", undefined, {
             withCredentials: true,
@@ -16,8 +16,7 @@ export default function useUser() {
             }
         }).then((r) => {
             setIsLoggedIn(true)
-            setUsername(username)
-            console.log(r.data)
+            setUsername(r.data)
             return true;
         }).catch(error => {
             console.error(error);
@@ -27,9 +26,10 @@ export default function useUser() {
     const logout = async () => {
         return await axios.post("http://localhost:8080/api/users/logout", undefined, {
             withCredentials: true,
-        }).then(() => {
+        }).then((r) => {
             setIsLoggedIn(false)
-            setUsername("")
+            setUsername(r.data)
+            console.log(r.data)
             setUser(null)
         }).catch(error => {
             console.error(error);
@@ -48,9 +48,12 @@ export default function useUser() {
     }, [isLoggedIn]);
 
     useEffect(() => {
-        loadUser(username).catch(
-            (e) => console.error(e)
-        )
+        if (username) {
+            loadUser(username).catch(
+                (e) => console.error(e)
+            )
+        }
+
     }, [username]);
     const createUser = async (newUser: UserModel) => {
         return await axios.post("http://localhost:8080/api/users/signup", newUser, {
@@ -76,7 +79,7 @@ export default function useUser() {
     }
 
 
-    return {user, username, setUser, login, logout, createUser, error, setError, isLoggedIn, setIsLoggedIn,loadUser}
+    return {user, username, setUser, login, logout, createUser, error, setError, isLoggedIn, setIsLoggedIn, loadUser}
 }
 
 

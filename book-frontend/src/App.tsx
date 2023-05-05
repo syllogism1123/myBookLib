@@ -9,40 +9,32 @@ import {BookDetails} from "./componet/BookDetails";
 import UserBookGallery from "./componet/UserBookGallery";
 import {ToastContainer} from "react-toastify";
 import ResponsiveAppBar from "./componet/ResponsiveAppBar";
+import ProtectedRoutes from "./componet/ProtectedRoutes";
 
 function App() {
-    const {login, logout, createUser} = useUser();
+    const {login, logout, createUser, username} = useUser();
 
 
     return (
         <div className="App">
             <ToastContainer/>
             <BrowserRouter>
-                {/*   <Header/>*/}
                 <ResponsiveAppBar onLogout={logout}/>
                 <Routes>
                     <Route path="/login" element={<LoginPage onLogin={login}/>}>
                     </Route>
                     <Route path="/signup" element={<SignUpPage createUser={createUser}/>}>
                     </Route>
-
-                    {/* <Route element={<ProtectedRoutes user={user}/>}>*/}
-
-                    <Route path="/search" element={<SearchBooksPage/>}>
+                    <Route element={<ProtectedRoutes username={username}/>}>
+                        <Route path="/search" element={<SearchBooksPage/>}>
+                        </Route>
+                        <Route path="/dashboard/" element={<UserBookGallery/>}>
+                        </Route>
+                        <Route path="/" element={<Navigate to="/home"/>}>
+                        </Route>
+                        <Route path="/home/:id" element={<BookDetails/>}/>
+                        <Route path="/dashboard/:id" element={<BookDetails/>}/>
                     </Route>
-
-                    <Route path="/dashboard/" element={<UserBookGallery/>}>
-                    </Route>
-
-                    <Route path="/" element={<Navigate to="/home"/>}>
-                    </Route>
-
-                    <Route path="/home/:id" element={<BookDetails/>}/>
-
-                    <Route path="/dashboard/:id" element={<BookDetails/>}/>
-
-                    {/*     </Route>*/}
-
                 </Routes>
             </BrowserRouter>
         </div>

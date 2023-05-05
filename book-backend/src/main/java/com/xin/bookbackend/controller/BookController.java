@@ -5,7 +5,6 @@ import com.xin.bookbackend.model.book.BookDTO;
 import com.xin.bookbackend.model.user.MongoUser;
 import com.xin.bookbackend.service.BookService;
 import com.xin.bookbackend.service.UserService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -52,8 +51,8 @@ public class BookController {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         MongoUser user = userService.findUserByUsername(username);
         String userId = user.id();
-        bookDTO = bookDTO.withUserId(userId);
         Book book = convertBookDTOToBook(bookDTO);
+        book = book.withUserId(userId);
         return new ResponseEntity<>(bookService.addBook(book, userId), HttpStatus.CREATED);
     }
 
@@ -69,8 +68,8 @@ public class BookController {
         MongoUser user = userService.findUserByUsername(username);
         if (bookService.getBookById(id) != null) {
             String userId = user.id();
-            updatedBookDTO = updatedBookDTO.withUserId(userId);
             Book updatedBook = convertBookDTOToBook(updatedBookDTO);
+            updatedBook = updatedBook.withUserId(userId);
             return new ResponseEntity<>(bookService.updateBookById(id, updatedBook), HttpStatus.OK);
         } else {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The id in the url does not match the request body's id");
@@ -87,10 +86,7 @@ public class BookController {
     }
 
     private Book convertBookDTOToBook(BookDTO bookDTO) {
-        Book book = new Book();
-        BeanUtils.copyProperties(bookDTO, book);
-        return book;
+        return new Book(bookDTO.googleBookId(), bookDTO.title(), bookDTO.authors(), bookDTO.publisher(),
+                bookDTO.publishedDate(), bookDTO.description(), bookDTO.averageRating(), bookDTO.imageUrl());
     }
-
-
 }

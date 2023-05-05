@@ -1,12 +1,11 @@
 import {Navigate, Outlet} from "react-router-dom";
-import {User} from "../model/UserModel";
+
 
 type Props = {
-    user: User | null
+    username: string|undefined
 }
 export default function ProtectedRoutes(props: Props) {
-    const isAuthenticated = props.user != null;
-
+    const isAuthenticated = props.username != undefined && props.username != 'anonymousUser'
     return (
         isAuthenticated ? <Outlet/> : <Navigate to={"/login"}/>
     )
