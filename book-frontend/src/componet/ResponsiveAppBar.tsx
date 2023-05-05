@@ -13,6 +13,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {authAction} from "../store/AuthSlice";
 
 
 const pages = ['Login', 'SignUp', 'Home'];
@@ -38,8 +40,10 @@ function ResponsiveAppBar(props: Props) {
         setAnchorElNav(null);
     };
 
+    const disPatch = useDispatch();
     const handleCloseUserMenu = () => {
         props.onLogout().then(() => {
+            disPatch(authAction.logout());
             navi("/login")
         }).catch((error) => {
             console.error(error);
