@@ -29,7 +29,7 @@ export const BookDetails = () => {
         <div>
             <Card className='book-details' variant="elevation" style={{backgroundColor: 'cyan', marginTop: "20px"}}>
                 <Typography className="p-font">Title: {book?.title}</Typography>
-                <Typography className="p-font">Authors: {book?.authors}</Typography>
+                <Typography className="p-font">Authors: {book?.authors.join(', ')}</Typography>
                 <Typography className="p-font">Publisher: {book?.publisher}</Typography>
                 <Typography
                     className="p-font">PublisherDate: {book?.publishedDate}</Typography>
