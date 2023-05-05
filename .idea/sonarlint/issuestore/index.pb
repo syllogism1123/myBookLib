@@ -50,8 +50,6 @@ w
 Gbook-backend/src/main/java/com/xin/bookbackend/service/UserService.java,6\a\6a41fbdf439ffd6164bad08b9c8610ccd0104e73
 y
 Ibook-backend/src/main/java/com/xin/bookbackend/model/book/ImageLinks.java,6\f\6f0ded9446615eaf87c1d57bf9d7cdd70712aa18
-I
-book-frontend/src/App.css,8\4\845a2a84513531352f1ef1a80a8712b293ce18c9
 Å
 Qbook-backend/src/main/java/com/xin/bookbackend/model/book/GoogleBookResponse.java,0\3\035b9c06e39d82bf35565cdf6ccf9f9b01628828
 y

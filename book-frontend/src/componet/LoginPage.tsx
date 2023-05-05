@@ -70,12 +70,13 @@ export const LoginPage = (props: Props) => {
                     style={{marginBottom: '5px'}}
                     onChange={(e) => setPassword(e.target.value)}/>
                 <Button variant="contained" type="submit" size="small">Login</Button>
+                {error &&
+                    <Alert severity="error" className="no-book-found">
+                        <h3>Invalid Username or Password!</h3>
+                    </Alert>
+                }
             </FormControl>
-            {error &&
-                <Alert severity="error" className="no-book-found">
-                    <h3>Invalid Username or Password!</h3>
-                </Alert>
-            }
+
         </div>
     )
 }

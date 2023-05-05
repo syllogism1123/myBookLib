@@ -13,8 +13,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import {useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {authAction} from "../store/AuthSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {authAction, RootState} from "../store/AuthSlice";
 
 
 const pages = ['Login', 'SignUp', 'Home'];
@@ -51,6 +51,7 @@ function ResponsiveAppBar(props: Props) {
         setAnchorElUser(null);
     };
 
+    const isAuthenticated = useSelector((state: RootState) => state.auth.isLoggedIn);
 
     return (
         <AppBar position="static">
@@ -142,11 +143,11 @@ function ResponsiveAppBar(props: Props) {
                         ))}
                     </Box>
 
-
                     <Box sx={{flexGrow: 0}}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
-                                <Avatar alt="My Avatar" src="/static/images/avatar/2.png"/>
+                                {isAuthenticated ? <Avatar alt="My Avatar" src="/static/images/avatar/2.png"/>
+                                    : <Avatar alt="My Avatar" src="/static/images/avatar/xxxx.png"/>}
                             </IconButton>
                         </Tooltip>
 

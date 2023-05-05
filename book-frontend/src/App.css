@@ -17,6 +17,7 @@
 }
 
 .no-book-found, .rating {
+    height: 50px;
     justify-content: center;
     display: flex;
     align-items: center;
@@ -72,7 +73,7 @@
     transform: translateY(-50%);
 }
 
-.login-page-container{
+.login-page-container {
     display: flex;
     justify-content: center;
     align-items: center;

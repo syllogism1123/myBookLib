@@ -44,8 +44,6 @@ Kbook-backend/src/test/java/com/xin/bookbackend/service/UserServiceTest.java,3\
 Sbook-backend/src/main/java/com/xin/bookbackend/service/MongoUserDetailsService.java,b\9\b9d7d0a208a32d9347d31f19a0bbf261b39d7329
 U
 %book-frontend/src/componet/Header.tsx,1\3\139996422b4d5929b8c6aef490153f7447450575
-I
-book-frontend/src/App.css,8\4\845a2a84513531352f1ef1a80a8712b293ce18c9
 x
 Hbook-backend/src/main/java/com/xin/bookbackend/model/user/MongoUser.java,3\8\38dadf3ccd02526d1c6e88944c0820949e9c230e
 w
