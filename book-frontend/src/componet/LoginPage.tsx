@@ -4,6 +4,8 @@ import {Alert, Button, FormControl, TextField} from "@mui/material";
 import 'react-toastify/dist/ReactToastify.css';
 import useUser from "../hook/useUser";
 import {toast} from "react-toastify";
+import {useDispatch} from "react-redux";
+import {authAction} from "../store/AuthSlice";
 
 
 type Props = {
@@ -17,11 +19,14 @@ export const LoginPage = (props: Props) => {
     const {error, setError} = useUser();
     const navigate = useNavigate();
 
+    const disPatch = useDispatch();
+
     function onSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
         props.onLogin(username, password).then((s) => {
             if (s) {
-                navigate("/search")
+                disPatch(authAction.login());
+                navigate("/search");
                 toast.success('You have successfully logged in!', {
                     position: "top-center",
                     autoClose: 5000,

@@ -43,7 +43,7 @@ export default function SearchBooksPage() {
             <div className="book-gallery">
                 {
                     booksWithView.map((book) => {
-                        return <BookCard key={book.id} book={book}/>
+                        return <BookCard key={book.googleBookId} book={book}/>
                     })
                 }
             </div>
