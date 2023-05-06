@@ -60,7 +60,7 @@ function ResponsiveAppBar(props: Props) {
                         variant="h4"
                         noWrap
                         component="a"
-                        href="/"
+                        href="/mylibrary"
 
                         sx={{
                             mr: 2,
