@@ -23,7 +23,7 @@ export const BookDetails = () => {
         if (id) {
             loadBookById(id)
         }
-    }, [])
+    }, [id])
 
     return (
         <div>
