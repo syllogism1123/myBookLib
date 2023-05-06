@@ -1,4 +1,4 @@
-import {Alert, Button, Card, FormControl, TextField} from "@mui/material";
+import {Alert, Button, FormControl, TextField} from "@mui/material";
 import React, {ChangeEvent, FormEvent, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {UserModel} from "../model/UserModel";
@@ -45,59 +45,63 @@ export const SignUpPage = (props: createUserProps) => {
     }
 
     return (
-        <div className="form">
-            <Card variant="outlined" style={{backgroundColor: 'cyan'}} className="card">
-                <FormControl component="form" onSubmit={onSubmit}>
-                    <TextField
-                        name="username"
-                        type="text"
-                        required
-                        label="Username"
-                        value={user.username}
-                        onChange={onChange}
-                        placeholder="UserName"
-                        style={{marginBottom: '10px'}}
-                    />
-                    <TextField
-                        name="password"
-                        type="password"
-                        required
-                        label="Password"
-                        value={user.password}
-                        onChange={onChange}
-                        placeholder="Password"
-                        style={{marginBottom: '10px'}}
-                    />
-                    <TextField
-                        name="firstname"
-                        type="text"
-                        required
-                        label="Firstname"
-                        value={user.firstname}
-                        onChange={onChange}
-                        placeholder="FirstName"
-                        style={{marginBottom: '10px'}}
-                    />
-                    <TextField
-                        name="lastname"
-                        type="text"
-                        required
-                        label="Lastname"
-                        value={user.lastname}
-                        onChange={onChange}
-                        placeholder="LastName"
-                        style={{marginBottom: '10px'}}
-                    />
-                    <Button variant="contained" type="submit" size="small">
-                        Sign Up
-                    </Button>
-                </FormControl>
+        <div className="login-page-container">
+            <FormControl component="form" onSubmit={onSubmit}>
+                <TextField
+                    name="username"
+                    type="text"
+                    required
+                    label="Username"
+                    value={user.username}
+                    onChange={onChange}
+                    placeholder="UserName"
+                    size="small"
+                    style={{marginBottom: '5px'}}
+                />
+                <TextField
+                    name="password"
+                    type="password"
+                    required
+                    label="Password"
+                    value={user.password}
+                    onChange={onChange}
+                    placeholder="Password"
+                    size="small"
+                    style={{marginBottom: '5px'}}
+                />
+                <TextField
+                    name="firstname"
+                    type="text"
+                    required
+                    label="Firstname"
+                    value={user.firstname}
+                    onChange={onChange}
+                    placeholder="FirstName"
+                    size="small"
+                    style={{marginBottom: '5px'}}
+                />
+                <TextField
+                    name="lastname"
+                    type="text"
+                    required
+                    label="Lastname"
+                    value={user.lastname}
+                    onChange={onChange}
+                    placeholder="LastName"
+                    size="small"
+                    style={{marginBottom: '5px'}}
+                />
+                <Button variant="contained" type="submit" size="small">
+                    Sign Up
+                </Button>
                 {error &&
                     <Alert severity="error" className="no-book-found">
                         <h3>The username already exists!</h3>
                     </Alert>
                 }
-            </Card>
+            </FormControl>
+
+
         </div>
     );
 
