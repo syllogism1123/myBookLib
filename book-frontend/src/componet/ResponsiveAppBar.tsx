@@ -18,7 +18,7 @@ import {authAction, RootState} from "../store/AuthSlice";
 
 
 const pages = ['Login', 'SignUp', 'Home'];
-const settings = ['Search', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Search', 'Account', 'MyLibrary', 'Logout'];
 
 type Props = {
     onLogout: () => Promise<void>

@@ -29,5 +29,9 @@ public record Book(@MongoId String id, String googleBookId, String title, List<S
         return new Book(null, googleBookId, title, authors, publisher, publishedDate, description, averageRating, imageUrl, userId);
     }
 
+    public Book withId(String id) {
+        return new Book(id, googleBookId, title, authors, publisher, publishedDate, description, averageRating, imageUrl, userId);
+    }
+
 }
 

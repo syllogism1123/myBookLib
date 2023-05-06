@@ -80,8 +80,8 @@ public class BookService {
 
     public Book updateBookById(String id, Book newBook) {
         if (getBookById(id) != null) {
+            newBook = newBook.withId(id);
             return bookRepos.save(newBook);
-
         } else {
             throw new NoSuchElementException("Book not found!");
         }

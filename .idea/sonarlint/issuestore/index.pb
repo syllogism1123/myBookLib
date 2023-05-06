@@ -28,8 +28,6 @@ w
 Gbook-backend/src/main/java/com/xin/bookbackend/repo/BookRepository.java,b\a\ba6b8d7ae6c8f60fd385ff2133c2ea47544da01b
 {
 Kbook-backend/src/test/java/com/xin/bookbackend/service/BookServiceTest.java,b\1\b1620eadf383fe3088f1c2dd0e6592d314f8dfd2
-P
- book-frontend/src/model/Book.tsx,a\2\a23279875a953092c8f18750a4f859f03e1d795e
 |
 Lbook-backend/src/main/java/com/xin/bookbackend/repo/MongoUserRepository.java,1\6\16d1cd453098fce20eaef8448022879bf8629f17
 Å
@@ -40,12 +38,8 @@ Wbook-backend/src/test/java/com/xin/bookbackend/service/MongoUserDetailsServiceT
 Kbook-backend/src/test/java/com/xin/bookbackend/service/UserServiceTest.java,3\9\39350c575a13db0f199e32c027610e6ea6d6a295
 É
 Sbook-backend/src/main/java/com/xin/bookbackend/service/MongoUserDetailsService.java,b\9\b9d7d0a208a32d9347d31f19a0bbf261b39d7329
-U
-%book-frontend/src/componet/Header.tsx,1\3\139996422b4d5929b8c6aef490153f7447450575
 x
 Hbook-backend/src/main/java/com/xin/bookbackend/model/user/MongoUser.java,3\8\38dadf3ccd02526d1c6e88944c0820949e9c230e
-w
-Gbook-backend/src/main/java/com/xin/bookbackend/service/UserService.java,6\a\6a41fbdf439ffd6164bad08b9c8610ccd0104e73
 y
 Ibook-backend/src/main/java/com/xin/bookbackend/model/book/ImageLinks.java,6\f\6f0ded9446615eaf87c1d57bf9d7cdd70712aa18
 Å
@@ -56,14 +50,10 @@ y
 Ibook-backend/src/main/java/com/xin/bookbackend/model/book/GoogleBook.java,8\2\82abf1812b4e1e0456393a2e5f393119864a9bc2
 }
 Mbook-backend/src/main/java/com/xin/bookbackend/controller/UserController.java,f\e\fe4790e0fce0e9f0fa869b2e20d736b6715acdd8
-w
-Gbook-backend/src/main/java/com/xin/bookbackend/service/BookService.java,1\c\1cc207e35a88f7e5ff6ab5ca7672a4122f6bfc24
 {
 Kbook-backend/src/main/java/com/xin/bookbackend/model/user/MongoUserDTO.java,9\f\9feaccf081a4b35a48aec1ade94425d47e1c90fe
 }
 Mbook-backend/src/main/java/com/xin/bookbackend/controller/BookController.java,2\3\2367fe77f6778d56ba33c54dd93a187eaf07e306
-s
-Cbook-backend/src/main/java/com/xin/bookbackend/model/book/Book.java,d\d\dd98513991d246022d8c7933e3600234ab5dfe64
 v
 Fbook-backend/src/main/java/com/xin/bookbackend/model/book/BookDTO.java,e\3\e3b948408c1e8b4a85b083ab4aa1a334908c5f47
 Å
@@ -72,17 +62,7 @@ O
 book-frontend/package-lock.json,b\6\b6caf281c02a9ba4379eb8c12bbb12ee8f5d261a
 D
 book-backend/pom.xml,6\7\678b38964deea50792d08b2552ae7520497c965d
-[
-+book-frontend/src/componet/UserBookCard.tsx,b\2\b2201e188a229d89e14ce3bf5337855e2653c1c2
-Q
-!book-frontend/src/hook/useBook.ts,e\9\e9614405f46eaf66152e92caca590a9f2ba3b5e0
 J
 book-frontend/package.json,0\2\0233fa80db978b91d7ce810e3f985739ea52671f
-^
-.book-frontend/src/componet/SearchBooksPage.tsx,b\f\bfaca1a845c46e604d6e2cdf536aafd4d6982e9e
-K
-book-frontend/src/index.tsx,e\c\ecf0bc71d83a09ea423c99988b5cc59bd41d6aea
 P
  book-frontend/src/store/index.ts,5\e\5e0b91271c58e842ac529c0f753dea64dedcb51e
-^
-.book-frontend/src/componet/UserBookGallery.tsx,0\d\0d7f84c92a1989b344632d08b169d4db11dec641

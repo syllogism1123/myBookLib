@@ -5,38 +5,55 @@ import {useBook} from "../hook/useBook";
 import Stack from "@mui/material/Stack";
 import Rating from "@mui/material/Rating";
 import * as React from "react";
+import {ChangeEvent, useState} from "react";
 
 type BookCardProps = {
     book: Book,
 }
 export default function UserBookCard(props: BookCardProps) {
     const navi = useNavigate();
-    const {deleteBook} = useBook();
+    const {deleteBook, updateBook} = useBook();
     const toDetail = () => {
-        navi("/dashboard/" + props.book.googleBookId)
+        navi("/mylibrary/" + props.book.googleBookId)
     }
 
     const removeFromLib = () => {
         deleteBook(props.book.id).then(() => {
-                navi("/dashboard/")
+                navi("/mylibrary/")
             }
         ).catch((r) => console.error(r));
+    }
+
+    const [newRating, setNewRating] = useState<number>(props.book.averageRating);
+
+    const handleRatingChange = (event: ChangeEvent<{}>, newValue: number | null) => {
+        if (newValue !== null) {
+            setNewRating(newValue);
+        }
+
+    }
+
+    const saveRating = () => {
+        updateBook({...props.book, id:props.book.id,averageRating: newRating}).then(() => {
+        }).catch((r) => console.error(r));
     }
 
 
     return (
         <Card className='bookCard' variant="elevation" style={{backgroundColor: 'cyan', marginTop: "20px"}}>
             <CardContent>
-                <img id='book-img' src={props.book.imageUrl} alt={props.book.title}/>
+                <img id='book-img' src={props.book.imageUrl} alt={props.book.title} onClick={toDetail}
+                     style={{cursor: 'pointer'}}/>
             </CardContent>
-            <Button variant="text" type="submit" size="small" onClick={toDetail}>
-                Details
+            <Button variant="text" type="submit" size="small" onClick={saveRating}>
+                Save
             </Button>
             <Button variant="text" type="submit" size="small" onClick={removeFromLib}>
                 Remove
             </Button>
             <Stack spacing={1} className='rating'>
-                <Rating name="half-rating-read" defaultValue={props.book.averageRating} precision={0.5}/>
+                <Rating name="half-rating-read" value={newRating} precision={0.5}
+                        onChange={handleRatingChange}/>
             </Stack>
         </Card>
     )

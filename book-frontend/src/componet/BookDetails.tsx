@@ -2,10 +2,10 @@ import {Card, Typography} from "@mui/material";
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import axios from "axios";
-import {BookModel} from "../model/Book";
+import {Book} from "../model/Book";
 
 export const BookDetails = () => {
-    const [book, setBook] = useState<BookModel>()
+    const [book, setBook] = useState<Book>()
     const {id} = useParams<{ id: string }>();
 
     const loadBookById = (id: string) => {
