@@ -39,8 +39,6 @@ export default function useUser() {
                 (e) => console.error(e)
             );
         }
-        ;
-
     }, [username]);
     const createUser = async (newUser: UserModel) => {
         return await axios.post("http://localhost:8080/api/users/signup", newUser, {
