@@ -64,5 +64,3 @@ D
 book-backend/pom.xml,6\7\678b38964deea50792d08b2552ae7520497c965d
 J
 book-frontend/package.json,0\2\0233fa80db978b91d7ce810e3f985739ea52671f
-P
- book-frontend/src/store/index.ts,5\e\5e0b91271c58e842ac529c0f753dea64dedcb51e

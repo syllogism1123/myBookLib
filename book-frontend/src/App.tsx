@@ -9,34 +9,32 @@ import {BookDetails} from "./componet/BookDetails";
 import UserBookGallery from "./componet/UserBookGallery";
 import {ToastContainer} from "react-toastify";
 import ResponsiveAppBar from "./componet/ResponsiveAppBar";
-import {useSelector} from "react-redux";
-import {RootState} from "./store/AuthSlice";
 
 
 function App() {
     const {login, logout, createUser} = useUser();
-    const isAuthenticated = useSelector((state: RootState) => state.auth.isLoggedIn);
-    console.log(isAuthenticated);
-
-
+    function isLoggedIn() {
+        return localStorage.getItem('token') !== "";
+    }
+    console.log(isLoggedIn())
     return (
         <div className="App">
             <ToastContainer/>
             <BrowserRouter>
-                <ResponsiveAppBar onLogout={logout}/>
+                <ResponsiveAppBar onLogout={logout} isLoggedIn={isLoggedIn}/>
                 <Routes>
                     <Route path="/login" element={<LoginPage onLogin={login}/>}>
                     </Route>
                     <Route path="/signup" element={<SignUpPage createUser={createUser}/>}>
                     </Route>
-                    {isAuthenticated && <Route path="/search" element={<SearchBooksPage/>}>
+                    {isLoggedIn() && <Route path="/search" element={<SearchBooksPage/>}>
                     </Route>}
-                    {isAuthenticated && <Route path="/mylibrary/" element={<UserBookGallery/>}>
+                    {isLoggedIn() && <Route path="/mylibrary/" element={<UserBookGallery/>}>
                     </Route>}
-                    {isAuthenticated && <Route path="/" element={<Navigate to="/home"/>}>
+                    {isLoggedIn() && <Route path="/" element={<Navigate to="/home"/>}>
                     </Route>}
-                    {isAuthenticated && <Route path="/home/:id" element={<BookDetails/>}/>}
-                    {isAuthenticated && <Route path="/mylibrary/:id" element={<BookDetails/>}/>}
+                    {isLoggedIn() && <Route path="/home/:id" element={<BookDetails/>}/>}
+                    {isLoggedIn() && <Route path="/mylibrary/:id" element={<BookDetails/>}/>}
                 </Routes>
             </BrowserRouter>
         </div>
