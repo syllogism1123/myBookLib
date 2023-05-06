@@ -11,7 +11,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {authAction, RootState} from "../store/AuthSlice";
@@ -42,14 +42,19 @@ function ResponsiveAppBar(props: Props) {
 
     const disPatch = useDispatch();
     const handleCloseUserMenu = () => {
+        setAnchorElUser(null);
+    };
+
+    const onClickLogOut = () => {
         props.onLogout().then(() => {
             disPatch(authAction.logout());
             navi("/login")
+            setAnchorElUser(null);
         }).catch((error) => {
             console.error(error);
         });
-        setAnchorElUser(null);
     };
+
 
     const isAuthenticated = useSelector((state: RootState) => state.auth.isLoggedIn);
 
@@ -57,23 +62,24 @@ function ResponsiveAppBar(props: Props) {
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <AdbIcon sx={{display: {xs: 'none', md: 'flex'}, mr: 1}}/>
+                    <AutoStoriesIcon sx={{display: {xs: 'none', md: 'flex'}, mr: 2,color:'palegreen'}}/>
                     <Typography
-                        variant="h6"
+                        variant="h4"
                         noWrap
                         component="a"
                         href="/"
+
                         sx={{
                             mr: 2,
                             display: {xs: 'none', md: 'flex'},
                             fontFamily: 'monospace',
                             fontWeight: 700,
                             letterSpacing: '.3rem',
-                            color: 'inherit',
+                            color: 'cyan',
                             textDecoration: 'none',
                         }}
                     >
-                        BOOK
+                        BOOK LIBRARY
                     </Typography>
 
                     <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
@@ -112,7 +118,7 @@ function ResponsiveAppBar(props: Props) {
                             ))}
                         </Menu>
                     </Box>
-                    <AdbIcon sx={{display: {xs: 'flex', md: 'none'}, mr: 1}}/>
+                    <AutoStoriesIcon sx={{display: {xs: 'flex', md: 'none'}, mr: 1}}/>
                     <Typography
                         variant="h5"
                         noWrap
@@ -136,7 +142,7 @@ function ResponsiveAppBar(props: Props) {
                             <Button
                                 key={page}
                                 onClick={() => navi(`/${page.toLowerCase()}`)}
-                                sx={{my: 2, color: 'white', display: 'block'}}
+                                sx={{my: 2, color: 'cyan', display: 'block'}}
                             >
                                 {page}
                             </Button>
@@ -171,7 +177,7 @@ function ResponsiveAppBar(props: Props) {
                             {settings.map((setting) => {
                                 if (setting === 'Logout') {
                                     return (
-                                        <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                        <MenuItem key={setting} onClick={onClickLogOut}>
                                             <Typography textAlign="center">{setting}</Typography>
                                         </MenuItem>
                                     );

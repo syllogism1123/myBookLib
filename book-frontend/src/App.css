@@ -16,8 +16,8 @@
 
 }
 
-.no-book-found, .rating {
-    height: 50px;
+.no-book-found {
+    height: 20px;
     justify-content: center;
     display: flex;
     align-items: center;
@@ -41,20 +41,42 @@
 }
 
 .card {
-
     padding-top: 10px;
-
 }
 
 #book-img {
     height: 150px;
     width: 120px;
+    margin-bottom: -20px;
+}
+
+.rating {
+    margin-top: -10px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
 }
 
 .book-details {
-    justify-content: center;
+    background-color: cyan;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
 }
+
+.book-details .details {
+    margin-right: 20px;
+    align-items: start;
+    display: flex;
+    text-align: left;
+    flex-direction: column;
+    font-size: 1.2rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 
 .search {
     margin-top: 20px;
@@ -79,3 +101,10 @@
     align-items: center;
     height: 100vh;
 }
+
+#book-img-details {
+    margin-left: 20px;
+    margin-right: 200px;
+}
+
+

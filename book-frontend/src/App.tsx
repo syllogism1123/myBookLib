@@ -18,6 +18,7 @@ function App() {
     const isAuthenticated = useSelector((state: RootState) => state.auth.isLoggedIn);
     console.log(isAuthenticated);
 
+
     return (
         <div className="App">
             <ToastContainer/>

@@ -28,14 +28,15 @@ export const BookDetails = () => {
     return (
         <div>
             <Card className='book-details' variant="elevation" style={{backgroundColor: 'cyan', marginTop: "20px"}}>
-                <Typography className="p-font">Title: {book?.title}</Typography>
-                <Typography className="p-font">Authors: {book?.authors.join(', ')}</Typography>
-                <Typography className="p-font">Publisher: {book?.publisher}</Typography>
-                <Typography
-                    className="p-font">PublisherDate: {book?.publishedDate}</Typography>
-                <img src={book?.imageUrl} alt={book?.title}/>
-                <Typography className="p-font">Description: {book?.description.replace(/<[^>]*>/g, "")}</Typography>
-                <Typography className="p-font">AverageRating: {book?.averageRating.toPrecision(2)}</Typography>
+                <img id='book-img-details' src={book?.imageUrl} alt={book?.title}/>
+                <div className="details">
+                    <Typography>Title: {book?.title}</Typography>
+                    <Typography>Authors: {book?.authors.join(', ')}</Typography>
+                    <Typography>Publisher: {book?.publisher}</Typography>
+                    <Typography>PublisherDate: {book?.publishedDate}</Typography>
+                    <Typography>Description: {book?.description.replace(/<[^>]*>/g, "")}</Typography>
+                    <Typography>AverageRating: {book?.averageRating.toPrecision(2)}</Typography>
+                </div>
             </Card>
         </div>
     );

@@ -14,7 +14,8 @@ export default function useUser() {
                 password
             }
         }).then((r) => {
-            setUsername(r.data)
+            setUsername(r.data);
+            setUser(r.data);
             return true;
         }).catch(error => {
             console.error(error);
@@ -25,8 +26,8 @@ export default function useUser() {
         return await axios.post("http://localhost:8080/api/users/logout", undefined, {
             withCredentials: true,
         }).then((r) => {
-            setUsername(r.data)
-            setUser(null)
+            setUsername(r.data);
+            setUser(null);
         }).catch(error => {
             console.error(error);
         })
@@ -36,8 +37,9 @@ export default function useUser() {
         if (username) {
             loadUser(username).catch(
                 (e) => console.error(e)
-            )
+            );
         }
+        ;
 
     }, [username]);
     const createUser = async (newUser: UserModel) => {

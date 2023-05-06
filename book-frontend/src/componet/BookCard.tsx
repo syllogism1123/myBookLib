@@ -31,12 +31,14 @@ export default function BookCard(props: BookCardProps) {
             <CardContent>
                 <img id='book-img' src={props.book.imageUrl} alt={props.book.title}/>
             </CardContent>
-            <Button variant="text" type="submit" size="small" onClick={toDetail}>
-                Details
-            </Button>
-            <Button variant="text" type="submit" size="small" onClick={addToLib}>
-                Add to Lib
-            </Button>
+            <div className='card-button'>
+                <Button variant="text" type="submit" size="small" onClick={toDetail}>
+                    Details
+                </Button>
+                <Button variant="text" type="submit" size="small" onClick={addToLib}>
+                    Add to Lib
+                </Button>
+            </div>
             <Stack spacing={1} className='rating'>
                 <Rating name="half-rating-read" defaultValue={props.book.averageRating} precision={0.5} readOnly/>
             </Stack>

@@ -24,8 +24,6 @@ v
 Fbook-backend/src/main/java/com/xin/bookbackend/exception/ApiError.java,5\1\51ea1d855b5f80cd9319297fd91e130b09de8afb
 Ñ
 Tbook-backend/src/main/java/com/xin/bookbackend/exception/GlobalExceptionHandler.java,a\9\a95a3dda49cad4f6f90693774e1248bd687573ad
-K
-book-frontend/src/index.css,9\5\9588222fdee5b8b1c4e13878320dbcae9e9b4345
 P
  book-frontend/src/model/Book.tsx,a\2\a23279875a953092c8f18750a4f859f03e1d795e
 Å
@@ -68,3 +66,23 @@ Cbook-backend/src/main/java/com/xin/bookbackend/model/book/Book.java,d\d\dd9851
 Mbook-backend/src/main/java/com/xin/bookbackend/controller/BookController.java,2\3\2367fe77f6778d56ba33c54dd93a187eaf07e306
 v
 Fbook-backend/src/main/java/com/xin/bookbackend/model/book/BookDTO.java,e\3\e3b948408c1e8b4a85b083ab4aa1a334908c5f47
+Å
+Qbook-backend/src/test/java/com/xin/bookbackend/controller/BookControllerTest.java,8\e\8e391f1fa8e78216fbcf864b8f0e18afc2f096b8
+O
+book-frontend/package-lock.json,b\6\b6caf281c02a9ba4379eb8c12bbb12ee8f5d261a
+J
+book-frontend/package.json,0\2\0233fa80db978b91d7ce810e3f985739ea52671f
+D
+book-backend/pom.xml,6\7\678b38964deea50792d08b2552ae7520497c965d
+[
++book-frontend/src/componet/UserBookCard.tsx,b\2\b2201e188a229d89e14ce3bf5337855e2653c1c2
+Q
+!book-frontend/src/hook/useBook.ts,e\9\e9614405f46eaf66152e92caca590a9f2ba3b5e0
+K
+book-frontend/src/index.tsx,e\c\ecf0bc71d83a09ea423c99988b5cc59bd41d6aea
+^
+.book-frontend/src/componet/SearchBooksPage.tsx,b\f\bfaca1a845c46e604d6e2cdf536aafd4d6982e9e
+P
+ book-frontend/src/store/index.ts,5\e\5e0b91271c58e842ac529c0f753dea64dedcb51e
+^
+.book-frontend/src/componet/UserBookGallery.tsx,0\d\0d7f84c92a1989b344632d08b169d4db11dec641
