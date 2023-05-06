@@ -13,15 +13,13 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import {useNavigate} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {authAction, RootState} from "../store/AuthSlice";
-
 
 const pages = ['Login', 'SignUp', 'Home'];
 const settings = ['Search', 'Account', 'MyLibrary', 'Logout'];
 
 type Props = {
     onLogout: () => Promise<void>
+    isLoggedIn: () => boolean
 }
 
 function ResponsiveAppBar(props: Props) {
@@ -40,14 +38,12 @@ function ResponsiveAppBar(props: Props) {
         setAnchorElNav(null);
     };
 
-    const disPatch = useDispatch();
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
 
     const onClickLogOut = () => {
         props.onLogout().then(() => {
-            disPatch(authAction.logout());
             navi("/login")
             setAnchorElUser(null);
         }).catch((error) => {
@@ -55,14 +51,11 @@ function ResponsiveAppBar(props: Props) {
         });
     };
 
-
-    const isAuthenticated = useSelector((state: RootState) => state.auth.isLoggedIn);
-
     return (
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <AutoStoriesIcon sx={{display: {xs: 'none', md: 'flex'}, mr: 2,color:'palegreen'}}/>
+                    <AutoStoriesIcon sx={{display: {xs: 'none', md: 'flex'}, mr: 2, color: 'palegreen'}}/>
                     <Typography
                         variant="h4"
                         noWrap
@@ -152,7 +145,7 @@ function ResponsiveAppBar(props: Props) {
                     <Box sx={{flexGrow: 0}}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
-                                {isAuthenticated ? <Avatar alt="My Avatar" src="/static/images/avatar/2.png"/>
+                                {props.isLoggedIn() ? <Avatar alt="My Avatar" src="/static/images/avatar/2.png"/>
                                     : <Avatar alt="My Avatar" src="/static/images/avatar/xxxx.png"/>}
                             </IconButton>
                         </Tooltip>

@@ -99,8 +99,8 @@ class BookServiceTest {
         service.updateBookById(id, updatedBook);
 
         verify(bookRepo).findById(id);
+        updatedBook = updatedBook.withId(id);
         verify(bookRepo).save(updatedBook);
-
     }
 
     @Test

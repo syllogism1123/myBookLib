@@ -6,6 +6,11 @@ export default function useUser() {
     const [user, setUser] = useState<User | null>(null);
     const [error, setError] = useState<boolean>();
     const [username, setUsername] = useState<string>();
+    const token = {
+        name: 'John Doe',
+        email: 'johndoe@example.com'
+    };
+
     const login = async (username: string, password: string) => {
         return await axios.post("http://localhost:8080/api/users/login", undefined, {
             withCredentials: true,
@@ -16,6 +21,7 @@ export default function useUser() {
         }).then((r) => {
             setUsername(r.data);
             setUser(r.data);
+            localStorage.setItem('token', JSON.stringify(token));
             return true;
         }).catch(error => {
             console.error(error);
@@ -28,6 +34,7 @@ export default function useUser() {
         }).then((r) => {
             setUsername(r.data);
             setUser(null);
+            localStorage.setItem('token', "");
         }).catch(error => {
             console.error(error);
         })
