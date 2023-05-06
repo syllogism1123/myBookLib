@@ -9,7 +9,7 @@ export interface RootState {
 }
 
 const initialState: AuthState = {
-    isLoggedIn: true
+    isLoggedIn: false
 };
 
 const AuthSlice = createSlice({
