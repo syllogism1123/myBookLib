@@ -24,16 +24,12 @@ v
 Fbook-backend/src/main/java/com/xin/bookbackend/exception/ApiError.java,5\1\51ea1d855b5f80cd9319297fd91e130b09de8afb
 Ñ
 Tbook-backend/src/main/java/com/xin/bookbackend/exception/GlobalExceptionHandler.java,a\9\a95a3dda49cad4f6f90693774e1248bd687573ad
-Å
-Qbook-backend/src/test/java/com/xin/bookbackend/controller/UserControllerTest.java,5\1\51bef1530df1f8e3ae2bfa7f5a0f09d76fdd8387
 |
 Lbook-backend/src/main/java/com/xin/bookbackend/repo/MongoUserRepository.java,1\6\16d1cd453098fce20eaef8448022879bf8629f17
 w
 Gbook-backend/src/main/java/com/xin/bookbackend/repo/BookRepository.java,b\a\ba6b8d7ae6c8f60fd385ff2133c2ea47544da01b
 á
 Wbook-backend/src/test/java/com/xin/bookbackend/service/MongoUserDetailsServiceTest.java,5\c\5cbf6ca8001a7d1cb24993a0be93c22f6a939390
-{
-Kbook-backend/src/test/java/com/xin/bookbackend/service/BookServiceTest.java,b\1\b1620eadf383fe3088f1c2dd0e6592d314f8dfd2
 {
 Kbook-backend/src/test/java/com/xin/bookbackend/service/UserServiceTest.java,3\9\39350c575a13db0f199e32c027610e6ea6d6a295
 É
@@ -56,8 +52,6 @@ Kbook-backend/src/main/java/com/xin/bookbackend/model/user/MongoUserDTO.java,9\
 Mbook-backend/src/main/java/com/xin/bookbackend/controller/BookController.java,2\3\2367fe77f6778d56ba33c54dd93a187eaf07e306
 v
 Fbook-backend/src/main/java/com/xin/bookbackend/model/book/BookDTO.java,e\3\e3b948408c1e8b4a85b083ab4aa1a334908c5f47
-Å
-Qbook-backend/src/test/java/com/xin/bookbackend/controller/BookControllerTest.java,8\e\8e391f1fa8e78216fbcf864b8f0e18afc2f096b8
 O
 book-frontend/package-lock.json,b\6\b6caf281c02a9ba4379eb8c12bbb12ee8f5d261a
 J
