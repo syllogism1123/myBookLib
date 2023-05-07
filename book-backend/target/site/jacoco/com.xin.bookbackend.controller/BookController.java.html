@@ -39,11 +39,11 @@ public class BookController {
 
 
     @GetMapping()
-    public ResponseEntity&lt;List&lt;BookDTO&gt;&gt; getAllBooks() {
+    public ResponseEntity&lt;List&lt;Book&gt;&gt; getAllBooks() {
 <span class="fc" id="L43">        String username = SecurityContextHolder.getContext().getAuthentication().getName();</span>
 <span class="fc" id="L44">        MongoUser user = userService.findUserByUsername(username);</span>
 <span class="fc" id="L45">        String userId = user.id();</span>
-<span class="fc" id="L46">        return new ResponseEntity&lt;&gt;(convertBookListToBookDTOList(bookService.getAllBooksByUserId(userId)), HttpStatus.OK);</span>
+<span class="fc" id="L46">        return new ResponseEntity&lt;&gt;(bookService.getAllBooksByUserId(userId), HttpStatus.OK);</span>
     }
 
     @PostMapping()
@@ -59,8 +59,8 @@ public class BookController {
 
 
     @GetMapping(&quot;/{id}&quot;)
-    public ResponseEntity&lt;BookDTO&gt; getBookById(@PathVariable String id) {
-<span class="fc" id="L63">        return new ResponseEntity&lt;&gt;(convertBookToBookDTO(bookService.getBookById(id)), HttpStatus.OK);</span>
+    public ResponseEntity&lt;Book&gt; getBookById(@PathVariable String id) {
+<span class="fc" id="L63">        return new ResponseEntity&lt;&gt;(bookService.getBookById(id), HttpStatus.OK);</span>
     }
 
     @PutMapping(&quot;/{id}&quot;)
