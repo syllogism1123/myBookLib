@@ -2,33 +2,12 @@
 
 import java.util.List;
 
-<span class="pc" id="L5">public record BookDTO(String id, String googleBookId, String title, List&lt;String&gt; authors, String publisher,</span>
+<span class="fc" id="L5">public record BookDTO(String id, String googleBookId, String title, List&lt;String&gt; authors, String publisher,</span>
                       String publishedDate, String description, Double averageRating, String imageUrl, String userId) {
-
     public BookDTO(String googleBookId, String title, List&lt;String&gt; authors, String publisher,
                    String publishedDate, String description, Double averageRating, String imageUrl) {
-<span class="nc" id="L10">        this(null, googleBookId, title, authors, publisher, publishedDate, description, averageRating, imageUrl, null);</span>
-<span class="nc" id="L11">    }</span>
-
-    public BookDTO(String googleBookId, String title, List&lt;String&gt; authors, String publisher,
-                   String publishedDate, Double averageRating, String userId) {
-<span class="nc" id="L15">        this(null, googleBookId, title, authors, publisher, publishedDate, null, averageRating, null, userId);</span>
-<span class="nc" id="L16">    }</span>
-
-
-    public BookDTO(String id, String googleBookId, String title, List&lt;String&gt; authors, String publisher,
-                   String publishedDate, Double averageRating, String userId) {
-<span class="nc" id="L21">        this(id, googleBookId, title, authors, publisher, publishedDate, null, averageRating, null, userId);</span>
-<span class="nc" id="L22">    }</span>
-
-    public BookDTO() {
-<span class="nc" id="L25">        this(null,null,null,null,null,null,null,null,null,null);</span>
-<span class="nc" id="L26">    }</span>
-
-    public BookDTO withUserId(String userId) {
-<span class="fc" id="L29">        return new BookDTO(null, googleBookId, title, authors, publisher, publishedDate, description, averageRating, imageUrl, userId);</span>
-    }
-
+<span class="fc" id="L9">        this(null, googleBookId, title, authors, publisher, publishedDate, description, averageRating, imageUrl, null);</span>
+<span class="fc" id="L10">    }</span>
 }
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -28,13 +28,13 @@ public class BookController {
 
 
     @GetMapping("/search")
-    public List<Book> search(@RequestParam String query) {
-        return bookService.searchBooks(query);
+    public List<BookDTO> search(@RequestParam String query) {
+        return convertBookListToBookDTOList(bookService.searchBooks(query));
     }
 
     @GetMapping("/search/{googleBookId}")
-    public Book findBookByGoogleBookId(@PathVariable String googleBookId) {
-        return bookService.getBookByGoogleBookId(googleBookId);
+    public BookDTO findBookByGoogleBookId(@PathVariable String googleBookId) {
+        return convertBookToBookDTO(bookService.getBookByGoogleBookId(googleBookId));
     }
 
 
@@ -89,4 +89,14 @@ public class BookController {
         return new Book(bookDTO.googleBookId(), bookDTO.title(), bookDTO.authors(), bookDTO.publisher(),
                 bookDTO.publishedDate(), bookDTO.description(), bookDTO.averageRating(), bookDTO.imageUrl());
     }
+
+    private BookDTO convertBookToBookDTO(Book book) {
+        return new BookDTO(book.googleBookId(), book.title(), book.authors(), book.publisher(),
+                book.publishedDate(), book.description(), book.averageRating(), book.imageUrl());
+    }
+
+    private List<BookDTO> convertBookListToBookDTOList(List<Book> bookList) {
+        return bookList.stream().map(this::convertBookToBookDTO).toList();
+    }
+
 }

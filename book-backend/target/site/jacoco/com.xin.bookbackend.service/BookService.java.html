@@ -80,8 +80,8 @@ public class BookService {
 
     public Book updateBookById(String id, Book newBook) {
 <span class="pc bpc" id="L82" title="1 of 2 branches missed.">        if (getBookById(id) != null) {</span>
-<span class="fc" id="L83">            return bookRepos.save(newBook);</span>
-
+<span class="fc" id="L83">            newBook = newBook.withId(id);</span>
+<span class="fc" id="L84">            return bookRepos.save(newBook);</span>
         } else {
 <span class="nc" id="L86">            throw new NoSuchElementException(&quot;Book not found!&quot;);</span>
         }

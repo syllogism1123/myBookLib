@@ -48,10 +48,6 @@ Ibook-backend/src/main/java/com/xin/bookbackend/model/book/GoogleBook.java,8\2\
 Mbook-backend/src/main/java/com/xin/bookbackend/controller/UserController.java,f\e\fe4790e0fce0e9f0fa869b2e20d736b6715acdd8
 {
 Kbook-backend/src/main/java/com/xin/bookbackend/model/user/MongoUserDTO.java,9\f\9feaccf081a4b35a48aec1ade94425d47e1c90fe
-}
-Mbook-backend/src/main/java/com/xin/bookbackend/controller/BookController.java,2\3\2367fe77f6778d56ba33c54dd93a187eaf07e306
-v
-Fbook-backend/src/main/java/com/xin/bookbackend/model/book/BookDTO.java,e\3\e3b948408c1e8b4a85b083ab4aa1a334908c5f47
 O
 book-frontend/package-lock.json,b\6\b6caf281c02a9ba4379eb8c12bbb12ee8f5d261a
 D
