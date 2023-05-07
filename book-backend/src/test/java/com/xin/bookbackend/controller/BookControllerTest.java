@@ -3,6 +3,7 @@ package com.xin.bookbackend.controller;
 import com.xin.bookbackend.model.book.Book;
 import com.xin.bookbackend.model.user.MongoUser;
 import com.xin.bookbackend.repo.BookRepository;
+import com.xin.bookbackend.repo.MongoUserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.DirtiesContext;
@@ -34,30 +34,33 @@ class BookControllerTest {
     private MockMvc mvc;
     @Autowired
     private JacksonTester<Book> json;
-    @Autowired
-    private MongoTemplate mongoTemplate;
+    @MockBean
+    private MongoUserRepository userRepository;
     @MockBean
     private BookRepository bookRepository;
     private Book book;
     private String id;
+    private MongoUser user;
 
     @BeforeEach
     void setup() {
         id = UUID.randomUUID().toString();
         String userId = UUID.randomUUID().toString();
-        MongoUser user = new MongoUser(userId, "user", "password", "firstname", "lastname");
-        mongoTemplate.save(user);
+        user = new MongoUser(userId, "user", "password", "firstname", "lastname");
+        userRepository.save(user);
         book = new Book(id, "5eDWcLzdAcYC",
                 "Java von Kopf bis Fuß",
                 List.of("Kathy Sierra", "Bert Bates"),
                 "O'Reilly Germany",
-                "2006",4.5, userId);
+                "2006", 4.5, userId);
     }
 
     @Test
     @DirtiesContext
     @WithMockUser
     void getAllBooks() throws Exception {
+        when(userRepository.findMongoUserByUsername("user")).thenReturn(Optional.ofNullable(user));
+
         mvc.perform(get("/api/books").
                         contentType(MediaType.APPLICATION_JSON)).
                 andExpect(status().isOk()).
@@ -70,6 +73,7 @@ class BookControllerTest {
     @DirtiesContext
     @WithMockUser
     void getBookById() throws Exception {
+        when(userRepository.findMongoUserByUsername("user")).thenReturn(Optional.ofNullable(user));
         when(bookRepository.findById(id)).thenReturn(Optional.ofNullable(book));
 
         mvc.perform(get("/api/books/" + id).
@@ -96,6 +100,8 @@ class BookControllerTest {
     @DirtiesContext
     @WithMockUser
     void addBook() throws Exception {
+        when(userRepository.findMongoUserByUsername("user")).thenReturn(Optional.ofNullable(user));
+
         mvc.perform(post("/api/books").
                         contentType(MediaType.APPLICATION_JSON).
                         content(json.write(book).getJson()).with(csrf())).
@@ -106,6 +112,7 @@ class BookControllerTest {
     @DirtiesContext
     @WithMockUser
     void updateBookById() throws Exception {
+        when(userRepository.findMongoUserByUsername("user")).thenReturn(Optional.ofNullable(user));
         when(bookRepository.findById(id)).thenReturn(Optional.ofNullable(book));
 
         mvc.perform(put("/api/books/" + id).
@@ -130,6 +137,7 @@ class BookControllerTest {
     @DirtiesContext
     @WithMockUser
     void updateBookById_IdNotFound() throws Exception {
+        when(userRepository.findMongoUserByUsername("user")).thenReturn(Optional.ofNullable(user));
         when(bookRepository.findById(id)).thenReturn(Optional.empty());
 
         mvc.perform(put("/api/books/" + id).
@@ -142,7 +150,9 @@ class BookControllerTest {
     @DirtiesContext
     @WithMockUser
     void deleteBookById() throws Exception {
+        when(userRepository.findMongoUserByUsername("user")).thenReturn(Optional.ofNullable(user));
         when(bookRepository.findById(id)).thenReturn(Optional.ofNullable(book));
+
         mvc.perform(delete("/api/books/" + id).
                         contentType(MediaType.APPLICATION_JSON).with(csrf())).
                 andExpect(status().isOk());
@@ -152,6 +162,7 @@ class BookControllerTest {
     @DirtiesContext
     @WithMockUser
     void search() throws Exception {
+        when(userRepository.findMongoUserByUsername("user")).thenReturn(Optional.ofNullable(user));
         String query = "java";
 
         mvc.perform(get("/api/books/search?query=" + query).
@@ -163,7 +174,9 @@ class BookControllerTest {
     @DirtiesContext
     @WithMockUser
     void findBookByGoogleBookId() throws Exception {
+        when(userRepository.findMongoUserByUsername("user")).thenReturn(Optional.ofNullable(user));
         String googleBookId = "5eDWcLzdAcYC";
+
         mvc.perform(get("/api/books/search/" + googleBookId).
                         contentType(MediaType.APPLICATION_JSON)).
                 andExpect(status().isOk())

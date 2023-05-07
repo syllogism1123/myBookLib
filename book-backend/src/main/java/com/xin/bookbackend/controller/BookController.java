@@ -28,13 +28,13 @@ public class BookController {
 
 
     @GetMapping("/search")
-    public List<Book> search(@RequestParam String query) {
-        return bookService.searchBooks(query);
+    public List<BookDTO> search(@RequestParam String query) {
+        return convertBookListToBookDTOList(bookService.searchBooks(query));
     }
 
     @GetMapping("/search/{googleBookId}")
-    public Book findBookByGoogleBookId(@PathVariable String googleBookId) {
-        return bookService.getBookByGoogleBookId(googleBookId);
+    public BookDTO findBookByGoogleBookId(@PathVariable String googleBookId) {
+        return convertBookToBookDTO(bookService.getBookByGoogleBookId(googleBookId));
     }
 
 
@@ -47,30 +47,30 @@ public class BookController {
     }
 
     @PostMapping()
-    public ResponseEntity<Book> addBook(@RequestBody BookDTO bookDTO) {
+    public ResponseEntity<BookDTO> addBook(@RequestBody BookDTO bookDTO) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         MongoUser user = userService.findUserByUsername(username);
         String userId = user.id();
         Book book = convertBookDTOToBook(bookDTO);
         book = book.withUserId(userId);
-        return new ResponseEntity<>(bookService.addBook(book, userId), HttpStatus.CREATED);
+        return new ResponseEntity<>(convertBookToBookDTO(bookService.addBook(book, userId)), HttpStatus.CREATED);
     }
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<Book> getBookById(@PathVariable String id) {
-        return new ResponseEntity<>(bookService.getBookById(id), HttpStatus.OK);
+    public ResponseEntity<BookDTO> getBookById(@PathVariable String id) {
+        return new ResponseEntity<>(convertBookToBookDTO(bookService.getBookById(id)), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Book> updateBookById(@PathVariable String id, @RequestBody BookDTO updatedBookDTO) {
+    public ResponseEntity<BookDTO> updateBookById(@PathVariable String id, @RequestBody BookDTO updatedBookDTO) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         MongoUser user = userService.findUserByUsername(username);
         if (bookService.getBookById(id) != null) {
             String userId = user.id();
             Book updatedBook = convertBookDTOToBook(updatedBookDTO);
             updatedBook = updatedBook.withUserId(userId);
-            return new ResponseEntity<>(bookService.updateBookById(id, updatedBook), HttpStatus.OK);
+            return new ResponseEntity<>(convertBookToBookDTO(bookService.updateBookById(id, updatedBook)), HttpStatus.OK);
         } else {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The id in the url does not match the request body's id");
         }
@@ -89,4 +89,14 @@ public class BookController {
         return new Book(bookDTO.googleBookId(), bookDTO.title(), bookDTO.authors(), bookDTO.publisher(),
                 bookDTO.publishedDate(), bookDTO.description(), bookDTO.averageRating(), bookDTO.imageUrl());
     }
+
+    private BookDTO convertBookToBookDTO(Book book) {
+        return new BookDTO(book.googleBookId(), book.title(), book.authors(), book.publisher(),
+                book.publishedDate(), book.description(), book.averageRating(), book.imageUrl());
+    }
+
+    private List<BookDTO> convertBookListToBookDTOList(List<Book> bookList) {
+        return bookList.stream().map(this::convertBookToBookDTO).toList();
+    }
+
 }
