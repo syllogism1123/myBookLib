@@ -92,8 +92,7 @@ class BookControllerTest {
                                  "publishedDate": "2006",
                                  "averageRating": 4.5
                                  }
-                                 """)).
-                andExpect(jsonPath("$.id").isNotEmpty());
+                                 """));
     }
 
     @Test

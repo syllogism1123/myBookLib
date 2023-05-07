@@ -38,12 +38,8 @@ x
 Hbook-backend/src/main/java/com/xin/bookbackend/model/user/MongoUser.java,3\8\38dadf3ccd02526d1c6e88944c0820949e9c230e
 y
 Ibook-backend/src/main/java/com/xin/bookbackend/model/book/ImageLinks.java,6\f\6f0ded9446615eaf87c1d57bf9d7cdd70712aa18
-Å
-Qbook-backend/src/main/java/com/xin/bookbackend/model/book/GoogleBookResponse.java,0\3\035b9c06e39d82bf35565cdf6ccf9f9b01628828
 y
 Ibook-backend/src/main/java/com/xin/bookbackend/model/book/VolumeInfo.java,9\d\9d34a8875f36c8c9da7d4802d23e8e4c9d88b197
-y
-Ibook-backend/src/main/java/com/xin/bookbackend/model/book/GoogleBook.java,8\2\82abf1812b4e1e0456393a2e5f393119864a9bc2
 }
 Mbook-backend/src/main/java/com/xin/bookbackend/controller/UserController.java,f\e\fe4790e0fce0e9f0fa869b2e20d736b6715acdd8
 {

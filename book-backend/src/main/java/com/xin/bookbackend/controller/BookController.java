@@ -47,13 +47,14 @@ public class BookController {
     }
 
     @PostMapping()
-    public ResponseEntity<Book> addBook(@RequestBody BookDTO bookDTO) {
+    public ResponseEntity<BookDTO> addBook(@RequestBody BookDTO bookDTO) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         MongoUser user = userService.findUserByUsername(username);
         String userId = user.id();
         Book book = convertBookDTOToBook(bookDTO);
         book = book.withUserId(userId);
-        return new ResponseEntity<>(bookService.addBook(book, userId), HttpStatus.CREATED);
+        bookService.addBook(book, userId);
+        return new ResponseEntity<>(bookDTO, HttpStatus.CREATED);
     }
 
 
@@ -63,14 +64,15 @@ public class BookController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Book> updateBookById(@PathVariable String id, @RequestBody BookDTO updatedBookDTO) {
+    public ResponseEntity<BookDTO> updateBookById(@PathVariable String id, @RequestBody BookDTO updatedBookDTO) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         MongoUser user = userService.findUserByUsername(username);
         if (bookService.getBookById(id) != null) {
             String userId = user.id();
             Book updatedBook = convertBookDTOToBook(updatedBookDTO);
             updatedBook = updatedBook.withUserId(userId);
-            return new ResponseEntity<>(bookService.updateBookById(id, updatedBook), HttpStatus.OK);
+            bookService.updateBookById(id, updatedBook);
+            return new ResponseEntity<>(updatedBookDTO, HttpStatus.OK);
         } else {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The id in the url does not match the request body's id");
         }

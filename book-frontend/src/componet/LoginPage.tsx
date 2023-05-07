@@ -29,7 +29,7 @@ export const LoginPage = (props: Props) => {
                 navigate("/search");
                 toast.success('You have successfully logged in!', {
                     position: "top-center",
-                    autoClose: 5000,
+                    autoClose: 1000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,

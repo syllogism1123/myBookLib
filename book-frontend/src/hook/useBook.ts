@@ -22,7 +22,16 @@ export const useBook = () => {
         }).then((response) => {
             setBooks([...books, response.data])
         }).catch((error) => {
-            toast.warning(newBook.title + " is already in your Library " + error.response.statusText, {autoClose: 10000})
+            toast.error(newBook.title + " is already in your Library " + error.response.statusText, {
+                position: "top-center",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            })
         })
     }
 
