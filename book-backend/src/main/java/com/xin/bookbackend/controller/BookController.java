@@ -47,30 +47,30 @@ public class BookController {
     }
 
     @PostMapping()
-    public ResponseEntity<BookDTO> addBook(@RequestBody BookDTO bookDTO) {
+    public ResponseEntity<Book> addBook(@RequestBody BookDTO bookDTO) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         MongoUser user = userService.findUserByUsername(username);
         String userId = user.id();
         Book book = convertBookDTOToBook(bookDTO);
         book = book.withUserId(userId);
-        return new ResponseEntity<>(convertBookToBookDTO(bookService.addBook(book, userId)), HttpStatus.CREATED);
+        return new ResponseEntity<>(bookService.addBook(book, userId), HttpStatus.CREATED);
     }
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<BookDTO> getBookById(@PathVariable String id) {
-        return new ResponseEntity<>(convertBookToBookDTO(bookService.getBookById(id)), HttpStatus.OK);
+    public ResponseEntity<Book> getBookById(@PathVariable String id) {
+        return new ResponseEntity<>(bookService.getBookById(id), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<BookDTO> updateBookById(@PathVariable String id, @RequestBody BookDTO updatedBookDTO) {
+    public ResponseEntity<Book> updateBookById(@PathVariable String id, @RequestBody BookDTO updatedBookDTO) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         MongoUser user = userService.findUserByUsername(username);
         if (bookService.getBookById(id) != null) {
             String userId = user.id();
             Book updatedBook = convertBookDTOToBook(updatedBookDTO);
             updatedBook = updatedBook.withUserId(userId);
-            return new ResponseEntity<>(convertBookToBookDTO(bookService.updateBookById(id, updatedBook)), HttpStatus.OK);
+            return new ResponseEntity<>(bookService.updateBookById(id, updatedBook), HttpStatus.OK);
         } else {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The id in the url does not match the request body's id");
         }
