@@ -1,4 +1,4 @@
-import {Button, FormControl, IconButton, InputAdornment, OutlinedInput, TextField} from "@mui/material";
+import {Button, FormControl, IconButton, InputAdornment, OutlinedInput, TextField, Typography} from "@mui/material";
 import React, {ChangeEvent, FormEvent, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
@@ -7,35 +7,40 @@ import {Visibility, VisibilityOff} from "@mui/icons-material";
 import useUser from "../hook/useUser";
 
 type Props = {
-    username: string | undefined
+    user: User | null
 }
 export const AccountPage = (props: Props) => {
-
+    const initialState: User = {id: "", username: "", password: "", firstname: "", lastname: ""};
     const navigate = useNavigate();
-    const [user, setUser] = useState<User>();
+    const [user, setUser] = useState<User>(initialState);
     const {updateUser} = useUser();
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/api/users/${props.username}`, {
-            withCredentials: true
-        })
-            .then((response) => {
-                setUser(response.data)
-                console.log(user)
+        if (props.user) {
+            axios.get(`http://localhost:8080/api/users/${props.user.username}`, {
+                withCredentials: true
             })
-            .catch((error) => {
-                console.error(error)
-            })
-    }, [props.username])
+                .then((response) => {
+                    setUser(response.data)
+                    console.log(user)
+                })
+                .catch((error) => {
+                    console.error(error)
+                })
+        }
+
+    }, [props.user])
 
     function onChange(event: ChangeEvent<HTMLInputElement>) {
         const targetName: string = event.target.name;
         const value: string = event.target.value;
         if (user?.id) {
-            setUser({
-                ...user, id: user.id,
+            const updatedUser = {
+                ...user,
+                id: user.id,
                 [targetName]: value
-            })
+            };
+            setUser(updatedUser);
         }
     }
 
@@ -47,6 +52,13 @@ export const AccountPage = (props: Props) => {
         }
     }
 
+    useEffect(() => {
+        const savedUser = localStorage.getItem('token');
+        if (savedUser) {
+            setUser(JSON.parse(savedUser));
+        }
+    }, []);
+
     const [showPassword, setShowPassword] = React.useState(false);
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -55,9 +67,11 @@ export const AccountPage = (props: Props) => {
         event.preventDefault();
     };
 
+
     return (
         <div className="login-page-container">
             <FormControl component="form" onSubmit={onSubmit}>
+                <Typography>UserName</Typography>
                 <TextField
                     name="username"
                     type="text"
@@ -65,10 +79,14 @@ export const AccountPage = (props: Props) => {
                     value={user?.username}
                     size="small"
                     style={{marginBottom: '5px'}}
+                    inputProps={{style: {textAlign: 'center'}}}
                     disabled
                 />
+                <Typography>New Password</Typography>
                 <OutlinedInput
                     id="outlined-adornment-password"
+                    name="password"
+                    required
                     type={showPassword ? 'text' : 'password'}
                     value={user?.password}
                     onChange={onChange}
@@ -85,8 +103,10 @@ export const AccountPage = (props: Props) => {
                         </InputAdornment>
                     }
                     style={{marginBottom: '5px'}}
+                    inputProps={{style: {textAlign: 'center'}}}
                     size="small"
                 />
+                <Typography>FirstName</Typography>
                 <TextField
                     name="firstname"
                     type="text"
@@ -94,8 +114,10 @@ export const AccountPage = (props: Props) => {
                     value={user?.firstname}
                     size="small"
                     style={{marginBottom: '5px'}}
+                    inputProps={{style: {textAlign: 'center'}}}
                     disabled
                 />
+                <Typography>LastName</Typography>
                 <TextField
                     name="lastname"
                     type="text"
@@ -103,6 +125,7 @@ export const AccountPage = (props: Props) => {
                     value={user?.lastname}
                     size="small"
                     style={{marginBottom: '5px'}}
+                    inputProps={{style: {textAlign: 'center'}}}
                     disabled
                 />
                 <Button variant="contained" type="submit" size="small">

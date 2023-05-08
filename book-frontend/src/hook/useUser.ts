@@ -1,5 +1,5 @@
 import axios from "axios";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {User, UserModel} from "../model/UserModel";
 
 export default function useUser() {
@@ -34,22 +34,7 @@ export default function useUser() {
             console.error(error);
         })
     }
-    const data = localStorage.getItem('token')
-    useEffect(() => {
 
-        if (data) {
-            setUser(JSON.parse(data));
-        }
-    }, [data]);
-
-    useEffect(() => {
-        if (username) {
-            console.log(username)
-            loadUser(username).catch(
-                (e) => console.error(e)
-            );
-        }
-    }, [username]);
 
     const createUser = async (newUser: UserModel) => {
         return await axios.post("http://localhost:8080/api/users/signup", newUser, {
@@ -86,7 +71,7 @@ export default function useUser() {
     }
 
 
-    return {user, username, setUser, login, logout, createUser, error, setError, loadUser, updateUser}
+    return {user, username, error, setUser, login, logout, createUser, setError, loadUser, updateUser}
 }
 
 

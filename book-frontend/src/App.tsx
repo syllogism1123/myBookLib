@@ -4,7 +4,7 @@ import {SignUpPage} from "./componet/SignUpPage";
 import {LoginPage} from "./componet/LoginPage";
 import useUser from "./hook/useUser";
 import SearchBooksPage from "./componet/SearchBooksPage";
-import React from "react";
+import React, {useEffect} from "react";
 import {BookDetails} from "./componet/BookDetails";
 import UserBookGallery from "./componet/UserBookGallery";
 import {ToastContainer} from "react-toastify";
@@ -12,14 +12,29 @@ import ResponsiveAppBar from "./componet/ResponsiveAppBar";
 import {AccountPage} from "./componet/AccountPage";
 
 function App() {
-    const {login, logout, createUser,username} = useUser();
+    const {login, logout, createUser, username, loadUser, user, setUser} = useUser();
 
     function isLoggedIn() {
         return localStorage.getItem('token') !== "";
     }
 
-    console.log(isLoggedIn())
-    console.log(username)
+  /*  console.log(isLoggedIn())*/
+    const data = localStorage.getItem('token')
+    useEffect(() => {
+
+        if (data) {
+            setUser(JSON.parse(data));
+        }
+    }, [data]);
+
+    useEffect(() => {
+        if (username) {
+            console.log(username)
+            loadUser(username).catch(
+                (e) => console.error(e)
+            );
+        }
+    }, [username]);
 
 
     return (
@@ -34,7 +49,7 @@ function App() {
                     </Route>
                     {isLoggedIn() && <Route path="/search" element={<SearchBooksPage/>}>
                     </Route>}
-                    {isLoggedIn() && <Route path="/account" element={<AccountPage username={username}/>}>
+                    {isLoggedIn() && <Route path="/account" element={<AccountPage user={user}/>}>
                     </Route>}
                     {isLoggedIn() && <Route path="/mylibrary/" element={<UserBookGallery/>}>
                     </Route>}
