@@ -65,7 +65,7 @@ export const SignUpPage = (props: createUserProps) => {
                             onChange={onChange}
                             placeholder="UserName"
                             size="small"
-                            style={{marginBottom: '5px'}}
+                            style={{marginBottom: '20px'}}
                         />
                         <TextField
                             name="password"
@@ -76,7 +76,7 @@ export const SignUpPage = (props: createUserProps) => {
                             onChange={onChange}
                             placeholder="Password"
                             size="small"
-                            style={{marginBottom: '5px'}}
+                            style={{marginBottom: '20px'}}
                         />
                         <TextField
                             name="firstname"
@@ -87,7 +87,7 @@ export const SignUpPage = (props: createUserProps) => {
                             onChange={onChange}
                             placeholder="FirstName"
                             size="small"
-                            style={{marginBottom: '5px'}}
+                            style={{marginBottom: '20px'}}
                         />
                         <TextField
                             name="lastname"
@@ -98,7 +98,7 @@ export const SignUpPage = (props: createUserProps) => {
                             onChange={onChange}
                             placeholder="LastName"
                             size="small"
-                            style={{marginBottom: '5px'}}
+                            style={{marginBottom: '20px'}}
                         />
                         <Button variant="contained" type="submit" size="small">
                             Sign Up

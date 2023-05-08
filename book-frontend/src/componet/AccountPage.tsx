@@ -112,7 +112,7 @@ export const AccountPage = (props: Props) => {
                             type="text"
                             value={user?.username}
                             size="small"
-                            style={{marginBottom: '10px'}}
+                            style={{marginBottom: '20px'}}
                             inputProps={{style: {textAlign: 'center', backgroundColor: "white"}}}
                             disabled
                         />
@@ -146,7 +146,7 @@ export const AccountPage = (props: Props) => {
                             type="text"
                             value={user?.firstname}
                             size="small"
-                            style={{marginBottom: '10px'}}
+                            style={{marginBottom: '20px'}}
                             inputProps={{style: {textAlign: 'center', backgroundColor: "white"}}}
                             onChange={onChange}
 
@@ -156,7 +156,7 @@ export const AccountPage = (props: Props) => {
                             type="text"
                             value={user?.lastname}
                             size="small"
-                            style={{marginBottom: '10px'}}
+                            style={{marginBottom: '20px'}}
                             inputProps={{style: {textAlign: 'center', backgroundColor: "white"}}}
                             onChange={onChange}
                         />

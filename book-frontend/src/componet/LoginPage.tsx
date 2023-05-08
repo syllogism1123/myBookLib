@@ -65,7 +65,7 @@ export const LoginPage = (props: Props) => {
                             label="Username"
                             value={username}
                             placeholder='username'
-                            style={{marginBottom: '5px'}}
+                            style={{marginBottom: '20px'}}
                             size="small"
                             onChange={(e) => setUsername(e.target.value)}/>
                         <TextField
@@ -76,7 +76,7 @@ export const LoginPage = (props: Props) => {
                             value={password}
                             placeholder='password'
                             size="small"
-                            style={{marginBottom: '5px'}}
+                            style={{marginBottom: '20px'}}
                             onChange={(e) => setPassword(e.target.value)}/>
                         <Button variant="contained" type="submit" size="small">Login</Button>
                         {error &&
