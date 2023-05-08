@@ -38,8 +38,13 @@ public class UserController {
     }
 
     @GetMapping("/{username}")
-    public MongoUserDTO loadMongoUserByName(@PathVariable String username) {
-        return convertMongoUserToMongoUserDTO(userService.findUserByUsername(username));
+    public MongoUser loadMongoUserByName(@PathVariable String username) {
+        return userService.findUserByUsername(username);
+    }
+
+    @PutMapping("/{username}")
+    public MongoUser updateMongoUser(@PathVariable String username, @RequestBody MongoUserDTO mongoUserDTO) {
+        return userService.updateMongoUser(username, mongoUserDTO);
     }
 
 

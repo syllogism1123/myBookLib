@@ -33,4 +33,18 @@ public class UserService {
         return mongoUserRepository.findMongoUserByUsername(username).orElseThrow(NoSuchElementException::new);
     }
 
+    public MongoUser updateMongoUser(String username, MongoUserDTO mongoUserDTO) {
+
+        if (findUserByUsername(username) != null) {
+            MongoUser user = findUserByUsername(username);
+            String encodedPassword = encoder.encode(mongoUserDTO.password());
+            MongoUser encodedUser = new MongoUser(user.id(), mongoUserDTO.username(), encodedPassword, mongoUserDTO.firstname(), mongoUserDTO.lastname());
+            return mongoUserRepository.save(encodedUser);
+
+        } else {
+            throw new NoSuchElementException("User not found");
+        }
+    }
+
+
 }

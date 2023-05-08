@@ -6,10 +6,6 @@ export default function useUser() {
     const [user, setUser] = useState<User | null>(null);
     const [error, setError] = useState<boolean>();
     const [username, setUsername] = useState<string>();
-    const token = {
-        name: 'John Doe',
-        email: 'johndoe@example.com'
-    };
 
     const login = async (username: string, password: string) => {
         return await axios.post("http://localhost:8080/api/users/login", undefined, {
@@ -21,7 +17,6 @@ export default function useUser() {
         }).then((r) => {
             setUsername(r.data);
             setUser(r.data);
-            localStorage.setItem('token', JSON.stringify(token));
             return true;
         }).catch(error => {
             console.error(error);
@@ -39,14 +34,23 @@ export default function useUser() {
             console.error(error);
         })
     }
+    const data = localStorage.getItem('token')
+    useEffect(() => {
+
+        if (data) {
+            setUser(JSON.parse(data));
+        }
+    }, [data]);
 
     useEffect(() => {
         if (username) {
+            console.log(username)
             loadUser(username).catch(
                 (e) => console.error(e)
             );
         }
     }, [username]);
+
     const createUser = async (newUser: UserModel) => {
         return await axios.post("http://localhost:8080/api/users/signup", newUser, {
             withCredentials: true
@@ -64,13 +68,25 @@ export default function useUser() {
             withCredentials: true
         }).then((response) => {
             setUser(response.data)
+            localStorage.setItem('token', JSON.stringify(response.data));
 
         }).catch((error) => {
             console.error(error);
         })
     }
 
-    return {user, username, setUser, login, logout, createUser, error, setError, loadUser}
+    const updateUser = async (user: User) => {
+        await axios.put(`http://localhost:8080/api/users/${user.username}`, user, {
+            withCredentials: true
+        }).then((response) => {
+            setUser(response.data)
+        }).catch(error => {
+            console.error(error);
+        })
+    }
+
+
+    return {user, username, setUser, login, logout, createUser, error, setError, loadUser, updateUser}
 }
 
 

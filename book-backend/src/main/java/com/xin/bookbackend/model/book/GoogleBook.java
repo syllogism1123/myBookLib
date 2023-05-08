@@ -11,7 +11,7 @@ public record GoogleBook(String id, VolumeInfo volumeInfo) {
         String publisher = volumeInfo.publisher();
         String publishedDate = volumeInfo.publishedDate();
         String description = volumeInfo.description();
-        Double averageRating = volumeInfo.averageRating() == null ? null
+        Double averageRating = volumeInfo.averageRating() == null ? 0
                 : volumeInfo.averageRating();
         String imageUrl = volumeInfo.imageLinks() != null ? volumeInfo.imageLinks().thumbnail() : null;
         return new Book(id, tittle, authors, publisher, publishedDate, description, averageRating, imageUrl);

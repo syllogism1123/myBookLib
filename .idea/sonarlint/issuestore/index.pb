@@ -3,8 +3,6 @@
 Book-API.iml,9\b\9bd53a3b76a269c2e3bdfe043bcdaa5943699fe1
 U
 %book-frontend/src/model/UserModel.tsx,1\a\1a2594f883189b9df43ccb67513bee8cdd6fd696
-{
-Kbook-backend/src/main/java/com/xin/bookbackend/security/SecurityConfig.java,9\6\96d72523b6c95c3360dc90d2c2e32dd7897ecf10
 S
 #.github/workflows/sonar-backend.yml,6\d\6da5a3f76934916b670a730d02c25e0b3bb44410
 T
@@ -32,16 +30,10 @@ Lbook-backend/src/main/java/com/xin/bookbackend/repo/MongoUserRepository.java,1
 Wbook-backend/src/test/java/com/xin/bookbackend/service/MongoUserDetailsServiceTest.java,5\c\5cbf6ca8001a7d1cb24993a0be93c22f6a939390
 {
 Kbook-backend/src/test/java/com/xin/bookbackend/service/UserServiceTest.java,3\9\39350c575a13db0f199e32c027610e6ea6d6a295
-É
-Sbook-backend/src/main/java/com/xin/bookbackend/service/MongoUserDetailsService.java,b\9\b9d7d0a208a32d9347d31f19a0bbf261b39d7329
-x
-Hbook-backend/src/main/java/com/xin/bookbackend/model/user/MongoUser.java,3\8\38dadf3ccd02526d1c6e88944c0820949e9c230e
 y
 Ibook-backend/src/main/java/com/xin/bookbackend/model/book/ImageLinks.java,6\f\6f0ded9446615eaf87c1d57bf9d7cdd70712aa18
 y
 Ibook-backend/src/main/java/com/xin/bookbackend/model/book/VolumeInfo.java,9\d\9d34a8875f36c8c9da7d4802d23e8e4c9d88b197
-}
-Mbook-backend/src/main/java/com/xin/bookbackend/controller/UserController.java,f\e\fe4790e0fce0e9f0fa869b2e20d736b6715acdd8
 {
 Kbook-backend/src/main/java/com/xin/bookbackend/model/user/MongoUserDTO.java,9\f\9feaccf081a4b35a48aec1ade94425d47e1c90fe
 O
@@ -50,3 +42,18 @@ D
 book-backend/pom.xml,6\7\678b38964deea50792d08b2552ae7520497c965d
 J
 book-frontend/package.json,0\2\0233fa80db978b91d7ce810e3f985739ea52671f
+_
+/book-frontend/src/componet/ResponsiveAppBar.tsx,e\9\e9cbc3e9f619b12110b2ed572000c572885c4328
+{
+Kbook-backend/src/test/java/com/xin/bookbackend/service/BookServiceTest.java,b\1\b1620eadf383fe3088f1c2dd0e6592d314f8dfd2
+:
+
+Dockerfile,6\6\6651ddff6eb82c840ced7c1dddee15c6e1913dd4
+v
+Fbook-backend/src/main/java/com/xin/bookbackend/model/book/BookDTO.java,e\3\e3b948408c1e8b4a85b083ab4aa1a334908c5f47
+s
+Cbook-backend/src/main/java/com/xin/bookbackend/model/book/Book.java,d\d\dd98513991d246022d8c7933e3600234ab5dfe64
+Å
+Qbook-backend/src/test/java/com/xin/bookbackend/controller/BookControllerTest.java,8\e\8e391f1fa8e78216fbcf864b8f0e18afc2f096b8
+Å
+Qbook-backend/src/main/java/com/xin/bookbackend/model/book/GoogleBookResponse.java,0\3\035b9c06e39d82bf35565cdf6ccf9f9b01628828
