@@ -34,8 +34,6 @@ y
 Ibook-backend/src/main/java/com/xin/bookbackend/model/book/ImageLinks.java,6\f\6f0ded9446615eaf87c1d57bf9d7cdd70712aa18
 y
 Ibook-backend/src/main/java/com/xin/bookbackend/model/book/VolumeInfo.java,9\d\9d34a8875f36c8c9da7d4802d23e8e4c9d88b197
-{
-Kbook-backend/src/main/java/com/xin/bookbackend/model/user/MongoUserDTO.java,9\f\9feaccf081a4b35a48aec1ade94425d47e1c90fe
 O
 book-frontend/package-lock.json,b\6\b6caf281c02a9ba4379eb8c12bbb12ee8f5d261a
 J

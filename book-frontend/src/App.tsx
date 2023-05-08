@@ -18,7 +18,7 @@ function App() {
         return localStorage.getItem('token') !== "";
     }
 
-  /*  console.log(isLoggedIn())*/
+    /* console.log(isLoggedIn())*/
     const data = localStorage.getItem('token')
     useEffect(() => {
 

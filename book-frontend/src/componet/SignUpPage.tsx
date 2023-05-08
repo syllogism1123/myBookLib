@@ -1,4 +1,4 @@
-import {Alert, Button, FormControl, TextField} from "@mui/material";
+import {Alert, Button, Card, CardContent, CardHeader, FormControl, TextField, Typography} from "@mui/material";
 import React, {ChangeEvent, FormEvent, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {UserModel} from "../model/UserModel";
@@ -46,62 +46,71 @@ export const SignUpPage = (props: createUserProps) => {
 
     return (
         <div className="login-page-container">
-            <FormControl component="form" onSubmit={onSubmit}>
-                <TextField
-                    name="username"
-                    type="text"
-                    required
-                    label="Username"
-                    value={user.username}
-                    onChange={onChange}
-                    placeholder="UserName"
-                    size="small"
-                    style={{marginBottom: '5px'}}
+            <Card variant="outlined" className="card-container">
+                <CardHeader
+                    title={
+                        <Typography variant="h5" component="div">
+                            Personal Information
+                        </Typography>
+                    }
                 />
-                <TextField
-                    name="password"
-                    type="password"
-                    required
-                    label="Password"
-                    value={user.password}
-                    onChange={onChange}
-                    placeholder="Password"
-                    size="small"
-                    style={{marginBottom: '5px'}}
-                />
-                <TextField
-                    name="firstname"
-                    type="text"
-                    required
-                    label="Firstname"
-                    value={user.firstname}
-                    onChange={onChange}
-                    placeholder="FirstName"
-                    size="small"
-                    style={{marginBottom: '5px'}}
-                />
-                <TextField
-                    name="lastname"
-                    type="text"
-                    required
-                    label="Lastname"
-                    value={user.lastname}
-                    onChange={onChange}
-                    placeholder="LastName"
-                    size="small"
-                    style={{marginBottom: '5px'}}
-                />
-                <Button variant="contained" type="submit" size="small">
-                    Sign Up
-                </Button>
-                {error &&
-                    <Alert severity="error" className="no-book-found">
-                        <h3>The username already exists!</h3>
-                    </Alert>
-                }
-            </FormControl>
-
-
+                <CardContent>
+                    <FormControl component="form" onSubmit={onSubmit}>
+                        <TextField
+                            name="username"
+                            type="text"
+                            required
+                            label="Username"
+                            value={user.username}
+                            onChange={onChange}
+                            placeholder="UserName"
+                            size="small"
+                            style={{marginBottom: '5px'}}
+                        />
+                        <TextField
+                            name="password"
+                            type="password"
+                            required
+                            label="Password"
+                            value={user.password}
+                            onChange={onChange}
+                            placeholder="Password"
+                            size="small"
+                            style={{marginBottom: '5px'}}
+                        />
+                        <TextField
+                            name="firstname"
+                            type="text"
+                            required
+                            label="Firstname"
+                            value={user.firstname}
+                            onChange={onChange}
+                            placeholder="FirstName"
+                            size="small"
+                            style={{marginBottom: '5px'}}
+                        />
+                        <TextField
+                            name="lastname"
+                            type="text"
+                            required
+                            label="Lastname"
+                            value={user.lastname}
+                            onChange={onChange}
+                            placeholder="LastName"
+                            size="small"
+                            style={{marginBottom: '5px'}}
+                        />
+                        <Button variant="contained" type="submit" size="small">
+                            Sign Up
+                        </Button>
+                        {error &&
+                            <Alert severity="error" className="no-book-found">
+                                <h3>The username already exists!</h3>
+                            </Alert>
+                        }
+                    </FormControl>
+                </CardContent>
+            </Card>
         </div>
     );
 

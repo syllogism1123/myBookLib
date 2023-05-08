@@ -108,4 +108,19 @@
     margin-right: 200px;
 }
 
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.card-container {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+
+
+
 

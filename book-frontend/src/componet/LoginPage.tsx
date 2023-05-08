@@ -1,6 +1,6 @@
 import React, {FormEvent, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {Alert, Button, FormControl, TextField} from "@mui/material";
+import {Alert, Button, Card, CardContent, CardHeader, FormControl, TextField, Typography} from "@mui/material";
 import 'react-toastify/dist/ReactToastify.css';
 import useUser from "../hook/useUser";
 import {toast} from "react-toastify";
@@ -48,34 +48,45 @@ export const LoginPage = (props: Props) => {
 
     return (
         <div className="login-page-container">
-            <FormControl component="form" onSubmit={onSubmit}>
-                <TextField
-                    name='username'
-                    type="text"
-                    required
-                    label="Username"
-                    value={username}
-                    placeholder='username'
-                    style={{marginBottom: '5px'}}
-                    size="small"
-                    onChange={(e) => setUsername(e.target.value)}/>
-                <TextField
-                    name='password'
-                    type="password"
-                    required
-                    label="Password"
-                    value={password}
-                    placeholder='password'
-                    size="small"
-                    style={{marginBottom: '5px'}}
-                    onChange={(e) => setPassword(e.target.value)}/>
-                <Button variant="contained" type="submit" size="small">Login</Button>
-                {error &&
-                    <Alert severity="error" className="no-book-found">
-                        <h3>Invalid Username or Password!</h3>
-                    </Alert>
-                }
-            </FormControl>
+            <Card variant="outlined" className="card-container">
+                <CardHeader
+                    title={
+                        <Typography variant="h5" component="div">
+                            Sign In Your Account
+                        </Typography>
+                    }
+                />
+                <CardContent>
+                    <FormControl component="form" onSubmit={onSubmit}>
+                        <TextField
+                            name='username'
+                            type="text"
+                            required
+                            label="Username"
+                            value={username}
+                            placeholder='username'
+                            style={{marginBottom: '5px'}}
+                            size="small"
+                            onChange={(e) => setUsername(e.target.value)}/>
+                        <TextField
+                            name='password'
+                            type="password"
+                            required
+                            label="Password"
+                            value={password}
+                            placeholder='password'
+                            size="small"
+                            style={{marginBottom: '5px'}}
+                            onChange={(e) => setPassword(e.target.value)}/>
+                        <Button variant="contained" type="submit" size="small">Login</Button>
+                        {error &&
+                            <Alert severity="error" className="no-book-found">
+                                <h3>Invalid Username or Password!</h3>
+                            </Alert>
+                        }
+                    </FormControl>
+                </CardContent>
+            </Card>
 
         </div>
     )

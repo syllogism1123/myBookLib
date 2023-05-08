@@ -1,4 +1,14 @@
-import {Button, FormControl, IconButton, InputAdornment, OutlinedInput, TextField, Typography} from "@mui/material";
+import {
+    Button,
+    Card,
+    CardContent, CardHeader,
+    FormControl,
+    IconButton,
+    InputAdornment,
+    OutlinedInput,
+    TextField,
+    Typography
+} from "@mui/material";
 import React, {ChangeEvent, FormEvent, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
@@ -14,6 +24,7 @@ export const AccountPage = (props: Props) => {
     const navigate = useNavigate();
     const [user, setUser] = useState<User>(initialState);
     const {updateUser} = useUser();
+    const [initialUser, setInitialUser] = useState<User>(initialState);
 
     useEffect(() => {
         if (props.user) {
@@ -22,6 +33,7 @@ export const AccountPage = (props: Props) => {
             })
                 .then((response) => {
                     setUser(response.data)
+                    setInitialUser(response.data);
                     console.log(user)
                 })
                 .catch((error) => {
@@ -47,7 +59,7 @@ export const AccountPage = (props: Props) => {
     function onSubmit(event: FormEvent<HTMLFormElement>) {
         if (user?.password) {
             event.preventDefault();
-            updateUser(user).then(() => navigate("/books")).catch((r) => console.error(r))
+            updateUser(user).then(() => navigate("/mylibrary")).catch((r) => console.error(r))
 
         }
     }
@@ -67,29 +79,51 @@ export const AccountPage = (props: Props) => {
         event.preventDefault();
     };
 
+    const handleClickClearPassword = () => {
+        if (user?.id) {
+            setUser({
+                ...user,
+                id: user.id,
+                password: ""
+            });
+        }
+    };
+
+    const handleCancel = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+        setUser(initialUser);
+    };
 
     return (
+
         <div className="login-page-container">
-            <FormControl component="form" onSubmit={onSubmit}>
-                <Typography>UserName</Typography>
-                <TextField
-                    name="username"
-                    type="text"
-                    required
-                    value={user?.username}
-                    size="small"
-                    style={{marginBottom: '5px'}}
-                    inputProps={{style: {textAlign: 'center'}}}
-                    disabled
+            <Card variant="outlined" className="card-container">
+                <CardHeader
+                    title={
+                        <Typography variant="h5" component="div">
+                          Basic Information
+                        </Typography>
+                    }
                 />
-                <Typography>New Password</Typography>
-                <OutlinedInput
+                <CardContent>
+                    <FormControl component="form" onSubmit={onSubmit}>
+                        <TextField
+                            name="username"
+                            type="text"
+                            value={user?.username}
+                            size="small"
+                            style={{marginBottom: '10px'}}
+                            inputProps={{style: {textAlign: 'center', backgroundColor: "white"}}}
+                            disabled
+                        />
+                        {/* <OutlinedInput
                     id="outlined-adornment-password"
                     name="password"
                     required
                     type={showPassword ? 'text' : 'password'}
                     value={user?.password}
                     onChange={onChange}
+
                     endAdornment={
                         <InputAdornment position="end">
                             <IconButton
@@ -102,36 +136,42 @@ export const AccountPage = (props: Props) => {
                             </IconButton>
                         </InputAdornment>
                     }
-                    style={{marginBottom: '5px'}}
+                    style={{marginBottom: '10px', backgroundColor: "white"}}
                     inputProps={{style: {textAlign: 'center'}}}
                     size="small"
-                />
-                <Typography>FirstName</Typography>
-                <TextField
-                    name="firstname"
-                    type="text"
-                    required
-                    value={user?.firstname}
-                    size="small"
-                    style={{marginBottom: '5px'}}
-                    inputProps={{style: {textAlign: 'center'}}}
-                    disabled
-                />
-                <Typography>LastName</Typography>
-                <TextField
-                    name="lastname"
-                    type="text"
-                    required
-                    value={user?.lastname}
-                    size="small"
-                    style={{marginBottom: '5px'}}
-                    inputProps={{style: {textAlign: 'center'}}}
-                    disabled
-                />
-                <Button variant="contained" type="submit" size="small">
-                    Save
-                </Button>
-            </FormControl>
+                />*/}
+
+                        <TextField
+                            name="firstname"
+                            type="text"
+                            value={user?.firstname}
+                            size="small"
+                            style={{marginBottom: '10px'}}
+                            inputProps={{style: {textAlign: 'center', backgroundColor: "white"}}}
+                            onChange={onChange}
+
+                        />
+                        <TextField
+                            name="lastname"
+                            type="text"
+                            value={user?.lastname}
+                            size="small"
+                            style={{marginBottom: '10px'}}
+                            inputProps={{style: {textAlign: 'center', backgroundColor: "white"}}}
+                            onChange={onChange}
+                        />
+
+                        <div className="button-container">
+                            <Button variant="contained" type="submit" size="small" onClick={handleCancel}>
+                                Cancel
+                            </Button>
+                            <Button variant="contained" type="submit" size="small">
+                                Save
+                            </Button>
+                        </div>
+                    </FormControl>
+                </CardContent>
+            </Card>
         </div>
     );
 }
