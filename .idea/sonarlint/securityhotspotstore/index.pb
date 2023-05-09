@@ -9,9 +9,6 @@ T
 $.github/workflows/sonar-frontend.yml,9\c\9c51df10072e3ef6ef5b5789444db6cb38bef828
 H
 sonar-project.properties,2\5\2538046035efb77ecc44e1fd2eec1e2641594d4c
-:
-
-.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 Å
 Qbook-backend/src/main/java/com/xin/bookbackend/config/ReactRoutingForwarding.java,e\b\ebacfebcc9e9a60ace2dd0e248b694d1ca704112
 T
