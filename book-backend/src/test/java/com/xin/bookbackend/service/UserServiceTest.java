@@ -14,6 +14,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
@@ -89,8 +90,22 @@ class UserServiceTest {
 
         assertThrows(NoSuchElementException.class, () -> userService.updateMongoUser(username, updateMongoUserDTO));
 
-
     }
 
+
+    @Test
+    void convertMongoUserToMongoUserDTOTest() {
+
+        MongoUser mongoUser = new MongoUser("userId", "username", "password", "firstname", "lastname", "email");
+
+        MongoUserDTO mongoUserDTO = userService.convertMongoUserToMongoUserDTO(mongoUser);
+
+
+        assertEquals(mongoUser.username(), mongoUserDTO.username());
+        assertEquals(mongoUser.password(), mongoUserDTO.password());
+        assertEquals(mongoUser.firstname(), mongoUserDTO.firstname());
+        assertEquals(mongoUser.lastname(), mongoUserDTO.lastname());
+        assertEquals(mongoUser.email(), mongoUserDTO.email());
+    }
 
 }
