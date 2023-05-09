@@ -26,10 +26,6 @@ public record MongoUserDTO(
     public MongoUserDTO(String username, String password, String firstname, String lastname, String email) {
         this(null, username, password, firstname, lastname, email);
     }
-
-    public MongoUserDTO() {
-        this(null, null, null, null, null, null);
-    }
 }
 
 
