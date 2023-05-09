@@ -3,5 +3,18 @@
 /book-backend/src/main/resources/static/
 /.idea/
 /book-backend/target/
-Book-API.iml
-book-frontend.iml
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
