@@ -14,8 +14,8 @@ import MenuItem from '@mui/material/MenuItem';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import {useNavigate} from "react-router-dom";
 
-const pages = ['Login', 'SignUp', 'Home'];
-const settings = ['Search', 'Account', 'MyLibrary', 'Logout'];
+const pages = ['Login', 'SignUp', 'Search'];
+const settings = ['Password', 'Account', 'MyLibrary', 'Logout'];
 
 type Props = {
     onLogout: () => Promise<void>

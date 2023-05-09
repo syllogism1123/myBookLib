@@ -3,24 +3,27 @@ import {
     Card,
     CardContent, CardHeader,
     FormControl,
-    TextField,
+    IconButton,
+    InputAdornment,
+    OutlinedInput,
     Typography
 } from "@mui/material";
 import React, {ChangeEvent, FormEvent, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import {User} from "../model/UserModel";
+import {Visibility, VisibilityOff} from "@mui/icons-material";
 import useUser from "../hook/useUser";
 
 type Props = {
     user: User | null
 }
-export const AccountPage = (props: Props) => {
-    const initial: User = {id: "", username: "", password: "", firstname: "", lastname: "", email: ""};
+export const ChangePasswordPage = (props: Props) => {
+    const initialState: User = {id: "", username: "", password: "", firstname: "", lastname: "", email: ""};
     const navigate = useNavigate();
-    const [user, setUser] = useState<User>(initial);
+    const [user, setUser] = useState<User>(initialState);
     const {updateUser} = useUser();
-    const [initialUser, setInitialUser] = useState<User>(initial);
+    const [initialUser, setInitialUser] = useState<User>(initialState);
 
     useEffect(() => {
         if (props.user) {
@@ -67,6 +70,14 @@ export const AccountPage = (props: Props) => {
         }
     }, []);
 
+    const [showPassword, setShowPassword] = React.useState(false);
+
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+    const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+    };
+
 
     const handleCancel = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
@@ -80,56 +91,44 @@ export const AccountPage = (props: Props) => {
                 <CardHeader
                     title={
                         <Typography variant="h5" component="div">
-                            Basic Information
+                            Change Your Password
                         </Typography>
                     }
                 />
                 <CardContent>
                     <FormControl component="form" onSubmit={onSubmit}>
-                        <TextField
-                            name="username"
-                            type="text"
-                            value={user?.username}
+                        <OutlinedInput
+                            id="outlined-adornment-password"
+                            name="password"
+                            required
+                            type={showPassword ? 'text' : 'password'}
+                            value={user?.password}
+                            onChange={onChange}
+
+                            endAdornment={
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        aria-label="toggle password visibility"
+                                        onClick={handleClickShowPassword}
+                                        onMouseDown={handleMouseDownPassword}
+                                        edge="end"
+                                    >
+                                        {showPassword ? <VisibilityOff/> : <Visibility/>}
+                                    </IconButton>
+                                </InputAdornment>
+                            }
+                            style={{marginBottom: '10px', backgroundColor: "white"}}
+                            inputProps={{style: {textAlign: 'center'}}}
                             size="small"
-                            style={{marginBottom: '20px'}}
-                            inputProps={{style: {textAlign: 'center', backgroundColor: "white"}}}
                             disabled
                         />
 
-                        <TextField
-                            name="firstname"
-                            type="text"
-                            value={user?.firstname}
-                            size="small"
-                            style={{marginBottom: '20px'}}
-                            inputProps={{style: {textAlign: 'center', backgroundColor: "white"}}}
-                            onChange={onChange}
-                        />
-
-                        <TextField
-                            name="lastname"
-                            type="text"
-                            value={user?.lastname}
-                            size="small"
-                            style={{marginBottom: '20px'}}
-                            inputProps={{style: {textAlign: 'center', backgroundColor: "white"}}}
-                            onChange={onChange}
-                        />
-                        <TextField
-                            name="email"
-                            type="email"
-                            value={user?.email}
-                            size="small"
-                            style={{marginBottom: '20px'}}
-                            inputProps={{style: {textAlign: 'center', backgroundColor: "white"}}}
-                            onChange={onChange}
-                        />
                         <div className="button-container">
                             <Button variant="contained" type="submit" size="small" onClick={handleCancel}>
                                 Cancel
                             </Button>
-                            <Button variant="contained" type="submit" size="small">
-                                Save
+                            <Button variant="contained" type="submit" size="small" onClick={handleCancel}>
+                                Save Password
                             </Button>
                         </div>
                     </FormControl>
