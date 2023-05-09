@@ -35,17 +35,24 @@ public class UserService {
 
     public MongoUser updateMongoUser(String username, MongoUserDTO mongoUserDTO) {
 
-<span class="nc bnc" id="L38" title="All 2 branches missed.">        if (findUserByUsername(username) != null) {</span>
-<span class="nc" id="L39">            MongoUser user = findUserByUsername(username);</span>
-<span class="nc" id="L40">            String encodedPassword = encoder.encode(mongoUserDTO.password());</span>
-<span class="nc" id="L41">            MongoUser encodedUser = new MongoUser(user.id(), mongoUserDTO.username(), encodedPassword, mongoUserDTO.firstname(), mongoUserDTO.lastname(), mongoUserDTO.email());</span>
-<span class="nc" id="L42">            return mongoUserRepository.save(encodedUser);</span>
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">        if (findUserByUsername(username) != null) {</span>
+<span class="fc" id="L39">            MongoUser user = findUserByUsername(username);</span>
+<span class="fc" id="L40">            MongoUser encodedUser = new MongoUser(user.id(), mongoUserDTO.username(), mongoUserDTO.password(), mongoUserDTO.firstname(), mongoUserDTO.lastname(), mongoUserDTO.email());</span>
+<span class="fc" id="L41">            return mongoUserRepository.save(encodedUser);</span>
 
         } else {
-<span class="nc" id="L45">            throw new NoSuchElementException(&quot;User not found&quot;);</span>
+<span class="nc" id="L44">            throw new NoSuchElementException(&quot;User not found&quot;);</span>
         }
     }
 
-
+    public MongoUserDTO convertMongoUserToMongoUserDTO(MongoUser mongoUser) {
+<span class="fc" id="L49">        return new MongoUserDTO(</span>
+<span class="fc" id="L50">                mongoUser.username(),</span>
+<span class="fc" id="L51">                mongoUser.password(),</span>
+<span class="fc" id="L52">                mongoUser.firstname(),</span>
+<span class="fc" id="L53">                mongoUser.lastname(),</span>
+<span class="fc" id="L54">                mongoUser.email()</span>
+        );
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

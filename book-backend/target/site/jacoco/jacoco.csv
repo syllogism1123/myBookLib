@@ -11,10 +11,10 @@ book-backend,com.xin.bookbackend.model.book,GoogleBook,3,70,0,4,0,11,1,5,1,3
 book-backend,com.xin.bookbackend.model.book,GoogleBookResponse,0,9,0,0,0,1,0,2,0,2
 book-backend,com.xin.bookbackend.service,MongoUserDetailsService,0,30,0,0,0,7,0,3,0,3
 book-backend,com.xin.bookbackend.service,BookService,19,137,2,2,3,35,3,9,1,9
-book-backend,com.xin.bookbackend.service,UserService,40,54,2,2,6,10,2,4,1,3
+book-backend,com.xin.bookbackend.service,UserService,5,98,1,3,1,20,1,6,0,5
 book-backend,com.xin.bookbackend.exception,ApiError,15,0,0,0,1,0,3,0,3,0
 book-backend,com.xin.bookbackend.exception,GlobalExceptionHandler,13,3,0,0,2,1,1,1,1,1
 book-backend,com.xin.bookbackend.controller,BookController,6,191,1,1,1,36,1,11,0,11
-book-backend,com.xin.bookbackend.controller,UserController,12,45,0,0,2,14,1,7,1,7
+book-backend,com.xin.bookbackend.controller,UserController,0,61,0,0,0,14,0,7,0,7
 book-backend,com.xin.bookbackend.model.user,MongoUser,0,48,0,0,0,4,0,8,0,8
-book-backend,com.xin.bookbackend.model.user,MongoUserDTO,0,57,0,0,0,5,0,9,0,9
+book-backend,com.xin.bookbackend.model.user,MongoUserDTO,9,48,0,0,2,3,1,8,1,8

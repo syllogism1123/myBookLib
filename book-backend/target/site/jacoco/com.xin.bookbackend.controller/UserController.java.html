@@ -4,7 +4,6 @@ import com.xin.bookbackend.model.user.MongoUser;
 import com.xin.bookbackend.model.user.MongoUserDTO;
 import com.xin.bookbackend.service.UserService;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,35 +16,36 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     private final UserService userService;
 
-<span class="fc" id="L20">    public UserController(UserService userService) {</span>
-<span class="fc" id="L21">        this.userService = userService;</span>
-<span class="fc" id="L22">    }</span>
+<span class="fc" id="L19">    public UserController(UserService userService) {</span>
+<span class="fc" id="L20">        this.userService = userService;</span>
+<span class="fc" id="L21">    }</span>
 
     @PostMapping(&quot;/login&quot;)
     public String login() {
-<span class="fc" id="L26">        return SecurityContextHolder.getContext().getAuthentication().getName();</span>
+<span class="fc" id="L25">        return SecurityContextHolder.getContext().getAuthentication().getName();</span>
     }
 
     @GetMapping(&quot;/me&quot;)
     public String getMe() {
-<span class="fc" id="L31">        return SecurityContextHolder.getContext().getAuthentication().getName();</span>
+<span class="fc" id="L30">        return SecurityContextHolder.getContext().getAuthentication().getName();</span>
     }
 
     @PostMapping(&quot;/signup&quot;)
     public ResponseEntity&lt;MongoUserDTO&gt; createUser(@RequestBody MongoUserDTO mongoUserDTO) {
-<span class="fc" id="L36">        MongoUser mongoUser = userService.createMongoUser(mongoUserDTO);</span>
-<span class="fc" id="L37">        return new ResponseEntity&lt;&gt;(convertMongoUserToMongoUserDTO(mongoUser), HttpStatus.CREATED);</span>
+<span class="fc" id="L35">        MongoUser mongoUser = userService.createMongoUser(mongoUserDTO);</span>
+<span class="fc" id="L36">        return new ResponseEntity&lt;&gt;(userService.convertMongoUserToMongoUserDTO(mongoUser), HttpStatus.CREATED);</span>
     }
 
     @GetMapping(&quot;/{username}&quot;)
-    public MongoUser loadMongoUserByName(@PathVariable String username) {
-<span class="fc" id="L42">        return userService.findUserByUsername(username);</span>
+    public ResponseEntity&lt;MongoUserDTO&gt; loadMongoUserByName(@PathVariable String username) {
+<span class="fc" id="L41">        MongoUser mongoUser = userService.findUserByUsername(username);</span>
+<span class="fc" id="L42">        return new ResponseEntity&lt;&gt;(userService.convertMongoUserToMongoUserDTO(mongoUser), HttpStatus.OK);</span>
     }
 
     @PutMapping(&quot;/{username}&quot;)
     public ResponseEntity&lt;MongoUserDTO&gt; updateMongoUser(@PathVariable String username, @RequestBody MongoUserDTO mongoUserDTO) {
-<span class="nc" id="L47">        userService.updateMongoUser(username, mongoUserDTO);</span>
-<span class="nc" id="L48">        return new ResponseEntity&lt;&gt;(mongoUserDTO, HttpStatus.OK);</span>
+<span class="fc" id="L47">        MongoUser mongoUser = userService.updateMongoUser(username, mongoUserDTO);</span>
+<span class="fc" id="L48">        return new ResponseEntity&lt;&gt;(userService.convertMongoUserToMongoUserDTO(mongoUser), HttpStatus.OK);</span>
     }
 
 
@@ -54,13 +54,6 @@ public class UserController {
 <span class="fc" id="L54">        httpSession.invalidate();</span>
 <span class="fc" id="L55">        SecurityContextHolder.clearContext();</span>
 <span class="fc" id="L56">    }</span>
-
-
-    private MongoUserDTO convertMongoUserToMongoUserDTO(MongoUser mongoUser) {
-<span class="fc" id="L60">        MongoUserDTO mongoUserDTO = new MongoUserDTO();</span>
-<span class="fc" id="L61">        BeanUtils.copyProperties(mongoUser, mongoUserDTO);</span>
-<span class="fc" id="L62">        return mongoUserDTO;</span>
-    }
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -4,7 +4,6 @@ import com.xin.bookbackend.model.user.MongoUser;
 import com.xin.bookbackend.model.user.MongoUserDTO;
 import com.xin.bookbackend.service.UserService;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,18 +33,17 @@ public class UserController {
     @PostMapping("/signup")
     public ResponseEntity<MongoUserDTO> createUser(@RequestBody MongoUserDTO mongoUserDTO) {
         MongoUser mongoUser = userService.createMongoUser(mongoUserDTO);
-        return new ResponseEntity<>(convertMongoUserToMongoUserDTO(mongoUser), HttpStatus.CREATED);
+        return new ResponseEntity<>(userService.convertMongoUserToMongoUserDTO(mongoUser), HttpStatus.CREATED);
     }
 
     @GetMapping("/{username}")
-    public MongoUser loadMongoUserByName(@PathVariable String username) {
-        return userService.findUserByUsername(username);
+    public ResponseEntity<MongoUser> loadMongoUserByName(@PathVariable String username) {
+        return new ResponseEntity<>(userService.findUserByUsername(username), HttpStatus.OK);
     }
 
     @PutMapping("/{username}")
-    public ResponseEntity<MongoUserDTO> updateMongoUser(@PathVariable String username, @RequestBody MongoUserDTO mongoUserDTO) {
-        userService.updateMongoUser(username, mongoUserDTO);
-        return new ResponseEntity<>(mongoUserDTO, HttpStatus.OK);
+    public ResponseEntity<MongoUser> updateMongoUser(@PathVariable String username, @RequestBody MongoUserDTO mongoUserDTO) {
+        return new ResponseEntity<>(userService.updateMongoUser(username, mongoUserDTO), HttpStatus.OK);
     }
 
 
@@ -53,13 +51,6 @@ public class UserController {
     public void logout(HttpSession httpSession) {
         httpSession.invalidate();
         SecurityContextHolder.clearContext();
-    }
-
-
-    private MongoUserDTO convertMongoUserToMongoUserDTO(MongoUser mongoUser) {
-        MongoUserDTO mongoUserDTO = new MongoUserDTO();
-        BeanUtils.copyProperties(mongoUser, mongoUserDTO);
-        return mongoUserDTO;
     }
 
 }

@@ -44,4 +44,14 @@ public class UserService {
             throw new NoSuchElementException("User not found");
         }
     }
+
+    public MongoUserDTO convertMongoUserToMongoUserDTO(MongoUser mongoUser) {
+        return new MongoUserDTO(
+                mongoUser.username(),
+                mongoUser.password(),
+                mongoUser.firstname(),
+                mongoUser.lastname(),
+                mongoUser.email()
+        );
+    }
 }
