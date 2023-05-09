@@ -29,8 +29,6 @@ y
 Ibook-backend/src/main/java/com/xin/bookbackend/model/book/VolumeInfo.java,9\d\9d34a8875f36c8c9da7d4802d23e8e4c9d88b197
 O
 book-frontend/package-lock.json,b\6\b6caf281c02a9ba4379eb8c12bbb12ee8f5d261a
-D
-book-backend/pom.xml,6\7\678b38964deea50792d08b2552ae7520497c965d
 J
 book-frontend/package.json,0\2\0233fa80db978b91d7ce810e3f985739ea52671f
 :
