@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.xin.bookbackend.controller.UserControllerTest
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.748 s - in com.xin.bookbackend.controller.UserControllerTest
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.636 s - in com.xin.bookbackend.controller.UserControllerTest

@@ -38,22 +38,28 @@ public class UserController {
     }
 
     @GetMapping(&quot;/{username}&quot;)
-    public MongoUserDTO loadMongoUserByName(@PathVariable String username) {
-<span class="fc" id="L42">        return convertMongoUserToMongoUserDTO(userService.findUserByUsername(username));</span>
+    public MongoUser loadMongoUserByName(@PathVariable String username) {
+<span class="fc" id="L42">        return userService.findUserByUsername(username);</span>
+    }
+
+    @PutMapping(&quot;/{username}&quot;)
+    public ResponseEntity&lt;MongoUserDTO&gt; updateMongoUser(@PathVariable String username, @RequestBody MongoUserDTO mongoUserDTO) {
+<span class="nc" id="L47">        userService.updateMongoUser(username, mongoUserDTO);</span>
+<span class="nc" id="L48">        return new ResponseEntity&lt;&gt;(mongoUserDTO, HttpStatus.OK);</span>
     }
 
 
     @PostMapping(&quot;/logout&quot;)
     public void logout(HttpSession httpSession) {
-<span class="fc" id="L48">        httpSession.invalidate();</span>
-<span class="fc" id="L49">        SecurityContextHolder.clearContext();</span>
-<span class="fc" id="L50">    }</span>
+<span class="fc" id="L54">        httpSession.invalidate();</span>
+<span class="fc" id="L55">        SecurityContextHolder.clearContext();</span>
+<span class="fc" id="L56">    }</span>
 
 
     private MongoUserDTO convertMongoUserToMongoUserDTO(MongoUser mongoUser) {
-<span class="fc" id="L54">        MongoUserDTO mongoUserDTO = new MongoUserDTO();</span>
-<span class="fc" id="L55">        BeanUtils.copyProperties(mongoUser, mongoUserDTO);</span>
-<span class="fc" id="L56">        return mongoUserDTO;</span>
+<span class="fc" id="L60">        MongoUserDTO mongoUserDTO = new MongoUserDTO();</span>
+<span class="fc" id="L61">        BeanUtils.copyProperties(mongoUser, mongoUserDTO);</span>
+<span class="fc" id="L62">        return mongoUserDTO;</span>
     }
 
 }

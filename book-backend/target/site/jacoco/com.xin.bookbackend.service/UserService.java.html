@@ -24,7 +24,7 @@ public class UserService {
 <span class="fc" id="L24">            throw new IllegalArgumentException(&quot;The username already exists.&quot;);</span>
         } else {
 <span class="fc" id="L26">            String encodedPassword = encoder.encode(mongoUserDTO.password());</span>
-<span class="fc" id="L27">            MongoUser encodedUser = new MongoUser(mongoUserDTO.username(), encodedPassword, mongoUserDTO.firstname(), mongoUserDTO.lastname());</span>
+<span class="fc" id="L27">            MongoUser encodedUser = new MongoUser(mongoUserDTO.username(), encodedPassword, mongoUserDTO.firstname(), mongoUserDTO.lastname(), mongoUserDTO.email());</span>
 <span class="fc" id="L28">            return mongoUserRepository.save(encodedUser);</span>
         }
     }
@@ -32,6 +32,20 @@ public class UserService {
     public MongoUser findUserByUsername(String username) {
 <span class="fc" id="L33">        return mongoUserRepository.findMongoUserByUsername(username).orElseThrow(NoSuchElementException::new);</span>
     }
+
+    public MongoUser updateMongoUser(String username, MongoUserDTO mongoUserDTO) {
+
+<span class="nc bnc" id="L38" title="All 2 branches missed.">        if (findUserByUsername(username) != null) {</span>
+<span class="nc" id="L39">            MongoUser user = findUserByUsername(username);</span>
+<span class="nc" id="L40">            String encodedPassword = encoder.encode(mongoUserDTO.password());</span>
+<span class="nc" id="L41">            MongoUser encodedUser = new MongoUser(user.id(), mongoUserDTO.username(), encodedPassword, mongoUserDTO.firstname(), mongoUserDTO.lastname(), mongoUserDTO.email());</span>
+<span class="nc" id="L42">            return mongoUserRepository.save(encodedUser);</span>
+
+        } else {
+<span class="nc" id="L45">            throw new NoSuchElementException(&quot;User not found&quot;);</span>
+        }
+    }
+
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

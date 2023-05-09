@@ -1,5 +1,6 @@
 package com.xin.bookbackend.model.user;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -21,11 +22,14 @@ public record MongoUser(
         String firstname,
         @NotBlank
         @Size(min = 3, max = 16)
-        String lastname
+        String lastname,
+        @NotBlank
+        @Email
+        String email
 
 ) {
-    public MongoUser(String username, String password, String firstname, String lastname) {
-        this(null, username, password, firstname, lastname);
+    public MongoUser(String username, String password, String firstname, String lastname, String email) {
+        this(null, username, password, firstname, lastname, email);
     }
 
 }

@@ -11,7 +11,7 @@ import java.util.List;
 <span class="fc" id="L11">        String publisher = volumeInfo.publisher();</span>
 <span class="fc" id="L12">        String publishedDate = volumeInfo.publishedDate();</span>
 <span class="fc" id="L13">        String description = volumeInfo.description();</span>
-<span class="fc bfc" id="L14" title="All 2 branches covered.">        Double averageRating = volumeInfo.averageRating() == null ? null</span>
+<span class="fc bfc" id="L14" title="All 2 branches covered.">        Double averageRating = volumeInfo.averageRating() == null ? 0</span>
 <span class="fc" id="L15">                : volumeInfo.averageRating();</span>
 <span class="fc bfc" id="L16" title="All 2 branches covered.">        String imageUrl = volumeInfo.imageLinks() != null ? volumeInfo.imageLinks().thumbnail() : null;</span>
 <span class="fc" id="L17">        return new Book(id, tittle, authors, publisher, publishedDate, description, averageRating, imageUrl);</span>

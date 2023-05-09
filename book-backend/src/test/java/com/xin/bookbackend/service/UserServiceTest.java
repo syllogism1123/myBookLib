@@ -36,7 +36,7 @@ class UserServiceTest {
                 "username", "password", "firstname", "lastname");
         String encodedPassword = encoder.encode(mongoUserDTO.password());
         MongoUser encodedUser = new MongoUser(mongoUserDTO.username(),
-                encodedPassword, mongoUserDTO.firstname(), mongoUserDTO.lastname());
+                encodedPassword, mongoUserDTO.firstname(), mongoUserDTO.lastname(), mongoUserDTO.email());
         when(mongoUserRepository.findMongoUserByUsername(mongoUserDTO.username())).thenReturn(Optional.empty());
 
         userService.createMongoUser(mongoUserDTO);
@@ -51,7 +51,7 @@ class UserServiceTest {
                 "username", "password", "firstname", "lastname");
         String encodedPassword = encoder.encode(mongoUserDTO.password());
         MongoUser encodedUser = new MongoUser(mongoUserDTO.username(),
-                encodedPassword, mongoUserDTO.firstname(), mongoUserDTO.lastname());
+                encodedPassword, mongoUserDTO.firstname(), mongoUserDTO.lastname(), mongoUserDTO.email());
         when(mongoUserRepository.findMongoUserByUsername(mongoUserDTO.username())).thenReturn(Optional.of(encodedUser));
 
         assertThrows(IllegalArgumentException.class, () -> userService.createMongoUser(mongoUserDTO));

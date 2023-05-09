@@ -74,7 +74,7 @@ class UserControllerTest {
     @DirtiesContext
     void testCreateUser() throws Exception {
         MongoUserDTO mongoUserDTO = new MongoUserDTO(
-                "username", "password", "firstname", "lastname");
+                "username", "password", "firstname", "lastname", "email@email.com");
         mvc.perform(post("/api/users/signup").
                         contentType(MediaType.APPLICATION_JSON).
                         content(json.write(mongoUserDTO).getJson()).with(csrf())).
@@ -87,7 +87,7 @@ class UserControllerTest {
     void testLoadMongoUserByName() throws Exception {
         String username = "username";
         MongoUserDTO mongoUserDTO = new MongoUserDTO(username
-                , "password", "firstname", "lastname");
+                , "password", "firstname", "lastname", "email@email.com");
         mvc.perform(post("/api/users/signup").
                         contentType(MediaType.APPLICATION_JSON).
                         content(json.write(mongoUserDTO).getJson()).with(csrf())).
