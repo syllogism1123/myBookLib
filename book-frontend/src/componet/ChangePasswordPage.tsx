@@ -30,9 +30,9 @@ export const ChangePasswordPage = (props: Props) => {
             axios.get(`http://localhost:8080/api/users/${props.user.username}`, {
                 withCredentials: true
             })
-                .then((response) => {
-                    setUser(response.data)
-                    setInitialUser(response.data);
+                .then((r) => {
+                    setUser(r.data)
+                    setInitialUser(r.data);
                     console.log(user)
                 })
                 .catch((error) => {
@@ -42,7 +42,7 @@ export const ChangePasswordPage = (props: Props) => {
 
     }, [props.user])
 
-    function onChange(event: ChangeEvent<HTMLInputElement>) {
+    function onPasswordChange(event: ChangeEvent<HTMLInputElement>) {
         const targetName: string = event.target.name;
         const value: string = event.target.value;
         if (user?.id) {
@@ -55,7 +55,7 @@ export const ChangePasswordPage = (props: Props) => {
         }
     }
 
-    function onSubmit(event: FormEvent<HTMLFormElement>) {
+    function onPasswordChangeSubmit(event: FormEvent<HTMLFormElement>) {
         if (user?.password) {
             event.preventDefault();
             updateUser(user).then(() => navigate("/mylibrary")).catch((r) => console.error(r))
@@ -96,14 +96,14 @@ export const ChangePasswordPage = (props: Props) => {
                     }
                 />
                 <CardContent>
-                    <FormControl component="form" onSubmit={onSubmit}>
+                    <FormControl component="form" onSubmit={onPasswordChangeSubmit}>
                         <OutlinedInput
                             id="outlined-adornment-password"
                             name="password"
                             required
                             type={showPassword ? 'text' : 'password'}
                             value={user?.password}
-                            onChange={onChange}
+                            onChange={onPasswordChange}
 
                             endAdornment={
                                 <InputAdornment position="end">
