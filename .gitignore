@@ -3,3 +3,5 @@
 /book-backend/src/main/resources/static/
 /.idea/
 /book-backend/target/
+Book-API.iml
+book-frontend.iml
