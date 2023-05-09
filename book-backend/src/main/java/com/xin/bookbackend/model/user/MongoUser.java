@@ -32,4 +32,7 @@ public record MongoUser(
         this(null, username, password, firstname, lastname, email);
     }
 
+    public MongoUser withPassword(String newPassword) {
+        return new MongoUser(null, username, newPassword, firstname, lastname, email);
+    }
 }

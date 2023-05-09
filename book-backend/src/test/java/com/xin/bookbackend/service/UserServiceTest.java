@@ -108,4 +108,26 @@ class UserServiceTest {
         assertEquals(mongoUser.email(), mongoUserDTO.email());
     }
 
+    @Test
+    void testChangePassword() {
+        String username = "username";
+        String userId = "userId";
+        String oldPassword = "password";
+        String newPassword = "newPassword";
+        MongoUser mongoUser = new MongoUser(userId, username, encoder.encode(oldPassword),
+                "firstname", "lastname", "email");
+
+        when(mongoUserRepository.findMongoUserByUsername(username)).thenReturn(Optional.of(mongoUser));
+        when(encoder.matches(oldPassword, mongoUser.password())).thenReturn(true);
+
+
+        MongoUser updatedUser = mongoUser.withPassword(newPassword);
+        userService.changePassword(username, oldPassword, newPassword);
+
+        verify(mongoUserRepository).save(updatedUser);
+
+    }
+
+
 }
+

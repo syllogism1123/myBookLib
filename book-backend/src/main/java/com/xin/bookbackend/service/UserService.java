@@ -45,6 +45,24 @@ public class UserService {
         }
     }
 
+
+    public MongoUser changePassword(String username, String oldPassword, String newPassword) {
+
+        if (findUserByUsername(username) != null) {
+            MongoUser user = findUserByUsername(username);
+
+            if (encoder.matches(oldPassword, user.password())) {
+                MongoUser updatedUser = user.withPassword(newPassword);
+                return mongoUserRepository.save(updatedUser);
+            } else {
+                throw new IllegalArgumentException("Invalid old password");
+            }
+        } else {
+            throw new NoSuchElementException("User not found");
+        }
+    }
+
+
     public MongoUserDTO convertMongoUserToMongoUserDTO(MongoUser mongoUser) {
         return new MongoUserDTO(
                 mongoUser.username(),
