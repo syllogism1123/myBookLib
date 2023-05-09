@@ -16,8 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -99,6 +98,29 @@ class UserControllerTest {
                 .andExpect(status().isOk())
                 .andReturn();
     }
+    @Test
+    @DirtiesContext
+    @WithMockUser
+    void testUpdateMongoUser() throws Exception {
+        String username = "username";
+        MongoUserDTO mongoUserDTO = new MongoUserDTO(username
+                , "password", "firstname", "lastname", "email@email.com");
+        mvc.perform(post("/api/users/signup").
+                        contentType(MediaType.APPLICATION_JSON).
+                        content(json.write(mongoUserDTO).getJson()).with(csrf())).
+                andExpect(MockMvcResultMatchers.status().isCreated());
+
+        MongoUserDTO updatedMongoUserDTO = new MongoUserDTO(username
+                , "password", "firstname", "lastname", "newemail@email.com");
+
+        mvc.perform(put("/api/users/" + username)
+                        .contentType(MediaType.APPLICATION_JSON).
+                        content(json.write(updatedMongoUserDTO).getJson())
+                        .with(csrf()))
+                .andExpect(status().isOk())
+                .andReturn();
+    }
+
 
     @Test
     @DirtiesContext
