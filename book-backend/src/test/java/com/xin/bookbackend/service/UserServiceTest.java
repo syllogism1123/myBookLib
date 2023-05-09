@@ -10,6 +10,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -64,7 +65,7 @@ class UserServiceTest {
 
 
     @Test
-    void testUpdateUser() {
+    void testUpdateUser_Successfully() {
         String id = UUID.randomUUID().toString();
         MongoUser mongoUser = new MongoUser(id, "username", "password", "firstname", "lastname", "email@email.com");
         when(mongoUserRepository.findMongoUserByUsername(mongoUser.username())).thenReturn(Optional.of(mongoUser));
@@ -75,6 +76,20 @@ class UserServiceTest {
 
         verify(mongoUserRepository, times(2)).findMongoUserByUsername(mongoUser.username());
         verify(mongoUserRepository).save(updateMongoUser);
+    }
+
+    @Test
+    void testUpdateUser_failed() {
+        String id = UUID.randomUUID().toString();
+        String username = "username";
+        MongoUser mongoUser = new MongoUser(id, username, "password", "firstname", "lastname", "email@email.com");
+        MongoUserDTO updateMongoUserDTO = new MongoUserDTO(id, mongoUser.username(), mongoUser.password(), mongoUser.firstname(), mongoUser.lastname(), "newemail@email.com");
+
+        when(mongoUserRepository.findMongoUserByUsername(mongoUser.username())).thenReturn(Optional.empty());
+
+        assertThrows(NoSuchElementException.class, () -> userService.updateMongoUser(username, updateMongoUserDTO));
+
+
     }
 
 
