@@ -44,10 +44,12 @@ function App() {
             <BrowserRouter>
                 <ResponsiveAppBar onLogout={logout} isLoggedIn={isLoggedIn}/>
                 <Routes>
-                    <Route path="/login" element={<LoginPage onLogin={login}/>}>
-                    </Route>
-                    <Route path="/signup" element={<SignUpPage createUser={createUser}/>}>
-                    </Route>
+                    {!isLoggedIn() &&
+                        <Route path="/login" element={<LoginPage onLogin={login}/>}>
+                        </Route>}
+                    {!isLoggedIn() &&
+                        <Route path="/signup" element={<SignUpPage createUser={createUser}/>}>
+                        </Route>}
                     {isLoggedIn() && <Route path="/search" element={<SearchBooksPage/>}>
                     </Route>}
                     {isLoggedIn() && <Route path="/account" element={<AccountPage user={user}/>}>
