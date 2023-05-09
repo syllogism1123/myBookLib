@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.xin.bookbackend.controller.BookControllerTest
--------------------------------------------------------------------------------
-Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.184 s - in com.xin.bookbackend.controller.BookControllerTest
