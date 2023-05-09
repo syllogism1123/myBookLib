@@ -14,8 +14,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
@@ -32,11 +31,9 @@ class UserServiceTest {
 
     @Test
     void createMongoUser_Successful() {
-        MongoUserDTO mongoUserDTO = new MongoUserDTO(UUID.randomUUID().toString(),
-                "username", "password", "firstname", "lastname");
+        MongoUserDTO mongoUserDTO = new MongoUserDTO(UUID.randomUUID().toString(), "username", "password", "firstname", "lastname", "email@email.com");
         String encodedPassword = encoder.encode(mongoUserDTO.password());
-        MongoUser encodedUser = new MongoUser(mongoUserDTO.username(),
-                encodedPassword, mongoUserDTO.firstname(), mongoUserDTO.lastname(), mongoUserDTO.email());
+        MongoUser encodedUser = new MongoUser(mongoUserDTO.username(), encodedPassword, mongoUserDTO.firstname(), mongoUserDTO.lastname(), mongoUserDTO.email());
         when(mongoUserRepository.findMongoUserByUsername(mongoUserDTO.username())).thenReturn(Optional.empty());
 
         userService.createMongoUser(mongoUserDTO);
@@ -47,11 +44,9 @@ class UserServiceTest {
 
     @Test
     void createMongoUser_failed() {
-        MongoUserDTO mongoUserDTO = new MongoUserDTO(UUID.randomUUID().toString(),
-                "username", "password", "firstname", "lastname");
+        MongoUserDTO mongoUserDTO = new MongoUserDTO(UUID.randomUUID().toString(), "username", "password", "firstname", "lastname", "email@email.com");
         String encodedPassword = encoder.encode(mongoUserDTO.password());
-        MongoUser encodedUser = new MongoUser(mongoUserDTO.username(),
-                encodedPassword, mongoUserDTO.firstname(), mongoUserDTO.lastname(), mongoUserDTO.email());
+        MongoUser encodedUser = new MongoUser(mongoUserDTO.username(), encodedPassword, mongoUserDTO.firstname(), mongoUserDTO.lastname(), mongoUserDTO.email());
         when(mongoUserRepository.findMongoUserByUsername(mongoUserDTO.username())).thenReturn(Optional.of(encodedUser));
 
         assertThrows(IllegalArgumentException.class, () -> userService.createMongoUser(mongoUserDTO));
@@ -59,12 +54,28 @@ class UserServiceTest {
 
     @Test
     void findUserByUsername() {
-        MongoUser mongoUser = new MongoUser(UUID.randomUUID().toString(),
-                "username", "password", "firstname", "lastname");
+        MongoUser mongoUser = new MongoUser(UUID.randomUUID().toString(), "username", "password", "firstname", "lastname", "email@email.com");
         when(mongoUserRepository.findMongoUserByUsername(mongoUser.username())).thenReturn(Optional.of(mongoUser));
 
         userService.findUserByUsername(mongoUser.username());
 
         verify(mongoUserRepository).findMongoUserByUsername(mongoUser.username());
     }
+
+
+    @Test
+    void testUpdateUser() {
+        String id = UUID.randomUUID().toString();
+        MongoUser mongoUser = new MongoUser(id, "username", "password", "firstname", "lastname", "email@email.com");
+        when(mongoUserRepository.findMongoUserByUsername(mongoUser.username())).thenReturn(Optional.of(mongoUser));
+
+        MongoUserDTO updateMongoUserDTO = new MongoUserDTO(id, mongoUser.username(), mongoUser.password(), mongoUser.firstname(), mongoUser.lastname(), "newemail@email.com");
+        MongoUser updateMongoUser = new MongoUser(id, mongoUser.username(), mongoUser.password(), mongoUser.firstname(), mongoUser.lastname(), "newemail@email.com");
+        userService.updateMongoUser(mongoUser.username(), updateMongoUserDTO);
+
+        verify(mongoUserRepository, times(2)).findMongoUserByUsername(mongoUser.username());
+        verify(mongoUserRepository).save(updateMongoUser);
+    }
+
+
 }

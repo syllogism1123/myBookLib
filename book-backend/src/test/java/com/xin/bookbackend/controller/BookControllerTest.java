@@ -46,7 +46,7 @@ class BookControllerTest {
     void setup() {
         id = UUID.randomUUID().toString();
         String userId = UUID.randomUUID().toString();
-        user = new MongoUser(userId, "user", "password", "firstname", "lastname");
+        user = new MongoUser(userId, "user", "password", "firstname", "lastname", "email@email.com");
         userRepository.save(user);
         book = new Book(id, "5eDWcLzdAcYC",
                 "Java von Kopf bis Fuß",

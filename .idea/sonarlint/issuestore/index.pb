@@ -36,8 +36,6 @@ D
 book-backend/pom.xml,6\7\678b38964deea50792d08b2552ae7520497c965d
 J
 book-frontend/package.json,0\2\0233fa80db978b91d7ce810e3f985739ea52671f
-{
-Kbook-backend/src/test/java/com/xin/bookbackend/service/BookServiceTest.java,b\1\b1620eadf383fe3088f1c2dd0e6592d314f8dfd2
 :
 
 Dockerfile,6\6\6651ddff6eb82c840ced7c1dddee15c6e1913dd4
