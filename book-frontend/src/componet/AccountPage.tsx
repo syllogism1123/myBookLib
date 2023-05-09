@@ -20,7 +20,7 @@ type Props = {
     user: User | null
 }
 export const AccountPage = (props: Props) => {
-    const initialState: User = {id: "", username: "", password: "", firstname: "", lastname: ""};
+    const initialState: User = {id: "", username: "", password: "", firstname: "", lastname: "", email: ""};
     const navigate = useNavigate();
     const [user, setUser] = useState<User>(initialState);
     const {updateUser} = useUser();
@@ -101,7 +101,7 @@ export const AccountPage = (props: Props) => {
                 <CardHeader
                     title={
                         <Typography variant="h5" component="div">
-                          Basic Information
+                            Basic Information
                         </Typography>
                     }
                 />
@@ -116,31 +116,31 @@ export const AccountPage = (props: Props) => {
                             inputProps={{style: {textAlign: 'center', backgroundColor: "white"}}}
                             disabled
                         />
-                        {/* <OutlinedInput
-                    id="outlined-adornment-password"
-                    name="password"
-                    required
-                    type={showPassword ? 'text' : 'password'}
-                    value={user?.password}
-                    onChange={onChange}
+                       {/* <OutlinedInput
+                            id="outlined-adornment-password"
+                            name="password"
+                            required
+                            type={showPassword ? 'text' : 'password'}
+                            value={user?.password}
+                            onChange={onChange}
 
-                    endAdornment={
-                        <InputAdornment position="end">
-                            <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                                edge="end"
-                            >
-                                {showPassword ? <VisibilityOff/> : <Visibility/>}
-                            </IconButton>
-                        </InputAdornment>
-                    }
-                    style={{marginBottom: '10px', backgroundColor: "white"}}
-                    inputProps={{style: {textAlign: 'center'}}}
-                    size="small"
-                />*/}
-
+                            endAdornment={
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        aria-label="toggle password visibility"
+                                        onClick={handleClickShowPassword}
+                                        onMouseDown={handleMouseDownPassword}
+                                        edge="end"
+                                    >
+                                        {showPassword ? <VisibilityOff/> : <Visibility/>}
+                                    </IconButton>
+                                </InputAdornment>
+                            }
+                            style={{marginBottom: '10px', backgroundColor: "white"}}
+                            inputProps={{style: {textAlign: 'center'}}}
+                            size="small"
+                        />
+*/}
                         <TextField
                             name="firstname"
                             type="text"
@@ -149,8 +149,8 @@ export const AccountPage = (props: Props) => {
                             style={{marginBottom: '20px'}}
                             inputProps={{style: {textAlign: 'center', backgroundColor: "white"}}}
                             onChange={onChange}
-
                         />
+
                         <TextField
                             name="lastname"
                             type="text"
@@ -160,7 +160,15 @@ export const AccountPage = (props: Props) => {
                             inputProps={{style: {textAlign: 'center', backgroundColor: "white"}}}
                             onChange={onChange}
                         />
-
+                        <TextField
+                            name="email"
+                            type="email"
+                            value={user?.email}
+                            size="small"
+                            style={{marginBottom: '20px'}}
+                            inputProps={{style: {textAlign: 'center', backgroundColor: "white"}}}
+                            onChange={onChange}
+                        />
                         <div className="button-container">
                             <Button variant="contained" type="submit" size="small" onClick={handleCancel}>
                                 Cancel

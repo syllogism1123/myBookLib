@@ -1,8 +1,6 @@
 
 <
 Book-API.iml,9\b\9bd53a3b76a269c2e3bdfe043bcdaa5943699fe1
-U
-%book-frontend/src/model/UserModel.tsx,1\a\1a2594f883189b9df43ccb67513bee8cdd6fd696
 S
 #.github/workflows/sonar-backend.yml,6\d\6da5a3f76934916b670a730d02c25e0b3bb44410
 T
@@ -49,20 +47,12 @@ v
 Fbook-backend/src/main/java/com/xin/bookbackend/model/book/BookDTO.java,e\3\e3b948408c1e8b4a85b083ab4aa1a334908c5f47
 
 Qbook-backend/src/main/java/com/xin/bookbackend/model/book/GoogleBookResponse.java,0\3\035b9c06e39d82bf35565cdf6ccf9f9b01628828
-{
-Kbook-backend/src/main/java/com/xin/bookbackend/security/SecurityConfig.java,9\6\96d72523b6c95c3360dc90d2c2e32dd7897ecf10
-w
-Gbook-backend/src/main/java/com/xin/bookbackend/service/BookService.java,1\c\1cc207e35a88f7e5ff6ab5ca7672a4122f6bfc24
 Q
 !book-frontend/src/hook/useBook.ts,e\9\e9614405f46eaf66152e92caca590a9f2ba3b5e0
-ƒ
-Sbook-backend/src/main/java/com/xin/bookbackend/service/MongoUserDetailsService.java,b\9\b9d7d0a208a32d9347d31f19a0bbf261b39d7329
 ^
 .book-frontend/src/componet/SearchBooksPage.tsx,b\f\bfaca1a845c46e604d6e2cdf536aafd4d6982e9e
 y
 Ibook-backend/src/main/java/com/xin/bookbackend/model/book/GoogleBook.java,8\2\82abf1812b4e1e0456393a2e5f393119864a9bc2
-Q
-!book-frontend/src/hook/useUser.ts,e\e\ee14eda2b37df2725e3a812927219b6ed8507f6d
 K
 book-frontend/src/index.css,9\5\9588222fdee5b8b1c4e13878320dbcae9e9b4345
 I

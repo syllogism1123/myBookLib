@@ -3,8 +3,8 @@ export  type User = {
     username: string,
     password: string,
     firstname: string,
-    lastname: string
-
+    lastname: string,
+    email: string
 }
 
 
@@ -12,7 +12,8 @@ export  type UserModel = {
     username: string,
     password: string,
     firstname: string,
-    lastname: string
+    lastname: string,
+    email: string
 }
 
 

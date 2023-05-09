@@ -11,7 +11,7 @@ type createUserProps = {
 export const SignUpPage = (props: createUserProps) => {
 
     const initial: UserModel = {
-        username: "", password: "", firstname: "", lastname: ""
+        username: "", password: "", firstname: "", lastname: "", email: ""
     }
     const [user, setUser] = useState<UserModel>(initial);
     const {error, setError} = useUser();
@@ -97,6 +97,17 @@ export const SignUpPage = (props: createUserProps) => {
                             value={user.lastname}
                             onChange={onChange}
                             placeholder="LastName"
+                            size="small"
+                            style={{marginBottom: '20px'}}
+                        />
+                        <TextField
+                            name="email"
+                            type="email"
+                            required
+                            label="Email"
+                            value={user.email}
+                            onChange={onChange}
+                            placeholder="email@example.com"
                             size="small"
                             style={{marginBottom: '20px'}}
                         />
