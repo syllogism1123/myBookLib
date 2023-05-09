@@ -9,7 +9,7 @@ export default function UserBookGallery() {
         loadAllBooks().catch(
             (e) => console.error(e)
         )
-    }, [books]);
+    }, []);
 
     return (
         <div>

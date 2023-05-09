@@ -43,8 +43,9 @@ public class UserController {
     }
 
     @PutMapping("/{username}")
-    public MongoUser updateMongoUser(@PathVariable String username, @RequestBody MongoUserDTO mongoUserDTO) {
-        return userService.updateMongoUser(username, mongoUserDTO);
+    public ResponseEntity<MongoUserDTO> updateMongoUser(@PathVariable String username, @RequestBody MongoUserDTO mongoUserDTO) {
+        userService.updateMongoUser(username, mongoUserDTO);
+        return new ResponseEntity<>(mongoUserDTO, HttpStatus.OK);
     }
 
 
