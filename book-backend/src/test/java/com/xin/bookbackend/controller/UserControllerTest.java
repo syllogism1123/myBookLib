@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.AutoConfigureJsonTesters;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -29,12 +28,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@AutoConfigureJsonTesters
 class UserControllerTest {
     @Autowired
     private MockMvc mvc;
-    @Autowired
-    private JacksonTester<MongoUserDTO> json;
     @Autowired
     private ObjectMapper objectMapper;
     @MockBean
@@ -86,9 +82,12 @@ class UserControllerTest {
     void testCreateUser() throws Exception {
         MongoUserDTO mongoUserDTO = new MongoUserDTO(
                 "username", "password", "firstname", "lastname", "email@email.com");
+
+        String requestBody = objectMapper.writeValueAsString(mongoUserDTO);
+
         mvc.perform(post("/api/users/signup").
                         contentType(MediaType.APPLICATION_JSON).
-                        content(json.write(mongoUserDTO).getJson()).with(csrf())).
+                        content(requestBody).with(csrf())).
                 andExpect(MockMvcResultMatchers.status().isCreated());
     }
 
@@ -99,9 +98,11 @@ class UserControllerTest {
         String username = "username";
         MongoUserDTO mongoUserDTO = new MongoUserDTO(username
                 , "password", "firstname", "lastname", "email@email.com");
+
+        String requestBody = objectMapper.writeValueAsString(mongoUserDTO);
         mvc.perform(post("/api/users/signup").
                         contentType(MediaType.APPLICATION_JSON).
-                        content(json.write(mongoUserDTO).getJson()).with(csrf())).
+                        content(requestBody).with(csrf())).
                 andExpect(MockMvcResultMatchers.status().isCreated());
 
         mvc.perform(get("/api/users/" + username)
@@ -118,17 +119,21 @@ class UserControllerTest {
         String username = "username";
         MongoUserDTO mongoUserDTO = new MongoUserDTO(username
                 , "password", "firstname", "lastname", "email@email.com");
+
+        String requestBody = objectMapper.writeValueAsString(mongoUserDTO);
         mvc.perform(post("/api/users/signup").
                         contentType(MediaType.APPLICATION_JSON).
-                        content(json.write(mongoUserDTO).getJson()).with(csrf())).
+                        content(requestBody).with(csrf())).
                 andExpect(status().isCreated());
 
         MongoUserDTO updatedMongoUserDTO = new MongoUserDTO(username
                 , "password", "firstname", "lastname", "newemail@email.com");
 
+        String updatedRequestBody = objectMapper.writeValueAsString(updatedMongoUserDTO);
+
         mvc.perform(put("/api/users/" + username)
                         .contentType(MediaType.APPLICATION_JSON).
-                        content(json.write(updatedMongoUserDTO).getJson())
+                        content(updatedRequestBody)
                         .with(csrf()))
                 .andExpect(status().isOk())
                 .andReturn();
