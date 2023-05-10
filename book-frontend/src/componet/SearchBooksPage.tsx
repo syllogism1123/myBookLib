@@ -38,6 +38,8 @@ export default function SearchBooksPage() {
     }
 
     const booksWithView: Book[] = books.filter((book) => (book.imageUrl !== null && book.description !== null));
+
+
     return (
         <div>
             <div className="search">

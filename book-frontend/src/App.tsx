@@ -16,12 +16,14 @@ function App() {
     const {login, logout, createUser, username, loadUser, user, setUser} = useUser();
 
     function isLoggedIn() {
-        return localStorage.getItem('token') !== "";
+        return localStorage.getItem('token') !== null;
     }
 
     /* console.log(isLoggedIn())*/
     const data = localStorage.getItem('token')
-  /*  localStorage.setItem('token',"")*/
+
+    /* localStorage.removeItem('token')*/
+    
     useEffect(() => {
 
         if (data) {

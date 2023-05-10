@@ -29,7 +29,7 @@ export default function useUser() {
         }).then((r) => {
             setUsername(r.data);
             setUser(null);
-            localStorage.setItem('token', "");
+            localStorage.clear();
         }).catch(error => {
             console.error(error);
         })
