@@ -12,6 +12,7 @@ import ResponsiveAppBar from "./componet/ResponsiveAppBar";
 import {AccountPage} from "./componet/AccountPage";
 import {ChangePasswordPage} from "./componet/ChangePasswordPage";
 
+
 function App() {
     const {login, logout, createUser, username, loadUser, user, setUser} = useUser();
 
@@ -20,8 +21,6 @@ function App() {
     }
 
     const data = localStorage.getItem('token')
-
-    /*    localStorage.clear()*/
 
     useEffect(() => {
 
@@ -32,13 +31,11 @@ function App() {
 
     useEffect(() => {
         if (username) {
-            console.log(username)
             loadUser(username).catch(
                 (e) => console.error(e)
             );
         }
     }, [username]);
-
 
     return (
         <div className="App">
