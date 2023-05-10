@@ -26,7 +26,7 @@ export const ChangePasswordPage = (props: Props) => {
                     newPassword: newPassword
                 }, {withCredentials: true}
             )
-                .then(response => {
+                .then(() => {
                 })
                 .catch(error => {
                     console.log(error);
