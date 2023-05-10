@@ -19,7 +19,7 @@ export const ChangePasswordPage = (props: Props) => {
 
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
-    useNavigate();
+    const navigate = useNavigate();
     const onPasswordChangeSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (props.user) {
@@ -41,6 +41,7 @@ export const ChangePasswordPage = (props: Props) => {
                         progress: undefined,
                         theme: "colored",
                     });
+                    navigate("/mylibrary")
                 })
                 .catch(error => {
                     console.log(error);
@@ -62,7 +63,7 @@ export const ChangePasswordPage = (props: Props) => {
 
     const handleCancel = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        console.log(props.user?.username)
+        console.log(props.user)
         setOldPassword("")
         setNewPassword("")
     };
@@ -101,7 +102,7 @@ export const ChangePasswordPage = (props: Props) => {
                             onChange={(e) => setNewPassword(e.target.value)}/>
 
                         <div className="button-container">
-                            <Button variant="contained" type="submit" size="small" onClick={handleCancel}>
+                            <Button variant="contained" type="button" size="small" onClick={handleCancel}>
                                 Cancel
                             </Button>
                             <Button variant="contained" type="submit" size="small">

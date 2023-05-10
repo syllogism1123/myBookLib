@@ -21,15 +21,10 @@ function App() {
 
     const data = localStorage.getItem('token')
 
+    /*    localStorage.clear()*/
 
     useEffect(() => {
-        console.log(localStorage.getItem('token'));
-        if (!isLoggedIn()) {
-            localStorage.clear()
-        }
-    }, [isLoggedIn()]);
 
-    useEffect(() => {
         if (data) {
             setUser(JSON.parse(data));
         }
@@ -37,6 +32,7 @@ function App() {
 
     useEffect(() => {
         if (username) {
+            console.log(username)
             loadUser(username).catch(
                 (e) => console.error(e)
             );

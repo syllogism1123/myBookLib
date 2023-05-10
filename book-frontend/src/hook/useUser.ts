@@ -27,7 +27,6 @@ export default function useUser() {
         return await axios.post("http://localhost:8080/api/users/logout", undefined, {
             withCredentials: true,
         }).then((r) => {
-            setUsername(r.data);
             setUser(null);
             localStorage.clear();
         }).catch(error => {

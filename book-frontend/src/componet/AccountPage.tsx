@@ -89,6 +89,7 @@ export const AccountPage = (props: Props) => {
                     <FormControl component="form" onSubmit={onSubmit}>
                         <TextField
                             name="username"
+                            label="Username"
                             type="text"
                             value={user?.username}
                             size="small"
@@ -99,6 +100,7 @@ export const AccountPage = (props: Props) => {
 
                         <TextField
                             name="firstname"
+                            label="Firstname"
                             type="text"
                             value={user?.firstname}
                             size="small"
@@ -109,6 +111,7 @@ export const AccountPage = (props: Props) => {
 
                         <TextField
                             name="lastname"
+                            label="Lastname"
                             type="text"
                             value={user?.lastname}
                             size="small"
@@ -118,6 +121,7 @@ export const AccountPage = (props: Props) => {
                         />
                         <TextField
                             name="email"
+                            label="EMAIL"
                             type="email"
                             value={user?.email}
                             size="small"
@@ -126,7 +130,7 @@ export const AccountPage = (props: Props) => {
                             onChange={onChange}
                         />
                         <div className="button-container">
-                            <Button variant="contained" type="submit" size="small" onClick={handleCancel}>
+                            <Button variant="contained" type="button" size="small" onClick={handleCancel}>
                                 Cancel
                             </Button>
                             <Button variant="contained" type="submit" size="small">
