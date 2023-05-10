@@ -121,7 +121,8 @@ class UserServiceTest {
         when(encoder.matches(request.oldPassword(), mongoUser.password())).thenReturn(true);
 
 
-        MongoUser updatedUser = mongoUser.withPassword(request.newPassword());
+        MongoUser updatedUser = mongoUser.withPassword(encoder.encode(request.newPassword()));
+        updatedUser = updatedUser.withId(userId);
         userService.changePassword(username, request);
 
         verify(mongoUserRepository).save(updatedUser);

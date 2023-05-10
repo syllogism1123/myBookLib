@@ -47,9 +47,9 @@ public class UserController {
         return new ResponseEntity<>(userService.updateMongoUser(username, mongoUserDTO), HttpStatus.OK);
     }
 
-    @PostMapping("/{username}/changePassword")
-    public ResponseEntity<MongoUser> changePassword(@PathVariable String username,
-                                                    @RequestBody ChangePasswordRequest request) {
+    @PostMapping("/changePassword")
+    public ResponseEntity<MongoUser> changePassword(@RequestBody ChangePasswordRequest request) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
         return new ResponseEntity<>(userService.changePassword(username, request), HttpStatus.OK);
     }
 

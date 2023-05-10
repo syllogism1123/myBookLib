@@ -35,4 +35,8 @@ public record MongoUser(
     public MongoUser withPassword(String newPassword) {
         return new MongoUser(null, username, newPassword, firstname, lastname, email);
     }
+
+    public MongoUser withId(String id) {
+        return new MongoUser(id, username, password, firstname, lastname, email);
+    }
 }

@@ -21,7 +21,7 @@ export const ChangePasswordPage = (props: Props) => {
     const onPasswordChangeSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (props.user) {
-            axios.post(`http://localhost:8080/api/users/${props.user.username}/changePassword`, {
+            axios.post(`http://localhost:8080/api/users/changePassword`, {
                     oldPassword: oldPassword,
                     newPassword: newPassword
                 }, {withCredentials: true}

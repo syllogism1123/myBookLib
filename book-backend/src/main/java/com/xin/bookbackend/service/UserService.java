@@ -53,7 +53,8 @@ public class UserService {
             MongoUser user = findUserByUsername(username);
 
             if (encoder.matches(request.oldPassword(), user.password())) {
-                MongoUser updatedUser = user.withPassword(request.newPassword());
+                MongoUser updatedUser = user.withPassword(encoder.encode(request.newPassword()));
+                updatedUser = updatedUser.withId(user.id());
                 return mongoUserRepository.save(updatedUser);
             } else {
                 throw new IllegalArgumentException("Invalid old password");

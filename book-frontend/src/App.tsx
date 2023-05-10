@@ -19,10 +19,9 @@ function App() {
         return localStorage.getItem('token') !== null;
     }
 
-    /* console.log(isLoggedIn())*/
     const data = localStorage.getItem('token')
 
-    /* localStorage.removeItem('token')*/
+ 
     
     useEffect(() => {
 

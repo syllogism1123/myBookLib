@@ -167,7 +167,7 @@ class UserControllerTest {
         String requestBody = objectMapper.writeValueAsString(request);
 
 
-        mvc.perform(post("/api/users/" + username + "/changePassword")
+        mvc.perform(post("/api/users/changePassword")
                         .contentType(MediaType.APPLICATION_JSON).
                         content(requestBody)
                         .with(csrf()))
