@@ -6,11 +6,12 @@ import {
     TextField,
     Typography
 } from "@mui/material";
-import React, {FormEvent, useState} from "react";
+import React, {FormEvent, useEffect, useState} from "react";
 import axios from "axios";
 import {User} from "../model/UserModel";
 import {useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
+import useUser from "../hook/useUser";
 
 type Props = {
     user: User | null
@@ -20,6 +21,7 @@ export const ChangePasswordPage = (props: Props) => {
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const navigate = useNavigate();
+    const {user, setUser} = useUser();
     const onPasswordChangeSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (props.user) {
@@ -60,6 +62,24 @@ export const ChangePasswordPage = (props: Props) => {
                 });
         }
     }
+
+
+    useEffect(() => {
+        if (props.user) {
+            axios.get(`http://localhost:8080/api/users/${props.user.username}`, {
+                withCredentials: true
+            })
+                .then((response) => {
+                    setUser(response.data)
+                    localStorage.setItem('token', JSON.stringify(response.data));
+                })
+                .catch((error) => {
+                    console.error(error)
+                })
+        }
+
+    }, [user])
+
 
     const handleCancel = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
