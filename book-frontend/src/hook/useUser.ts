@@ -26,7 +26,7 @@ export default function useUser() {
     const logout = async () => {
         return await axios.post("http://localhost:8080/api/users/logout", undefined, {
             withCredentials: true,
-        }).then((r) => {
+        }).then(() => {
             setUser(null);
             localStorage.clear();
         }).catch(error => {
