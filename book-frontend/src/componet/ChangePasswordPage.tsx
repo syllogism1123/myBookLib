@@ -3,85 +3,42 @@ import {
     Card,
     CardContent, CardHeader,
     FormControl,
-    IconButton,
-    InputAdornment,
-    OutlinedInput,
+    TextField,
     Typography
 } from "@mui/material";
-import React, {ChangeEvent, FormEvent, useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import React, {FormEvent, useState} from "react";
 import axios from "axios";
 import {User} from "../model/UserModel";
-import {Visibility, VisibilityOff} from "@mui/icons-material";
-import useUser from "../hook/useUser";
 
 type Props = {
     user: User | null
 }
 export const ChangePasswordPage = (props: Props) => {
-    const initialState: User = {id: "", username: "", password: "", firstname: "", lastname: "", email: ""};
-    const navigate = useNavigate();
-    const [user, setUser] = useState<User>(initialState);
-    const {updateUser} = useUser();
-    const [initialUser, setInitialUser] = useState<User>(initialState);
 
-    useEffect(() => {
-        if (props.user) {
-            axios.get(`http://localhost:8080/api/users/${props.user.username}`, {
-                withCredentials: true
-            })
-                .then((r) => {
-                    setUser(r.data)
-                    setInitialUser(r.data);
-                    console.log(user)
-                })
-                .catch((error) => {
-                    console.error(error)
-                })
-        }
+    const [oldPassword, setOldPassword] = useState('');
+    const [newPassword, setNewPassword] = useState('');
 
-    }, [props.user])
-
-    function onPasswordChange(event: ChangeEvent<HTMLInputElement>) {
-        const targetName: string = event.target.name;
-        const value: string = event.target.value;
-        if (user?.id) {
-            const updatedUser = {
-                ...user,
-                id: user.id,
-                [targetName]: value
-            };
-            setUser(updatedUser);
-        }
-    }
-
-    function onPasswordChangeSubmit(event: FormEvent<HTMLFormElement>) {
-        if (user?.password) {
-            event.preventDefault();
-            updateUser(user).then(() => navigate("/mylibrary")).catch((r) => console.error(r))
-
-        }
-    }
-
-    useEffect(() => {
-        const savedUser = localStorage.getItem('token');
-        if (savedUser) {
-            setUser(JSON.parse(savedUser));
-        }
-    }, []);
-
-    const [showPassword, setShowPassword] = React.useState(false);
-
-    const handleClickShowPassword = () => setShowPassword((show) => !show);
-
-    const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const onPasswordChangeSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-    };
-
+        if (props.user) {
+            axios.post(`http://localhost:8080/api/users/${props.user.username}/changePassword`, {
+                    oldPassword: oldPassword,
+                    newPassword: newPassword
+                }, {withCredentials: true}
+            )
+                .then(response => {
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+    }
 
     const handleCancel = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        setUser(initialUser);
+        console.log(props.user?.username)
+        setOldPassword("")
+        setNewPassword("")
     };
 
     return (
@@ -97,37 +54,31 @@ export const ChangePasswordPage = (props: Props) => {
                 />
                 <CardContent>
                     <FormControl component="form" onSubmit={onPasswordChangeSubmit}>
-                        <OutlinedInput
-                            id="outlined-adornment-password"
-                            name="password"
-                            required
-                            type={showPassword ? 'text' : 'password'}
-                            value={user?.password}
-                            onChange={onPasswordChange}
 
-                            endAdornment={
-                                <InputAdornment position="end">
-                                    <IconButton
-                                        aria-label="toggle password visibility"
-                                        onClick={handleClickShowPassword}
-                                        onMouseDown={handleMouseDownPassword}
-                                        edge="end"
-                                    >
-                                        {showPassword ? <VisibilityOff/> : <Visibility/>}
-                                    </IconButton>
-                                </InputAdornment>
-                            }
-                            style={{marginBottom: '10px', backgroundColor: "white"}}
-                            inputProps={{style: {textAlign: 'center'}}}
+                        <TextField
+                            name='oldpassword'
+                            type="text"
+                            required
+                            label="OldPassword"
+                            value={oldPassword}
+                            style={{marginBottom: '20px'}}
                             size="small"
-                            disabled
-                        />
+                            onChange={(e) => setOldPassword(e.target.value)}/>
+                        <TextField
+                            name='newpassword'
+                            type="text"
+                            required
+                            label="NewPassword"
+                            value={newPassword}
+                            size="small"
+                            style={{marginBottom: '20px'}}
+                            onChange={(e) => setNewPassword(e.target.value)}/>
 
                         <div className="button-container">
                             <Button variant="contained" type="submit" size="small" onClick={handleCancel}>
                                 Cancel
                             </Button>
-                            <Button variant="contained" type="submit" size="small" onClick={handleCancel}>
+                            <Button variant="contained" type="submit" size="small">
                                 Save Password
                             </Button>
                         </div>

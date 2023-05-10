@@ -20,6 +20,7 @@ export default function UserBookCard(props: BookCardProps) {
     const removeFromLib = () => {
         deleteBook(props.book.id).then(() => {
                 navi("/mylibrary/")
+            window.location.reload()
             }
         ).catch((r) => console.error(r));
     }

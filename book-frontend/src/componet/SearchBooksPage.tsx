@@ -1,5 +1,5 @@
 import BookCard from "./BookCard";
-import React, {ChangeEvent} from "react";
+import React, {ChangeEvent, useEffect} from "react";
 import {useBook} from "../hook/useBook";
 import axios from "axios";
 import {Book} from "../model/Book";
@@ -11,6 +11,17 @@ export default function SearchBooksPage() {
     const onTextChange = (event: ChangeEvent<HTMLInputElement>) => {
         setQuery(event.target.value);
     }
+
+    useEffect(() => {
+        const data = localStorage.getItem("books")
+        if (data) {
+            const storedBooks = JSON.parse(data);
+            if (storedBooks) {
+                setBooks(storedBooks);
+            }
+        }
+    }, []);
+
     const onKeyPress = async (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
             await axios.get(`http://localhost:8080/api/books/search?query=${query}`, {
@@ -18,12 +29,14 @@ export default function SearchBooksPage() {
             }).then((response) => {
                 setBooks(response.data)
                 setQuery("")
+                localStorage.setItem("books", JSON.stringify(response.data));
             })
                 .catch((error) => {
                     console.error(error);
                 })
         }
     }
+
     const booksWithView: Book[] = books.filter((book) => (book.imageUrl !== null && book.description !== null));
     return (
         <div>

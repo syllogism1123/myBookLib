@@ -56,6 +56,7 @@ export const useBook = () => {
             withCredentials: true
         }).then(() => {
             setBooks(books.filter((book) => book.id !== id));
+         /*   window.location.reload()*/
         }).catch((error) => {
             console.error(error)
         })

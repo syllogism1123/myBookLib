@@ -49,6 +49,7 @@ export const AccountPage = (props: Props) => {
                 [targetName]: value
             };
             setUser(updatedUser);
+            localStorage.setItem('token', JSON.stringify(updatedUser));
         }
     }
 
