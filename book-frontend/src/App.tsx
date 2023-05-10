@@ -21,8 +21,9 @@ function App() {
 
     const data = localStorage.getItem('token')
 
+    /*localStorage.clear()
+        */
 
-    
     useEffect(() => {
 
         if (data) {

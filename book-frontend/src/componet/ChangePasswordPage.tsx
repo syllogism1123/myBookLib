@@ -54,6 +54,8 @@ export const ChangePasswordPage = (props: Props) => {
                         progress: undefined,
                         theme: "colored",
                     });
+                    setOldPassword("")
+                    setNewPassword("")
                 });
         }
     }

@@ -4,9 +4,6 @@ import {Alert, Button, Card, CardContent, CardHeader, FormControl, TextField, Ty
 import 'react-toastify/dist/ReactToastify.css';
 import useUser from "../hook/useUser";
 import {toast} from "react-toastify";
-import {useDispatch} from "react-redux";
-import {authAction} from "../store/AuthSlice";
-
 
 type Props = {
     onLogin: (username: string, password: string) => Promise<boolean>
@@ -19,13 +16,10 @@ export const LoginPage = (props: Props) => {
     const {error, setError} = useUser();
     const navigate = useNavigate();
 
-    const disPatch = useDispatch();
-
     function onSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
         props.onLogin(username, password).then((s) => {
             if (s) {
-                disPatch(authAction.login());
                 navigate("/search");
                 toast.success('YOU HAVE SUCCESSFULLY LOGGED IN', {
                     position: "top-center",
