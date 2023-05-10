@@ -27,7 +27,7 @@ export const LoginPage = (props: Props) => {
             if (s) {
                 disPatch(authAction.login());
                 navigate("/search");
-                toast.success('You have successfully logged in!', {
+                toast.success('YOU HAVE SUCCESSFULLY LOGGED IN', {
                     position: "top-center",
                     autoClose: 1000,
                     hideProgressBar: false,
@@ -35,7 +35,7 @@ export const LoginPage = (props: Props) => {
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
-                    theme: "light",
+                    theme: "colored",
                 });
             } else {
                 setError(true);

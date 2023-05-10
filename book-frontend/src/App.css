@@ -51,6 +51,7 @@
     pointer-events: auto;
 }
 
+
 .rating {
     margin-top: -10px;
     justify-content: center;
@@ -104,6 +105,7 @@
 }
 
 #book-img-details {
+    pointer-events: auto;
     margin-left: 20px;
     margin-right: 200px;
 }

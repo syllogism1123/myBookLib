@@ -43,12 +43,14 @@ function ResponsiveAppBar(props: Props) {
     };
 
     const onClickLogOut = () => {
-        props.onLogout().then(() => {
-            navi("/login")
-            setAnchorElUser(null);
-        }).catch((error) => {
-            console.error(error);
-        });
+        if (props.isLoggedIn()) {
+            props.onLogout().then(() => {
+                navi("/login")
+                setAnchorElUser(null);
+            }).catch((error) => {
+                console.error(error);
+            });
+        }
     };
 
     return (

@@ -29,12 +29,10 @@ export default function BookCard(props: BookCardProps) {
             marginTop: "20px"
         }}>
             <CardContent>
-                <img id='book-img' src={props.book.imageUrl} alt={props.book.title}/>
+                <img id='book-img' src={props.book.imageUrl} alt={props.book.title} onClick={toDetail}
+                     style={{cursor: 'pointer'}}/>
             </CardContent>
             <div className='card-button'>
-                <Button variant="text" type="submit" size="small" onClick={toDetail}>
-                    Details
-                </Button>
                 <Button variant="text" type="submit" size="small" onClick={addToLib}>
                     Add to Lib
                 </Button>

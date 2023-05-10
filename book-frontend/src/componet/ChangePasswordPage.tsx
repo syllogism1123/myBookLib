@@ -9,6 +9,8 @@ import {
 import React, {FormEvent, useState} from "react";
 import axios from "axios";
 import {User} from "../model/UserModel";
+import {useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
 
 type Props = {
     user: User | null
@@ -17,7 +19,7 @@ export const ChangePasswordPage = (props: Props) => {
 
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
-
+    useNavigate();
     const onPasswordChangeSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (props.user) {
@@ -27,9 +29,31 @@ export const ChangePasswordPage = (props: Props) => {
                 }, {withCredentials: true}
             )
                 .then(() => {
+                    setOldPassword("")
+                    setNewPassword("")
+                    toast.success('YOUR PASSWORD HAS SUCCESSFULLY BEEN CHANGED', {
+                        position: "top-center",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
                 })
                 .catch(error => {
                     console.log(error);
+                    toast.error('YOUR OLDPASSWORD IS INVALID', {
+                        position: "top-center",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
                 });
         }
     }
