@@ -1,5 +1,6 @@
 package com.xin.bookbackend.controller;
 
+import com.xin.bookbackend.model.request.ChangePasswordRequest;
 import com.xin.bookbackend.model.user.MongoUser;
 import com.xin.bookbackend.model.user.MongoUserDTO;
 import com.xin.bookbackend.service.UserService;
@@ -44,6 +45,12 @@ public class UserController {
     @PutMapping("/{username}")
     public ResponseEntity<MongoUser> updateMongoUser(@PathVariable String username, @RequestBody MongoUserDTO mongoUserDTO) {
         return new ResponseEntity<>(userService.updateMongoUser(username, mongoUserDTO), HttpStatus.OK);
+    }
+
+    @PostMapping("/{username}/changePassword")
+    public ResponseEntity<MongoUser> changePassword(@PathVariable String username,
+                                                    @RequestBody ChangePasswordRequest request) {
+        return new ResponseEntity<>(userService.changePassword(username, request), HttpStatus.OK);
     }
 
 

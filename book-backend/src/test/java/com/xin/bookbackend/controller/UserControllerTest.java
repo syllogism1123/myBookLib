@@ -1,6 +1,10 @@
 package com.xin.bookbackend.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.xin.bookbackend.model.request.ChangePasswordRequest;
+import com.xin.bookbackend.model.user.MongoUser;
 import com.xin.bookbackend.model.user.MongoUserDTO;
+import com.xin.bookbackend.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.AutoConfigureJsonTesters;
@@ -15,7 +19,11 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.UUID;
+
+import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -28,8 +36,13 @@ class UserControllerTest {
     private MockMvc mvc;
     @Autowired
     private JacksonTester<MongoUserDTO> json;
+    @Autowired
+    private ObjectMapper objectMapper;
     @MockBean
     PasswordEncoder passwordEncoder;
+    @MockBean
+    private UserService userService;
+
 
     @Test
     @DirtiesContext
@@ -98,6 +111,7 @@ class UserControllerTest {
                 .andExpect(status().isOk())
                 .andReturn();
     }
+
     @Test
     @DirtiesContext
     @WithMockUser
@@ -108,7 +122,7 @@ class UserControllerTest {
         mvc.perform(post("/api/users/signup").
                         contentType(MediaType.APPLICATION_JSON).
                         content(json.write(mongoUserDTO).getJson()).with(csrf())).
-                andExpect(MockMvcResultMatchers.status().isCreated());
+                andExpect(status().isCreated());
 
         MongoUserDTO updatedMongoUserDTO = new MongoUserDTO(username
                 , "password", "firstname", "lastname", "newemail@email.com");
@@ -128,5 +142,33 @@ class UserControllerTest {
     void testLogout() throws Exception {
         mvc.perform(post("/api/users/logout").with(csrf()))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    @DirtiesContext
+    @WithMockUser
+    void changePassword_Successfully() throws Exception {
+
+        String username = "username";
+        ChangePasswordRequest request = new ChangePasswordRequest("oldPassword", "newPassword");
+        String id = UUID.randomUUID().toString();
+        MongoUser user = new MongoUser(id, username
+                , request.oldPassword(), "firstname", "lastname", "email@email.com");
+
+        user = user.withPassword(passwordEncoder.encode(request.newPassword()));
+
+        when(userService.findUserByUsername(username)).thenReturn(user);
+        when(userService.changePassword(username, request)).
+                thenReturn(user);
+
+        String requestBody = objectMapper.writeValueAsString(request);
+
+
+        mvc.perform(post("/api/users/" + username + "/changePassword")
+                        .contentType(MediaType.APPLICATION_JSON).
+                        content(requestBody)
+                        .with(csrf()))
+                .andExpect(status().isOk())
+                .andReturn();
     }
 }

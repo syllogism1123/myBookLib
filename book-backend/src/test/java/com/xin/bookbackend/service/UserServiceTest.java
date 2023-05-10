@@ -1,5 +1,6 @@
 package com.xin.bookbackend.service;
 
+import com.xin.bookbackend.model.request.ChangePasswordRequest;
 import com.xin.bookbackend.model.user.MongoUser;
 import com.xin.bookbackend.model.user.MongoUserDTO;
 import com.xin.bookbackend.repo.MongoUserRepository;
@@ -112,22 +113,19 @@ class UserServiceTest {
     void testChangePassword() {
         String username = "username";
         String userId = "userId";
-        String oldPassword = "password";
-        String newPassword = "newPassword";
-        MongoUser mongoUser = new MongoUser(userId, username, encoder.encode(oldPassword),
+        ChangePasswordRequest request = new ChangePasswordRequest("oldPassword", "newPassword");
+        MongoUser mongoUser = new MongoUser(userId, username, encoder.encode(request.oldPassword()),
                 "firstname", "lastname", "email");
 
         when(mongoUserRepository.findMongoUserByUsername(username)).thenReturn(Optional.of(mongoUser));
-        when(encoder.matches(oldPassword, mongoUser.password())).thenReturn(true);
+        when(encoder.matches(request.oldPassword(), mongoUser.password())).thenReturn(true);
 
 
-        MongoUser updatedUser = mongoUser.withPassword(newPassword);
-        userService.changePassword(username, oldPassword, newPassword);
+        MongoUser updatedUser = mongoUser.withPassword(request.newPassword());
+        userService.changePassword(username, request);
 
         verify(mongoUserRepository).save(updatedUser);
 
     }
-
-
 }
 

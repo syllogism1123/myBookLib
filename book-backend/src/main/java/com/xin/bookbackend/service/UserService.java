@@ -1,5 +1,6 @@
 package com.xin.bookbackend.service;
 
+import com.xin.bookbackend.model.request.ChangePasswordRequest;
 import com.xin.bookbackend.model.user.MongoUser;
 import com.xin.bookbackend.model.user.MongoUserDTO;
 import com.xin.bookbackend.repo.MongoUserRepository;
@@ -46,13 +47,13 @@ public class UserService {
     }
 
 
-    public MongoUser changePassword(String username, String oldPassword, String newPassword) {
+    public MongoUser changePassword(String username, ChangePasswordRequest request) {
 
         if (findUserByUsername(username) != null) {
             MongoUser user = findUserByUsername(username);
 
-            if (encoder.matches(oldPassword, user.password())) {
-                MongoUser updatedUser = user.withPassword(newPassword);
+            if (encoder.matches(request.oldPassword(), user.password())) {
+                MongoUser updatedUser = user.withPassword(request.newPassword());
                 return mongoUserRepository.save(updatedUser);
             } else {
                 throw new IllegalArgumentException("Invalid old password");
