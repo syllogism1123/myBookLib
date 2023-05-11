@@ -57,13 +57,13 @@ class BookBackendApplicationTests {
         loginPage.login(username, password); //user has not registered yet
        /* assertEquals("Invalid Username or Password!", loginPage.errorMsg());*/
 
-        Thread.sleep(3000);
+      /*  Thread.sleep(3000);*/
 
         driver.get(baseUrl + "/signup");
 
         signUpPage.signup(username, password, firstname, lastname, email);
 
-        Thread.sleep(2000);
+        /*Thread.sleep(2000);*/
 
             assertEquals(2, 1 + 1);
         
@@ -72,11 +72,8 @@ class BookBackendApplicationTests {
 
         driver.get(baseUrl + "/login");
         loginPage.login(username, password);
-        Thread.sleep(3000);
+    /*    Thread.sleep(3000);*/
     }
-
-
-    @
 
 
 }

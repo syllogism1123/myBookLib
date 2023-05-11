@@ -15,28 +15,24 @@ import {ChangePasswordPage} from "./componet/ChangePasswordPage";
 
 function App() {
     const {login, logout, createUser, username, loadUser, user, setUser} = useUser();
-
-    function isLoggedIn() {
-        return localStorage.getItem('token') !== null;
-    }
-
     const data = localStorage.getItem('token')
     const expiration = localStorage.getItem('expiration')
 
+    function isLoggedIn() {
+        return data !== null && expiration != null;
+    }
+
+
     useEffect(() => {
         if (expiration && Date.now() > Number(expiration)) {
-
-            localStorage.removeItem('token');
-            localStorage.removeItem('expiration');
-            localStorage.removeItem('books');
-
+            localStorage.clear();
         } else {
 
             if (data) {
                 setUser(JSON.parse(data));
             }
         }
-    }, [data]);
+    }, [data, expiration]);
 
 
     useEffect(() => {
