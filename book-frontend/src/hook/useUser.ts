@@ -51,8 +51,9 @@ export default function useUser() {
             withCredentials: true
         }).then((response) => {
             setUser(response.data)
+            const expirationTime = 60 * 1000 * 5
             localStorage.setItem('token', JSON.stringify(response.data));
-
+            localStorage.setItem('expiration', JSON.stringify(Date.now() + expirationTime));
         }).catch((error) => {
             console.error(error);
         })

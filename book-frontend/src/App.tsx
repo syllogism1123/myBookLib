@@ -21,13 +21,23 @@ function App() {
     }
 
     const data = localStorage.getItem('token')
+    const expiration = localStorage.getItem('expiration')
 
     useEffect(() => {
+        if (expiration && Date.now() > Number(expiration)) {
 
-        if (data) {
-            setUser(JSON.parse(data));
+            localStorage.removeItem('token');
+            localStorage.removeItem('expiration');
+            localStorage.removeItem('books');
+
+        } else {
+
+            if (data) {
+                setUser(JSON.parse(data));
+            }
         }
     }, [data]);
+
 
     useEffect(() => {
         if (username) {
@@ -36,6 +46,7 @@ function App() {
             );
         }
     }, [username]);
+
 
     return (
         <div className="App">

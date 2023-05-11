@@ -121,7 +121,7 @@ export const AccountPage = (props: Props) => {
                         />
                         <TextField
                             name="email"
-                            label="EMAIL"
+                            label="Email"
                             type="email"
                             value={user?.email}
                             size="small"
