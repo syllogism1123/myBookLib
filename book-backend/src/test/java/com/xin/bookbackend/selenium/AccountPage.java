@@ -38,8 +38,8 @@ public class AccountPage {
         this.emailField.sendKeys(email);
         TimeUnit.MILLISECONDS.sleep(500);
         this.cancelButton.click();
-        TimeUnit.MILLISECONDS.sleep(3000);
-        this.saveButton.click();
         TimeUnit.MILLISECONDS.sleep(2000);
+        this.saveButton.click();
+        TimeUnit.MILLISECONDS.sleep(1000);
     }
 }

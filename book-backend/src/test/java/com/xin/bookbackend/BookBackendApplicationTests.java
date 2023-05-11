@@ -1,13 +1,11 @@
 package com.xin.bookbackend;
 
-
-import com.xin.bookbackend.selenium.AccountPage;
-import com.xin.bookbackend.selenium.LoginPage;
-import com.xin.bookbackend.selenium.SearchPage;
-import com.xin.bookbackend.selenium.SignUpPage;
+import com.xin.bookbackend.selenium.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.*;
-import org.openqa.selenium.By;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -24,6 +22,7 @@ class BookBackendApplicationTests {
     private SignUpPage signUpPage;
     private SearchPage searchPage;
     private AccountPage accountPage;
+    private ChangePasswordPage changePasswordPage;
     private String baseUrl;
     private String firstname;
     private String lastname;
@@ -53,11 +52,12 @@ class BookBackendApplicationTests {
         loginPage = new LoginPage(driver);
         searchPage = new SearchPage(driver);
         accountPage = new AccountPage(driver);
+        changePasswordPage = new ChangePasswordPage(driver);
 
         baseUrl = "http://localhost:3000";
         firstname = "Xin";
         lastname = "Du";
-        username = "xin_du";
+        username = "Xin_Du";
         password = "1234";
         email = "xin.du@email.com";
     }
@@ -70,12 +70,20 @@ class BookBackendApplicationTests {
         assertEquals("Invalid Username or Password!", loginPage.errorMsg());
 
         driver.get(baseUrl + "/signup");
+        signUpPage.signup(username, password, firstname, lastname, email);
 
+
+        driver.get(baseUrl + "/signup");
+
+        String password = "5678";
+        String firstname = "ABC";
+        String lastname = "DEF";
+        String email = "abc.def@email.com";
         signUpPage.signup(username, password, firstname, lastname, email);
         assertEquals("The username already exists!", signUpPage.errorMsg());
 
         driver.get(baseUrl + "/login");
-        loginPage.login(username, password);
+        loginPage.login(username, this.password);
         driver.get(baseUrl + "/search");
 
         String query = "java";
@@ -91,9 +99,19 @@ class BookBackendApplicationTests {
         String newLastname = "_new";
         String newEmail = "xin.du1234@email.com";
 
-        accountPage.edit(newFirstname,newLastname,newEmail);
-        TimeUnit.SECONDS.sleep(2);
-    }
+        accountPage.edit(newFirstname, newLastname, newEmail);
 
+
+        driver.get(baseUrl + "/password");
+        String oldPassword = "12345";
+        String newPassword = "1234";
+
+        changePasswordPage.changePassword(oldPassword, newPassword);
+
+        oldPassword = "1234";
+        newPassword = "12345";
+        changePasswordPage.changePassword(oldPassword, newPassword);
+        TimeUnit.SECONDS.sleep(1);
+    }
 
 }

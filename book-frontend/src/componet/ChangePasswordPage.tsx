@@ -103,6 +103,7 @@ export const ChangePasswordPage = (props: Props) => {
                     <FormControl component="form" onSubmit={onPasswordChangeSubmit}>
 
                         <TextField
+                            id='oldPassword'
                             name='oldpassword'
                             type="text"
                             required
@@ -112,6 +113,7 @@ export const ChangePasswordPage = (props: Props) => {
                             size="small"
                             onChange={(e) => setOldPassword(e.target.value)}/>
                         <TextField
+                            id='newPassword'
                             name='newpassword'
                             type="text"
                             required
@@ -122,10 +124,11 @@ export const ChangePasswordPage = (props: Props) => {
                             onChange={(e) => setNewPassword(e.target.value)}/>
 
                         <div className="button-container">
-                            <Button variant="contained" type="button" size="small" onClick={handleCancel}>
+                            <Button id="cancel-button" variant="contained" type="button" size="small"
+                                    onClick={handleCancel}>
                                 Cancel
                             </Button>
-                            <Button variant="contained" type="submit" size="small">
+                            <Button id="save-button" variant="contained" type="submit" size="small">
                                 Save Password
                             </Button>
                         </div>
