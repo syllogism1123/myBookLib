@@ -71,6 +71,9 @@ class BookBackendApplicationTests {
         loginPage.login(username, password);
 
     }
-
+    @Test
+    void contextLoads() {
+        Assertions.assertEquals(2, 1 + 1);
+    }
 
 }
