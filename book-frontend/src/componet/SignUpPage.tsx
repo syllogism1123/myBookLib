@@ -33,7 +33,7 @@ export const SignUpPage = (props: createUserProps) => {
             props.createUser(user).then((s) => {
                 if (s) {
                     setUser(initial);
-                    navigate('/books');
+                    navigate('/search');
                 } else {
                     setError(true);
                     console.log("invalid")
@@ -57,6 +57,7 @@ export const SignUpPage = (props: createUserProps) => {
                 <CardContent>
                     <FormControl component="form" onSubmit={onSubmit}>
                         <TextField
+                            id="inputUsername"
                             name="username"
                             type="text"
                             required
@@ -68,6 +69,7 @@ export const SignUpPage = (props: createUserProps) => {
                             style={{marginBottom: '20px'}}
                         />
                         <TextField
+                            id="inputPassword"
                             name="password"
                             type="password"
                             required
@@ -79,6 +81,7 @@ export const SignUpPage = (props: createUserProps) => {
                             style={{marginBottom: '20px'}}
                         />
                         <TextField
+                            id="inputFirstName"
                             name="firstname"
                             type="text"
                             required
@@ -90,6 +93,7 @@ export const SignUpPage = (props: createUserProps) => {
                             style={{marginBottom: '20px'}}
                         />
                         <TextField
+                            id="inputLastName"
                             name="lastname"
                             type="text"
                             required
@@ -101,6 +105,7 @@ export const SignUpPage = (props: createUserProps) => {
                             style={{marginBottom: '20px'}}
                         />
                         <TextField
+                            id="inputEmail"
                             name="email"
                             type="email"
                             required
@@ -111,7 +116,7 @@ export const SignUpPage = (props: createUserProps) => {
                             size="small"
                             style={{marginBottom: '20px'}}
                         />
-                        <Button variant="contained" type="submit" size="small">
+                        <Button id="submit-button" variant="contained" type="submit" size="small">
                             Sign Up
                         </Button>
                         {error &&

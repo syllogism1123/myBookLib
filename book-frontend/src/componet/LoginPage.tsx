@@ -53,6 +53,7 @@ export const LoginPage = (props: Props) => {
                 <CardContent>
                     <FormControl component="form" onSubmit={onSubmit}>
                         <TextField
+                            id="inputUsername"
                             name='username'
                             type="text"
                             required
@@ -63,6 +64,7 @@ export const LoginPage = (props: Props) => {
                             size="small"
                             onChange={(e) => setUsername(e.target.value)}/>
                         <TextField
+                            id="inputPassword"
                             name='password'
                             type="password"
                             required
@@ -72,12 +74,12 @@ export const LoginPage = (props: Props) => {
                             size="small"
                             style={{marginBottom: '20px'}}
                             onChange={(e) => setPassword(e.target.value)}/>
-                        <Button variant="contained" type="submit" size="small">Login</Button>
+                        <Button id="submit-button" variant="contained" type="submit" size="small">Login</Button>
                         <Typography style={{marginTop: '20px'}}>
                             create a new account <a href="/signup">Signup</a>
                         </Typography>
                         {error &&
-                            <Alert severity="error" className="no-book-found">
+                            <Alert id="error-msg" severity="error" className="no-book-found">
                                 <h3>Invalid Username or Password!</h3>
                             </Alert>
                         }
