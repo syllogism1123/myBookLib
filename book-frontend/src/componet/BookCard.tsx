@@ -33,7 +33,7 @@ export default function BookCard(props: BookCardProps) {
                      style={{cursor: 'pointer'}}/>
             </CardContent>
             <div className='card-button'>
-                <Button variant="text" type="submit" size="small" onClick={addToLib}>
+                <Button id='add-button' variant="text" type="submit" size="small" onClick={addToLib}>
                     Add to Lib
                 </Button>
             </div>

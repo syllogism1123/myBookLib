@@ -1,4 +1,4 @@
-package com.xin.bookbackend;
+package com.xin.bookbackend.selenium;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,12 +27,15 @@ public class SignUpPage {
     @FindBy(id = "submit-button")
     private WebElement signupButton;
 
+    @FindBy(id = "error-msg")
+    private WebElement errorMessage;
+
     public SignUpPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 
 
-    void signup(String username, String password, String firstname, String lastname, String email) throws InterruptedException {
+    public void signup(String username, String password, String firstname, String lastname, String email) throws InterruptedException {
         this.usernameField.sendKeys(username);
         TimeUnit.MILLISECONDS.sleep(500);
         this.passwordField.sendKeys(password);
@@ -47,5 +50,7 @@ public class SignUpPage {
         TimeUnit.MILLISECONDS.sleep(1500);
     }
 
-
+    public String errorMsg() {
+        return errorMessage.getText();
+    }
 }

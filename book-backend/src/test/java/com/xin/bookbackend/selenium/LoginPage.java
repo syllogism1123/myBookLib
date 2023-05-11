@@ -1,4 +1,4 @@
-package com.xin.bookbackend;
+package com.xin.bookbackend.selenium;
 
 
 import org.openqa.selenium.WebDriver;
@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.concurrent.TimeUnit;
 
-class LoginPage {
+public class LoginPage {
     @FindBy(id = "inputUsername")
     private WebElement usernameField;
 
@@ -27,7 +27,7 @@ class LoginPage {
     }
 
 
-    void login(String username, String password) throws InterruptedException {
+    public void login(String username, String password) throws InterruptedException {
         this.usernameField.sendKeys(username);
         TimeUnit.MILLISECONDS.sleep(500);
         this.passwordField.sendKeys(password);
@@ -36,7 +36,7 @@ class LoginPage {
         TimeUnit.SECONDS.sleep(1);
     }
 
-    String errorMsg() {
+    public String errorMsg() {
         return errorMessage.getText();
     }
 

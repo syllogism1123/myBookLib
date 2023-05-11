@@ -120,7 +120,7 @@ export const SignUpPage = (props: createUserProps) => {
                             Sign Up
                         </Button>
                         {error &&
-                            <Alert severity="error" className="no-book-found">
+                            <Alert id="error-msg" severity="error" className="no-book-found">
                                 <h3>The username already exists!</h3>
                             </Alert>
                         }

@@ -99,6 +99,7 @@ export const AccountPage = (props: Props) => {
                         />
 
                         <TextField
+                            id="inputFirstName"
                             name="firstname"
                             label="Firstname"
                             type="text"
@@ -110,6 +111,7 @@ export const AccountPage = (props: Props) => {
                         />
 
                         <TextField
+                            id="inputLastName"
                             name="lastname"
                             label="Lastname"
                             type="text"
@@ -120,6 +122,7 @@ export const AccountPage = (props: Props) => {
                             onChange={onChange}
                         />
                         <TextField
+                            id="inputEmail"
                             name="email"
                             label="Email"
                             type="email"
@@ -130,10 +133,11 @@ export const AccountPage = (props: Props) => {
                             onChange={onChange}
                         />
                         <div className="button-container">
-                            <Button variant="contained" type="button" size="small" onClick={handleCancel}>
+                            <Button id="cancel-button" variant="contained" type="button" size="small"
+                                    onClick={handleCancel}>
                                 Cancel
                             </Button>
-                            <Button variant="contained" type="submit" size="small">
+                            <Button id="submit-button" variant="contained" type="submit" size="small">
                                 Save
                             </Button>
                         </div>
