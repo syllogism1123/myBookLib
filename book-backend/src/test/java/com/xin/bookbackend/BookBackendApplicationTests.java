@@ -55,24 +55,21 @@ class BookBackendApplicationTests {
     void testLoginSignupLogoutAndRedirection() throws InterruptedException {
         driver.get(baseUrl + "/login");
         loginPage.login(username, password); //user has not registered yet
-       /* assertEquals("Invalid Username or Password!", loginPage.errorMsg());*/
-
-      /*  Thread.sleep(3000);*/
+        /* assertEquals("Invalid Username or Password!", loginPage.errorMsg());*/
 
         driver.get(baseUrl + "/signup");
 
         signUpPage.signup(username, password, firstname, lastname, email);
 
-        /*Thread.sleep(2000);*/
+        assertEquals(2, 1 + 1);
 
-            assertEquals(2, 1 + 1);
-        
-   /*     signUpPage.signup(username, "1234567", "Albert", "Einstein", "email123@email.com"); //The username already exists.get errorMsg
+/*
+        signUpPage.signup(username, "1234567", "Albert", "Einstein", "email123@email.com"); //The username already exists.get errorMsg
         Thread.sleep(3000);*/
 
         driver.get(baseUrl + "/login");
         loginPage.login(username, password);
-    /*    Thread.sleep(3000);*/
+
     }
 
 
