@@ -3,6 +3,7 @@ import React, {ChangeEvent, FormEvent, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {UserModel} from "../model/UserModel";
 import useUser from "../hook/useUser";
+import {toast} from "react-toastify";
 
 type createUserProps = {
     createUser: (user: UserModel) => Promise<boolean>;
@@ -34,6 +35,16 @@ export const SignUpPage = (props: createUserProps) => {
                 if (s) {
                     setUser(initial);
                     navigate('/search');
+                    toast.success('YOU HAVE SUCCESSFULLY SIGNED UP', {
+                        position: "top-center",
+                        autoClose: 1000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
                 } else {
                     setError(true);
                     console.log("invalid")

@@ -11,6 +11,7 @@ import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import {User} from "../model/UserModel";
 import useUser from "../hook/useUser";
+import {toast} from "react-toastify";
 
 type Props = {
     user: User | null
@@ -56,7 +57,20 @@ export const AccountPage = (props: Props) => {
     function onSubmit(event: FormEvent<HTMLFormElement>) {
         if (user?.password) {
             event.preventDefault();
-            updateUser(user).then(() => navigate("/mylibrary")).catch((r) => console.error(r))
+            updateUser(user).then(
+                () => {
+                    toast.success('YOUR PERSONAL INFORMATION HAS BEEN SUCCESSFULLY UPDATED', {
+                        position: "top-center",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
+                    navigate("/mylibrary")
+                }).catch((r) => console.error(r))
 
         }
     }

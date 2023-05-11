@@ -33,7 +33,7 @@ export const ChangePasswordPage = (props: Props) => {
                 .then(() => {
                     setOldPassword("")
                     setNewPassword("")
-                    toast.success('YOUR PASSWORD HAS SUCCESSFULLY BEEN CHANGED', {
+                    toast.success('YOUR PASSWORD HAS BEEN SUCCESSFULLY CHANGED', {
                         position: "top-center",
                         autoClose: 2000,
                         hideProgressBar: false,

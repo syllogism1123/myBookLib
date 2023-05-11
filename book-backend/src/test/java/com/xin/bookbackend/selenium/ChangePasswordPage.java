@@ -13,8 +13,6 @@ public class ChangePasswordPage {
 
     @FindBy(id = "newPassword")
     private WebElement newPasswordField;
-    @FindBy(id = "cancel-button")
-    private WebElement cancelButton;
 
     @FindBy(id = "save-button")
     private WebElement saveButton;
@@ -30,8 +28,6 @@ public class ChangePasswordPage {
         this.newPasswordField.sendKeys(newPassword);
         TimeUnit.MILLISECONDS.sleep(1000);
         this.saveButton.click();
-        TimeUnit.MILLISECONDS.sleep(2000);
-        this.cancelButton.click();
         TimeUnit.MILLISECONDS.sleep(2000);
     }
 }

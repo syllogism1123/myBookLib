@@ -40,6 +40,6 @@ public class AccountPage {
         this.cancelButton.click();
         TimeUnit.MILLISECONDS.sleep(2000);
         this.saveButton.click();
-        TimeUnit.MILLISECONDS.sleep(1000);
+
     }
 }
