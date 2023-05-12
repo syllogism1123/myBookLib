@@ -4,6 +4,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import {Book} from "../model/Book";
 import {useBook} from "../hook/useBook";
+import {toast} from "react-toastify";
 
 export const BookDetails = () => {
     const [book, setBook] = useState<Book>()
@@ -28,9 +29,18 @@ export const BookDetails = () => {
         }
     }, [id])
     const addToLib = () => {
-        if(book)
-        {
+        if (book) {
             addBook(book).then(() => {
+                    toast.success(book.title + ' was successfully added to your library', {
+                        position: "top-center",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
                     navi("/mylibrary/")
                 }
             ).catch((r) => console.error(r));

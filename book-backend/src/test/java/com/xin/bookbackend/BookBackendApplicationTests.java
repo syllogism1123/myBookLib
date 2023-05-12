@@ -68,7 +68,7 @@ class BookBackendApplicationTests {
 
 
     @Test
-    void testLoginSignupLogoutAndRedirection() throws InterruptedException {
+    void testFunctionality() throws InterruptedException {
         driver.get(baseUrl + "/login");
         loginPage.login(username, password); //user has not registered yet
         assertEquals("Invalid Username or Password!", loginPage.errorMsg());
@@ -101,13 +101,14 @@ class BookBackendApplicationTests {
         WebElement firstImage = driver.findElement(By.xpath("(//img[@id='book-img'])[1]"));
 
         actions.clickAndHold(firstImage).build().perform();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(1);
         actions.release(firstImage).build().perform();
         TimeUnit.SECONDS.sleep(2);
 
+        WebElement addButton = driver.findElement(By.id("add-button"));
+        actions.click(addButton).build().perform();
 
-
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(4);
 
         driver.get(baseUrl + "/account");
 
@@ -116,7 +117,7 @@ class BookBackendApplicationTests {
         String newEmail = "xin.du1234@email.com";
 
         accountPage.edit(newFirstname, newLastname, newEmail);
-
+        TimeUnit.SECONDS.sleep(2);
 
         driver.get(baseUrl + "/password");
         String oldPassword = "12345";

@@ -38,7 +38,7 @@ public class AccountPage {
         this.emailField.sendKeys(email);
         TimeUnit.MILLISECONDS.sleep(500);
         this.cancelButton.click();
-        TimeUnit.MILLISECONDS.sleep(2000);
+        TimeUnit.MILLISECONDS.sleep(1000);
         this.saveButton.click();
 
     }
