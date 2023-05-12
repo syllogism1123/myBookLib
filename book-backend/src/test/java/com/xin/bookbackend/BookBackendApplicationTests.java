@@ -6,9 +6,12 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.concurrent.TimeUnit;
@@ -29,7 +32,7 @@ class BookBackendApplicationTests {
     private String username;
     private String password;
     private String email;
-
+    private static Actions actions;
 
     @BeforeAll
     static void setup() {
@@ -37,6 +40,7 @@ class BookBackendApplicationTests {
         options.addArguments("--remote-allow-origins=*");
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(options);
+        actions = new Actions(driver);
         /*driver.manage().window().maximize();*/
     }
 
@@ -84,14 +88,26 @@ class BookBackendApplicationTests {
 
         driver.get(baseUrl + "/login");
         loginPage.login(username, this.password);
-        driver.get(baseUrl + "/search");
 
         String query = "java";
+        TimeUnit.SECONDS.sleep(1);
         searchPage.search(query);
         TimeUnit.SECONDS.sleep(2);
+
         query = "springboot";
         searchPage.search(query);
         TimeUnit.SECONDS.sleep(2);
+
+        WebElement firstImage = driver.findElement(By.xpath("(//img[@id='book-img'])[1]"));
+
+        actions.clickAndHold(firstImage).build().perform();
+        TimeUnit.SECONDS.sleep(2);
+        actions.release(firstImage).build().perform();
+        TimeUnit.SECONDS.sleep(2);
+
+
+
+        TimeUnit.SECONDS.sleep(1);
 
         driver.get(baseUrl + "/account");
 

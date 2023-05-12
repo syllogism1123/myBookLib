@@ -20,7 +20,7 @@ export default function UserBookCard(props: BookCardProps) {
     const removeFromLib = () => {
         deleteBook(props.book.id).then(() => {
                 navi("/mylibrary/")
-            window.location.reload()
+                window.location.reload()
             }
         ).catch((r) => console.error(r));
     }
@@ -35,7 +35,7 @@ export default function UserBookCard(props: BookCardProps) {
     }
 
     const saveRating = () => {
-        updateBook({...props.book, id:props.book.id,averageRating: newRating}).then(() => {
+        updateBook({...props.book, id: props.book.id, averageRating: newRating}).then(() => {
         }).catch((r) => console.error(r));
     }
 
@@ -46,10 +46,10 @@ export default function UserBookCard(props: BookCardProps) {
                 <img id='book-img' src={props.book.imageUrl} alt={props.book.title} onClick={toDetail}
                      style={{cursor: 'pointer'}}/>
             </CardContent>
-            <Button variant="text" type="submit" size="small" onClick={saveRating}>
+            <Button className='detail-btn' variant="text" type="submit" size="small" onClick={saveRating}>
                 Save
             </Button>
-            <Button variant="text" type="submit" size="small" onClick={removeFromLib}>
+            <Button className='detail-btn' variant="text" type="submit" size="small" onClick={removeFromLib}>
                 Remove
             </Button>
             <Stack spacing={1} className='rating'>

@@ -1,7 +1,6 @@
-import {Button, Card, CardContent} from "@mui/material";
+import {Card, CardContent} from "@mui/material";
 import {Book} from "../model/Book";
 import {useNavigate} from "react-router-dom";
-import {useBook} from "../hook/useBook";
 import Stack from "@mui/material/Stack";
 import Rating from "@mui/material/Rating";
 import * as React from "react";
@@ -10,18 +9,11 @@ type BookCardProps = {
     book: Book,
 }
 export default function BookCard(props: BookCardProps) {
-    const {addBook} = useBook();
     const navi = useNavigate();
     const toDetail = () => {
         navi("/home/" + props.book.googleBookId)
     }
 
-    const addToLib = () => {
-        addBook(props.book).then(() => {
-                navi("/search/")
-            }
-        ).catch((r) => console.error(r));
-    }
 
     return (
         <Card className='bookCard' variant="elevation" style={{
@@ -32,11 +24,7 @@ export default function BookCard(props: BookCardProps) {
                 <img id='book-img' src={props.book.imageUrl} alt={props.book.title} onClick={toDetail}
                      style={{cursor: 'pointer'}}/>
             </CardContent>
-            <div className='card-button'>
-                <Button id='add-button' variant="text" type="submit" size="small" onClick={addToLib}>
-                    Add to Lib
-                </Button>
-            </div>
+
             <Stack spacing={1} className='rating'>
                 <Rating name="half-rating-read" defaultValue={props.book.averageRating} precision={0.5} readOnly/>
             </Stack>
