@@ -31,8 +31,8 @@ export default function UserBookCard(props: BookCardProps) {
                     progress: undefined,
                     theme: "colored",
                 });
-                navi("/mylibrary")
-                window.location.reload()
+
+                /*window.location.reload()*/
             }
         ).catch((r) => console.error(r));
     }

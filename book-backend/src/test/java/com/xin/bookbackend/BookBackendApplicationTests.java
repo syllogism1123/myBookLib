@@ -124,8 +124,6 @@ class BookBackendApplicationTests {
         addButton = driver.findElement(By.id("add-button"));
         actions.click(addButton).build().perform();
 
-        TimeUnit.SECONDS.sleep(1);
-
 
         driver.get(baseUrl + "/account");
 
@@ -134,7 +132,7 @@ class BookBackendApplicationTests {
         String newEmail = "xin.du1234@email.com";
 
         accountPage.edit(newFirstname, newLastname, newEmail);
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(1);
 
         driver.get(baseUrl + "/password");
         String oldPassword = "12345";
@@ -145,13 +143,22 @@ class BookBackendApplicationTests {
         oldPassword = "1234";
         newPassword = "12345";
         changePasswordPage.changePassword(oldPassword, newPassword);
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(1);
 
-        driver.get(baseUrl + "/mylibrary");
         WebElement removeButton = driver.findElement(By.id("remove-btn"));
         actions.click(removeButton).build().perform();
 
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(1);
+
+        WebElement menuButton = driver.findElement(By.xpath("//button[@id='settings']"));
+        actions.click(menuButton);
+
+        TimeUnit.SECONDS.sleep(1);
+
+        WebElement logoutButton = driver.findElement(By.id("logout-btn"));
+        TimeUnit.SECONDS.sleep(1);
+        actions.clickAndHold(logoutButton).release().build().perform();
+        TimeUnit.SECONDS.sleep(3);
 
     }
 

@@ -157,7 +157,7 @@ function ResponsiveAppBar(props: Props) {
 
                     <Box sx={{flexGrow: 0}}>
                         <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
+                            <IconButton id="settings" onClick={handleOpenUserMenu} sx={{p: 0}}>
                                 {props.isLoggedIn() ? <Avatar alt="My Avatar" src="/static/images/avatar/2.png"/>
                                     : <Avatar alt="My Avatar" src="/static/images/avatar/xxxx.png"/>}
                             </IconButton>
@@ -183,7 +183,7 @@ function ResponsiveAppBar(props: Props) {
                             {settings.map((setting) => {
                                 if (setting === 'Logout') {
                                     return (
-                                        <MenuItem key={setting} onClick={onClickLogOut}>
+                                        <MenuItem id="logout-btn" key={setting} onClick={onClickLogOut}>
                                             <Typography textAlign="center">{setting}</Typography>
                                         </MenuItem>
                                     );

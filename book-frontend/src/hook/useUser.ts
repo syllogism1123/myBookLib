@@ -29,7 +29,6 @@ export default function useUser() {
         }).then(() => {
             setUser(null);
             localStorage.clear();
-            window.location.reload();
         }).catch(error => {
             console.error(error);
         })
