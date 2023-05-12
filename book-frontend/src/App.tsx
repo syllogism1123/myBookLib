@@ -22,10 +22,10 @@ function App() {
         return data !== null && expiration != null;
     }
 
-
     useEffect(() => {
         if (expiration && Date.now() > Number(expiration)) {
             localStorage.clear();
+            window.location.reload();
         } else {
 
             if (data) {
