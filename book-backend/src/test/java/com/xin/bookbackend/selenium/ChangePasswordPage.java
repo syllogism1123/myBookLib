@@ -28,6 +28,6 @@ public class ChangePasswordPage {
         this.newPasswordField.sendKeys(newPassword);
         TimeUnit.MILLISECONDS.sleep(1000);
         this.saveButton.click();
-        TimeUnit.MILLISECONDS.sleep(2000);
+        TimeUnit.MILLISECONDS.sleep(1500);
     }
 }

@@ -119,7 +119,6 @@ class BookBackendApplicationTests {
 
         actions.clickAndHold(firstImage).release().build().perform();
 
-        TimeUnit.SECONDS.sleep(1);
 
         addButton = driver.findElement(By.id("add-button"));
         actions.click(addButton).build().perform();
@@ -148,17 +147,17 @@ class BookBackendApplicationTests {
         WebElement removeButton = driver.findElement(By.id("remove-btn"));
         actions.click(removeButton).build().perform();
 
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
 
-        WebElement menuButton = driver.findElement(By.xpath("//button[@id='settings']"));
-        actions.click(menuButton);
 
-        TimeUnit.SECONDS.sleep(1);
+        WebElement openSettingsButton = driver.findElement(By.id("settings"));
+        openSettingsButton.click();
 
-        WebElement logoutButton = driver.findElement(By.id("logout-btn"));
-        TimeUnit.SECONDS.sleep(1);
-        actions.clickAndHold(logoutButton).release().build().perform();
-        TimeUnit.SECONDS.sleep(3);
+        WebElement logoutOption = driver.findElement(By.id("logout-btn"));
+        logoutOption.click();
+
+        TimeUnit.SECONDS.sleep(2);
+
 
     }
 

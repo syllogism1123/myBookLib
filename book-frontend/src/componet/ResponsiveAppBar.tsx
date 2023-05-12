@@ -46,7 +46,7 @@ function ResponsiveAppBar(props: Props) {
     const onClickLogOut = () => {
         if (props.isLoggedIn()) {
             props.onLogout().then(() => {
-                toast.success('YOU HAVE SUCCESSFULLY LOGGED OUT', {
+                toast.info('YOU HAVE SUCCESSFULLY LOGGED OUT', {
                     position: "top-center",
                     autoClose: 1000,
                     hideProgressBar: false,
