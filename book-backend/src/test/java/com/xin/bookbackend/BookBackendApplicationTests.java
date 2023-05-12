@@ -12,11 +12,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -95,7 +92,7 @@ class BookBackendApplicationTests {
         String query = "java";
         TimeUnit.SECONDS.sleep(1);
         searchPage.search(query);
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(1);
 
         query = "springboot";
         searchPage.search(query);
@@ -126,7 +123,9 @@ class BookBackendApplicationTests {
 
         addButton = driver.findElement(By.id("add-button"));
         actions.click(addButton).build().perform();
+
         TimeUnit.SECONDS.sleep(1);
+
 
         driver.get(baseUrl + "/account");
 
@@ -146,6 +145,12 @@ class BookBackendApplicationTests {
         oldPassword = "1234";
         newPassword = "12345";
         changePasswordPage.changePassword(oldPassword, newPassword);
+        TimeUnit.SECONDS.sleep(2);
+
+        driver.get(baseUrl + "/mylibrary");
+        WebElement removeButton = driver.findElement(By.id("remove-btn"));
+        actions.click(removeButton).build().perform();
+
         TimeUnit.SECONDS.sleep(2);
 
     }

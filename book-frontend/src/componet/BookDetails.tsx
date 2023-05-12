@@ -30,11 +30,10 @@ export const BookDetails = () => {
     const addToLib = () => {
         if (book) {
             addBook(book).then(() => {
-                    navi("/mylibrary/")
+                    navi("/mylibrary")
                 }
             ).catch((r) => console.error(r));
         }
-
     }
 
 

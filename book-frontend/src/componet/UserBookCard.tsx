@@ -6,6 +6,7 @@ import Stack from "@mui/material/Stack";
 import Rating from "@mui/material/Rating";
 import * as React from "react";
 import {ChangeEvent, useState} from "react";
+import {toast} from "react-toastify";
 
 type BookCardProps = {
     book: Book,
@@ -19,7 +20,17 @@ export default function UserBookCard(props: BookCardProps) {
 
     const removeFromLib = () => {
         deleteBook(props.book.id).then(() => {
-                navi("/mylibrary/")
+                toast.success( ' was successfully remove from your library', {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+                navi("/mylibrary")
                 window.location.reload()
             }
         ).catch((r) => console.error(r));
@@ -46,10 +57,11 @@ export default function UserBookCard(props: BookCardProps) {
                 <img id='book-img' src={props.book.imageUrl} alt={props.book.title} onClick={toDetail}
                      style={{cursor: 'pointer'}}/>
             </CardContent>
-            <Button className='detail-btn' variant="text" type="submit" size="small" onClick={saveRating}>
+            <Button id="save-btn" className='detail-btn' variant="text" type="submit" size="small" onClick={saveRating}>
                 Save
             </Button>
-            <Button className='detail-btn' variant="text" type="submit" size="small" onClick={removeFromLib}>
+            <Button id="remove-btn" className='detail-btn' variant="text" type="submit" size="small"
+                    onClick={removeFromLib}>
                 Remove
             </Button>
             <Stack spacing={1} className='rating'>
