@@ -21,6 +21,16 @@ export const useBook = () => {
             withCredentials: true
         }).then((response) => {
             setBooks([...books, response.data])
+            toast.success(newBook.title + ' was successfully added to your library', {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
         }).catch((error) => {
             toast.error(newBook.title + " is already in your Library " + error.response.statusText, {
                 position: "top-center",
@@ -56,7 +66,7 @@ export const useBook = () => {
             withCredentials: true
         }).then(() => {
             setBooks(books.filter((book) => book.id !== id));
-         /*   window.location.reload()*/
+            /*   window.location.reload()*/
         }).catch((error) => {
             console.error(error)
         })

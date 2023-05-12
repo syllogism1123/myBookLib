@@ -106,12 +106,27 @@ class BookBackendApplicationTests {
         actions.clickAndHold(firstImage).build().perform();
         TimeUnit.SECONDS.sleep(1);
         actions.release(firstImage).build().perform();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(1);
 
         WebElement addButton = driver.findElement(By.id("add-button"));
         actions.click(addButton).build().perform();
 
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(1);
+
+
+        WebElement searchButton = driver.findElement(By.xpath("//button[contains(text(), 'Search')]"));
+        actions.click(searchButton);
+        TimeUnit.SECONDS.sleep(1);
+
+        firstImage = driver.findElement(By.xpath("(//img[@id='book-img'])[1]"));
+
+        actions.clickAndHold(firstImage).release().build().perform();
+
+        TimeUnit.SECONDS.sleep(1);
+
+        addButton = driver.findElement(By.id("add-button"));
+        actions.click(addButton).build().perform();
+        TimeUnit.SECONDS.sleep(1);
 
         driver.get(baseUrl + "/account");
 
@@ -132,7 +147,6 @@ class BookBackendApplicationTests {
         newPassword = "12345";
         changePasswordPage.changePassword(oldPassword, newPassword);
         TimeUnit.SECONDS.sleep(2);
-
 
     }
 
