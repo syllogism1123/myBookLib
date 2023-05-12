@@ -11,7 +11,7 @@ import {ToastContainer} from "react-toastify";
 import ResponsiveAppBar from "./componet/ResponsiveAppBar";
 import {AccountPage} from "./componet/AccountPage";
 import {ChangePasswordPage} from "./componet/ChangePasswordPage";
-
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
     const {login, logout, createUser, username, loadUser, user, setUser} = useUser();

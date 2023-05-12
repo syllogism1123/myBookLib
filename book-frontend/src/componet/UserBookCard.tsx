@@ -8,6 +8,7 @@ import * as React from "react";
 import {ChangeEvent, useState} from "react";
 import {toast} from "react-toastify";
 
+
 type BookCardProps = {
     book: Book,
 }
@@ -20,7 +21,7 @@ export default function UserBookCard(props: BookCardProps) {
 
     const removeFromLib = () => {
         deleteBook(props.book.id).then(() => {
-                toast.success( ' was successfully remove from your library', {
+                toast.success(props.book.title + ' was successfully remove from your library', {
                     position: "top-center",
                     autoClose: 2000,
                     hideProgressBar: false,
