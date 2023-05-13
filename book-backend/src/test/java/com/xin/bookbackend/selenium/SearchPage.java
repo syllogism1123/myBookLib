@@ -18,7 +18,6 @@ public class SearchPage {
 
     public void search(String query) throws InterruptedException {
         this.searchField.sendKeys(query + Keys.ENTER);
-        TimeUnit.MILLISECONDS.sleep(500);
     }
 
 }
