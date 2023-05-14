@@ -129,7 +129,7 @@ export const ChangePasswordPage = (props: Props) => {
                                 Cancel
                             </Button>
                             <Button id="save-button" variant="contained" type="submit" size="small">
-                                Save Password
+                                Save
                             </Button>
                         </div>
                     </FormControl>
