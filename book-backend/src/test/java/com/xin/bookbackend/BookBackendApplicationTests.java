@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -42,6 +43,7 @@ class BookBackendApplicationTests {
         driver = new ChromeDriver(options);
         actions = new Actions(driver);
         /*driver.manage().window().maximize();*/
+    /*    driver.manage().window().setSize(new Dimension(1680,1050));*/
     }
 
     @AfterAll
@@ -116,12 +118,11 @@ class BookBackendApplicationTests {
         TimeUnit.MILLISECONDS.sleep(1500);
 
         firstImage = driver.findElement(By.xpath("(//img[@id='book-img'])[1]"));
-
-        actions.clickAndHold(firstImage).release().build().perform();
+        firstImage.click();
 
         TimeUnit.MILLISECONDS.sleep(1000);
         addButton = driver.findElement(By.id("add-button"));
-        actions.click(addButton).build().perform();
+        addButton.click();
 
         TimeUnit.MILLISECONDS.sleep(1500);
 
