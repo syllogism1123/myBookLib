@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.xin.bookbackend.BookBackendApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 15.963 s - in com.xin.bookbackend.BookBackendApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 53.367 s - in com.xin.bookbackend.BookBackendApplicationTests

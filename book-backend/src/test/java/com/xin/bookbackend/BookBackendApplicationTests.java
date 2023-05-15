@@ -39,6 +39,7 @@ class BookBackendApplicationTests {
     static void setup() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--disable-dev-shm-usage");
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(options);
         actions = new Actions(driver);
@@ -92,43 +93,43 @@ class BookBackendApplicationTests {
         loginPage.login(username, this.password);
 
         String query = "java";
-        TimeUnit.MILLISECONDS.sleep(1500);
+        /*TimeUnit.MILLISECONDS.sleep(1500);*/
         searchPage.search(query);
-        TimeUnit.MILLISECONDS.sleep(1500);
+      /*  TimeUnit.MILLISECONDS.sleep(1500);*/
 
         query = "springboot";
         searchPage.search(query);
-        TimeUnit.MILLISECONDS.sleep(1000);
+        /*TimeUnit.MILLISECONDS.sleep(1000);*/
 
         WebElement firstImage = driver.findElement(By.xpath("(//img[@id='book-img'])[1]"));
 
         actions.clickAndHold(firstImage).build().perform();
-        TimeUnit.MILLISECONDS.sleep(1000);
+       /* TimeUnit.MILLISECONDS.sleep(1000);*/
         actions.release(firstImage).build().perform();
-        TimeUnit.MILLISECONDS.sleep(1000);
+        /*TimeUnit.MILLISECONDS.sleep(1000);*/
 
         WebElement addButton = driver.findElement(By.id("add-button"));
         actions.click(addButton).build().perform();
 
-        TimeUnit.MILLISECONDS.sleep(1000);
+       /* TimeUnit.MILLISECONDS.sleep(1000);*/
 
 
         WebElement searchButton = driver.findElement(By.xpath("//button[contains(text(), 'Search')]"));
         actions.click(searchButton);
-        TimeUnit.MILLISECONDS.sleep(1500);
+       /* TimeUnit.MILLISECONDS.sleep(1500);*/
 
         firstImage = driver.findElement(By.xpath("(//img[@id='book-img'])[1]"));
         firstImage.click();
 
-        TimeUnit.MILLISECONDS.sleep(1000);
+       /* TimeUnit.MILLISECONDS.sleep(1000);*/
         addButton = driver.findElement(By.id("add-button"));
         addButton.click();
 
-        TimeUnit.MILLISECONDS.sleep(1500);
+      /*  TimeUnit.MILLISECONDS.sleep(1500);*/
 
         WebElement removeButton = driver.findElement(By.id("remove-btn"));
         removeButton.click();
-        TimeUnit.MILLISECONDS.sleep(1500);
+    /*    TimeUnit.MILLISECONDS.sleep(1500);*/
 
 
         driver.get(baseUrl + "/account");
@@ -138,7 +139,7 @@ class BookBackendApplicationTests {
         String newEmail = "xin.du1234@email.com";
 
         accountPage.edit(newFirstname, newLastname, newEmail);
-        TimeUnit.MILLISECONDS.sleep(1500);
+        /*TimeUnit.MILLISECONDS.sleep(1500);*/
 
         driver.get(baseUrl + "/password");
         String oldPassword = "12345";
@@ -149,7 +150,7 @@ class BookBackendApplicationTests {
         oldPassword = "1234";
         newPassword = "12345";
         changePasswordPage.changePassword(oldPassword, newPassword);
-        TimeUnit.MILLISECONDS.sleep(1000);
+        /*TimeUnit.MILLISECONDS.sleep(1000);*/
 
 
         WebElement openSettingsButton = driver.findElement(By.id("settings"));
@@ -158,11 +159,11 @@ class BookBackendApplicationTests {
         WebElement logoutOption = driver.findElement(By.id("logout-btn"));
         logoutOption.click();
 
-        TimeUnit.MILLISECONDS.sleep(2000);
+      /*  TimeUnit.MILLISECONDS.sleep(2000);*/
         driver.get(baseUrl + "/login");
         this.password = "12345";
         loginPage.login(username, this.password);
-        TimeUnit.MILLISECONDS.sleep(1500);
+     /*   TimeUnit.MILLISECONDS.sleep(1500);*/
 
     }
 
