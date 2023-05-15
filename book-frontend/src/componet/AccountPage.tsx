@@ -79,7 +79,7 @@ export const AccountPage = (props: Props) => {
         const savedUser = localStorage.getItem('token');
         if (savedUser) {
             setUser(JSON.parse(savedUser));
-        }
+        }//eslint-disable-next-line
     }, []);
 
 

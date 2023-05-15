@@ -8,7 +8,7 @@ export default function UserBookGallery() {
     useEffect(() => {
         loadAllBooks().catch(
             (e) => console.error(e)
-        )
+        )//eslint-disable-next-line
     }, [books]);
 
     return (

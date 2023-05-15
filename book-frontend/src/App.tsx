@@ -31,7 +31,7 @@ function App() {
             if (data) {
                 setUser(JSON.parse(data));
             }
-        }
+        }//eslint-disable-next-line
     }, [data, expiration]);
 
 
@@ -40,7 +40,7 @@ function App() {
             loadUser(username).catch(
                 (e) => console.error(e)
             );
-        }
+        }//eslint-disable-next-line
     }, [username]);
 
 

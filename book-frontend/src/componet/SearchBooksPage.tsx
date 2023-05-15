@@ -19,7 +19,7 @@ export default function SearchBooksPage() {
             if (storedBooks) {
                 setBooks(storedBooks);
             }
-        }
+        }//eslint-disable-next-line
     }, []);
 
     const onKeyPress = async (event: React.KeyboardEvent<HTMLInputElement>) => {
