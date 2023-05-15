@@ -1,4 +1,4 @@
-name: Deploy to fly.io
+name: Deploy my app to fly.io
 
 on:
   push:
