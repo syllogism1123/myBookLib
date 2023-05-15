@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/books")
-@CrossOrigin(origins = "http://localhost:3000,https://mybooklibraryapp.fly.dev/", allowCredentials = "true")
+@CrossOrigin(origins = {"http://localhost:3000,http://localhost:9541,https://mybooklibraryapp.fly.dev/"}, allowCredentials = "true")
 public class BookController {
     private final BookService bookService;
     private final UserService userService;
