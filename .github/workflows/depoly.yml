@@ -3,7 +3,7 @@ name: Deploy my app to fly.io
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build-frontend:
