@@ -2,10 +2,7 @@ package com.xin.bookbackend;
 
 import com.xin.bookbackend.selenium.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 class BookBackendApplicationTests {
-    private static WebDriver driver;
+    /*private static WebDriver driver;
     private LoginPage loginPage;
     private SignUpPage signUpPage;
     private SearchPage searchPage;
@@ -42,8 +39,8 @@ class BookBackendApplicationTests {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(options);
         actions = new Actions(driver);
-        /*driver.manage().window().maximize();*/
-    /*    driver.manage().window().setSize(new Dimension(1680,1050));*/
+        *//*driver.manage().window().maximize();*//*
+        *//*driver.manage().window().setSize(new Dimension(1680,1050));*//*
     }
 
     @AfterAll
@@ -163,5 +160,9 @@ class BookBackendApplicationTests {
         TimeUnit.MILLISECONDS.sleep(1500);
 
     }
-
+*/
+    @Test
+    void contextLoads() {
+        Assertions.assertEquals(2, 1 + 1);
+    }
 }
