@@ -77,7 +77,7 @@ export const ChangePasswordPage = (props: Props) => {
                     console.error(error)
                 })
         }
-
+//eslint-disable-next-line
     }, [user])
 
 

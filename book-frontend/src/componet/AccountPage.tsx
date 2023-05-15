@@ -37,7 +37,7 @@ export const AccountPage = (props: Props) => {
                     console.error(error)
                 })
         }
-
+//eslint-disable-next-line
     }, [props.user])
 
     function onChange(event: ChangeEvent<HTMLInputElement>) {
