@@ -22,10 +22,11 @@ export const AccountPage = (props: Props) => {
     const [user, setUser] = useState<User>(initial);
     const {updateUser} = useUser();
     const [initialUser, setInitialUser] = useState<User>(initial);
+    const baseUrl = "https://my-booklibrary.fly.dev";
 
     useEffect(() => {
         if (props.user) {
-            axios.get(`http://localhost:8080/api/users/${props.user.username}`, {
+            axios.get(baseUrl + `/api/users/${props.user.username}`, {
                 withCredentials: true
             })
                 .then((response) => {

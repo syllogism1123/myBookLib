@@ -22,10 +22,11 @@ export const ChangePasswordPage = (props: Props) => {
     const [newPassword, setNewPassword] = useState('');
     const navigate = useNavigate();
     const {user, setUser} = useUser();
+    const baseUrl = "https://my-booklibrary.fly.dev";
     const onPasswordChangeSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (props.user) {
-            axios.post(`http://localhost:8080/api/users/changePassword`, {
+            axios.post(baseUrl + `/api/users/changePassword`, {
                     oldPassword: oldPassword,
                     newPassword: newPassword
                 }, {withCredentials: true}
@@ -66,7 +67,7 @@ export const ChangePasswordPage = (props: Props) => {
 
     useEffect(() => {
         if (props.user) {
-            axios.get(`http://localhost:8080/api/users/${props.user.username}`, {
+            axios.get(baseUrl + `/api/users/${props.user.username}`, {
                 withCredentials: true
             })
                 .then((response) => {

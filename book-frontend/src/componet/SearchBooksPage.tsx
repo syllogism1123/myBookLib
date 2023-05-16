@@ -8,6 +8,7 @@ import SearchIcon from "@mui/icons-material/Search";
 
 export default function SearchBooksPage() {
     const {books, setBooks, query, setQuery} = useBook();
+    const baseUrl = "https://my-booklibrary.fly.dev";
     const onTextChange = (event: ChangeEvent<HTMLInputElement>) => {
         setQuery(event.target.value);
     }
@@ -24,7 +25,7 @@ export default function SearchBooksPage() {
 
     const onKeyPress = async (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
-            await axios.get(`http://localhost:8080/api/books/search?query=${query}`, {
+            await axios.get(baseUrl + `/api/books/search?query=${query}`, {
                 withCredentials: true
             }).then((response) => {
                 setBooks(response.data)
