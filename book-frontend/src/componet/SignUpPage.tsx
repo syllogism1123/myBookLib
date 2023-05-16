@@ -133,7 +133,7 @@ export const SignUpPage = (props: createUserProps) => {
                         </Button>
                         {error &&
                             <Alert id="error-msg" severity="error" className="no-book-found">
-                                <h3>The username or Email already exists!</h3>
+                                <h3>The username or email address already exists!</h3>
                             </Alert>
                         }
                     </FormControl>
