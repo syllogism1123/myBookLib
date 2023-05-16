@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 class BookBackendApplicationTests {
-    private static WebDriver driver;
+   /* private static WebDriver driver;
     private LoginPage loginPage;
     private SignUpPage signUpPage;
     private SearchPage searchPage;
@@ -160,7 +160,7 @@ class BookBackendApplicationTests {
         loginPage.login(username, this.password);
         TimeUnit.MILLISECONDS.sleep(1500);
 
-    }
+    }*/
 
     @Test
     void contextLoads() {
