@@ -29,7 +29,8 @@ export const SignUpPage = (props: createUserProps) => {
 
 
     function onSubmit(event: FormEvent<HTMLFormElement>) {
-        if (user.username && user.password && user.firstname && user.lastname) {
+        if (user.username && user.password && user.firstname && user.lastname && user.email)
+        {
             event.preventDefault();
             props.createUser(user).then((s) => {
                 if (s) {
