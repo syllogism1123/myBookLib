@@ -6,7 +6,7 @@ export default function useUser() {
     const [user, setUser] = useState<User | null>(null);
     const [error, setError] = useState<boolean>();
     const [username, setUsername] = useState<string>();
-    const baseUrl = "https://my-booklibrary.fly.dev";
+    const baseUrl = "http://localhost:8080";
     const login = async (username: string, password: string) => {
         return await axios.post(baseUrl + "/api/users/login", undefined, {
             withCredentials: true,
