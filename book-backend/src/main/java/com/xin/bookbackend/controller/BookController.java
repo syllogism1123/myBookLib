@@ -39,11 +39,12 @@ public class BookController {
 
 
     @GetMapping()
-    public ResponseEntity<List<Book>> getAllBooks() {
+    public ResponseEntity<List<BookDTO>> getAllBooks() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         MongoUser user = userService.findUserByUsername(username);
         String userId = user.id();
-        return new ResponseEntity<>(bookService.getAllBooksByUserId(userId), HttpStatus.OK);
+        List<Book> bookList = bookService.getAllBooksByUserId(userId);
+        return new ResponseEntity<>(convertBookListToBookDTOList(bookList), HttpStatus.OK);
     }
 
     @PostMapping()
@@ -59,8 +60,9 @@ public class BookController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<Book> getBookById(@PathVariable String id) {
-        return new ResponseEntity<>(bookService.getBookById(id), HttpStatus.OK);
+    public ResponseEntity<BookDTO> getBookById(@PathVariable String id) {
+        Book book = bookService.getBookById(id);
+        return new ResponseEntity<>(convertBookToBookDTO(book), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
@@ -93,7 +95,7 @@ public class BookController {
     }
 
     private BookDTO convertBookToBookDTO(Book book) {
-        return new BookDTO(book.googleBookId(), book.title(), book.authors(), book.publisher(),
+        return new BookDTO(book.id(), book.googleBookId(), book.title(), book.authors(), book.publisher(),
                 book.publishedDate(), book.description(), book.averageRating(), book.imageUrl());
     }
 
