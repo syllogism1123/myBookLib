@@ -37,7 +37,7 @@ class BookBackendApplicationTests {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--whitelisted-ips= ");
+        options.addArguments("--headless");
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(options);
         actions = new Actions(driver);
