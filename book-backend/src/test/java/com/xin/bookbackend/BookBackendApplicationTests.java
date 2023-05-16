@@ -37,11 +37,12 @@ class BookBackendApplicationTests {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--whitelisted-ips= ");
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(options);
         actions = new Actions(driver);
-       // driver.manage().window().maximize();
-        driver.manage().window().setSize(new Dimension(1680,1050));
+        // driver.manage().window().maximize();
+        driver.manage().window().setSize(new Dimension(1680, 1050));
     }
 
     @AfterAll
@@ -160,6 +161,7 @@ class BookBackendApplicationTests {
         TimeUnit.MILLISECONDS.sleep(1500);
 
     }
+
     @Test
     void contextLoads() {
         assertEquals(2, 1 + 1);
