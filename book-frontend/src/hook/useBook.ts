@@ -5,9 +5,9 @@ import {Book, BookModel} from "../model/Book";
 
 export const useBook = () => {
     const [books, setBooks] = useState<Book[]>([]);
-
+    const baseUrl = "https://my-booklibrary.fly.dev";
     const loadAllBooks = async () => {
-        await axios.get("http://localhost:8080/api/books", {
+        await axios.get(baseUrl + "/api/books", {
             withCredentials: true
         }).then((response) => {
             setBooks(response.data)
@@ -17,7 +17,7 @@ export const useBook = () => {
             })
     };
     const addBook = async (newBook: BookModel) => {
-        await axios.post("http://localhost:8080/api/books", newBook, {
+        await axios.post(baseUrl + "/api/books", newBook, {
             withCredentials: true
         }).then((response) => {
             setBooks([...books, response.data])
@@ -46,7 +46,7 @@ export const useBook = () => {
     }
 
     const updateBook = async (book: Book) => {
-        await axios.put(`http://localhost:8080/api/books/${book.id}`, book, {
+        await axios.put(baseUrl + `/api/books/${book.id}`, book, {
             withCredentials: true
         }).then((response) => {
             setBooks(books.map((currentBook) => {
@@ -62,7 +62,7 @@ export const useBook = () => {
     }
 
     const deleteBook = async (id: string) => {
-        await axios.delete(`http://localhost:8080/api/books/${id}`, {
+        await axios.delete(baseUrl + `/api/books/${id}`, {
             withCredentials: true
         }).then(() => {
             setBooks(books.filter((book) => book.id !== id));

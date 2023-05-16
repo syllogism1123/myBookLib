@@ -8,11 +8,11 @@ import {useBook} from "../hook/useBook";
 export const BookDetails = () => {
     const [book, setBook] = useState<Book>()
     const {id} = useParams<{ id: string }>();
-
+    const baseUrl = "https://my-booklibrary.fly.dev";
     const {addBook} = useBook();
     const navi = useNavigate();
     const loadBookById = (id: string) => {
-        axios.get(`http://localhost:8080/api/books/search/` + id, {
+        axios.get(baseUrl + `/api/books/search/` + id, {
             withCredentials: true
         })
             .then((response) => {
