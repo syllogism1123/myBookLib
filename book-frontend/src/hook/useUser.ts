@@ -6,9 +6,9 @@ export default function useUser() {
     const [user, setUser] = useState<User | null>(null);
     const [error, setError] = useState<boolean>();
     const [username, setUsername] = useState<string>();
-
+    const baseUrl = "https://my-booklibrary.fly.dev";
     const login = async (username: string, password: string) => {
-        return await axios.post("http://localhost:8080/api/users/login", undefined, {
+        return await axios.post(baseUrl + "/api/users/login", undefined, {
             withCredentials: true,
             auth: {
                 username,
@@ -24,7 +24,7 @@ export default function useUser() {
         });
     }
     const logout = async () => {
-        return await axios.post("http://localhost:8080/api/users/logout", undefined, {
+        return await axios.post(baseUrl + "/api/users/logout", undefined, {
             withCredentials: true,
         }).then(() => {
             setUser(null);
@@ -35,7 +35,7 @@ export default function useUser() {
     }
 
     const createUser = async (newUser: UserModel) => {
-        return await axios.post("http://localhost:8080/api/users/signup", newUser, {
+        return await axios.post(baseUrl + "/api/users/signup", newUser, {
             withCredentials: true
         }).then((response) => {
             setUser(response.data)
@@ -47,7 +47,7 @@ export default function useUser() {
     }
 
     const loadUser = async (username: string) => {
-        return await axios.get(`http://localhost:8080/api/users/${username}`, {
+        return await axios.get(baseUrl + `/api/users/${username}`, {
             withCredentials: true
         }).then((response) => {
             setUser(response.data)
@@ -60,7 +60,7 @@ export default function useUser() {
     }
 
     const updateUser = async (user: User) => {
-        await axios.put(`http://localhost:8080/api/users/${user.username}`, user, {
+        await axios.put(baseUrl + `/api/users/${user.username}`, user, {
             withCredentials: true
         }).then((response) => {
             setUser(response.data)
