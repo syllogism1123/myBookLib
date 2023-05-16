@@ -23,6 +23,8 @@ public class UserService {
 
         if (mongoUserRepository.findMongoUserByUsername(mongoUserDTO.username()).isPresent()) {
             throw new IllegalArgumentException("The username already exists.");
+        } else if (mongoUserRepository.findMongoUserByEmail(mongoUserDTO.email()).isPresent()) {
+            throw new IllegalArgumentException("The email address already exists.");
         } else {
             String encodedPassword = encoder.encode(mongoUserDTO.password());
             MongoUser encodedUser = new MongoUser(mongoUserDTO.username(), encodedPassword, mongoUserDTO.firstname(), mongoUserDTO.lastname(), mongoUserDTO.email());
