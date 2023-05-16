@@ -71,6 +71,7 @@ public class UserService {
 
     public MongoUserDTO convertMongoUserToMongoUserDTO(MongoUser mongoUser) {
         return new MongoUserDTO(
+                mongoUser.id(),
                 mongoUser.username(),
                 mongoUser.password(),
                 mongoUser.firstname(),

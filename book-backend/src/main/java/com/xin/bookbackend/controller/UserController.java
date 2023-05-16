@@ -38,19 +38,22 @@ public class UserController {
     }
 
     @GetMapping("/{username}")
-    public ResponseEntity<MongoUser> loadMongoUserByName(@PathVariable String username) {
-        return new ResponseEntity<>(userService.findUserByUsername(username), HttpStatus.OK);
+    public ResponseEntity<MongoUserDTO> loadMongoUserByName(@PathVariable String username) {
+        MongoUser mongoUser = userService.findUserByUsername(username);
+        return new ResponseEntity<>(userService.convertMongoUserToMongoUserDTO(mongoUser), HttpStatus.OK);
     }
 
     @PutMapping("/{username}")
-    public ResponseEntity<MongoUser> updateMongoUser(@PathVariable String username, @RequestBody MongoUserDTO mongoUserDTO) {
-        return new ResponseEntity<>(userService.updateMongoUser(username, mongoUserDTO), HttpStatus.OK);
+    public ResponseEntity<MongoUserDTO> updateMongoUser(@PathVariable String username, @RequestBody MongoUserDTO mongoUserDTO) {
+        MongoUser mongoUser = userService.updateMongoUser(username, mongoUserDTO);
+        return new ResponseEntity<>(userService.convertMongoUserToMongoUserDTO(mongoUser), HttpStatus.OK);
     }
 
     @PostMapping("/changePassword")
-    public ResponseEntity<MongoUser> changePassword(@RequestBody ChangePasswordRequest request) {
+    public ResponseEntity<MongoUserDTO> changePassword(@RequestBody ChangePasswordRequest request) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        return new ResponseEntity<>(userService.changePassword(username, request), HttpStatus.OK);
+        MongoUser mongoUser = userService.changePassword(username, request);
+        return new ResponseEntity<>(userService.convertMongoUserToMongoUserDTO(mongoUser), HttpStatus.OK);
     }
 
 
