@@ -5,7 +5,7 @@ import {Book, BookModel} from "../model/Book";
 
 export const useBook = () => {
     const [books, setBooks] = useState<Book[]>([]);
-    const baseUrl = "https://my-booklibrary.fly.dev";
+    const baseUrl = "http://localhost:8080";
     const loadAllBooks = async () => {
         await axios.get(baseUrl + "/api/books", {
             withCredentials: true

@@ -22,7 +22,7 @@ export const ChangePasswordPage = (props: Props) => {
     const [newPassword, setNewPassword] = useState('');
     const navigate = useNavigate();
     const {user, setUser} = useUser();
-    const baseUrl = "https://my-booklibrary.fly.dev";
+    const baseUrl = "http://localhost:8080";
     const onPasswordChangeSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (props.user) {
