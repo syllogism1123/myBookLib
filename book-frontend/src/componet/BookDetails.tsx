@@ -8,7 +8,7 @@ import {useBook} from "../hook/useBook";
 export const BookDetails = () => {
     const [book, setBook] = useState<Book>()
     const {id} = useParams<{ id: string }>();
-    const baseUrl = "http://localhost:8080";
+    const baseUrl = "https://my-booklibrary.fly.dev";
     const {addBook} = useBook();
     const navi = useNavigate();
     const loadBookById = (id: string) => {

@@ -22,7 +22,7 @@ export const AccountPage = (props: Props) => {
     const [user, setUser] = useState<User>(initial);
     const {updateUser} = useUser();
     const [initialUser, setInitialUser] = useState<User>(initial);
-    const baseUrl = "http://localhost:8080";
+    const baseUrl = "https://my-booklibrary.fly.dev";
 
     useEffect(() => {
         if (props.user) {

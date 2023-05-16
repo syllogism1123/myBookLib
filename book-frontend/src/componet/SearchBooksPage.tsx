@@ -8,7 +8,7 @@ import SearchIcon from "@mui/icons-material/Search";
 
 export default function SearchBooksPage() {
     const {books, setBooks, query, setQuery} = useBook();
-    const baseUrl = "http://localhost:8080";
+    const baseUrl = "https://my-booklibrary.fly.dev";
     const onTextChange = (event: ChangeEvent<HTMLInputElement>) => {
         setQuery(event.target.value);
     }
