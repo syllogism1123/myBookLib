@@ -13,10 +13,10 @@ export default function useUser() {
             password: password
         }, {
             withCredentials: true,
-            /*    auth: {
-                    username,
-                    password
-                }*/
+            auth: {
+                username,
+                password
+            }
         }).then((r) => {
             console.log(r.data)
             setUsername(r.data);
