@@ -42,6 +42,7 @@ class UserControllerTest {
 
     @Test
     @DirtiesContext
+    @WithMockUser
     void login_Successful() throws Exception {
         String username = "username";
         LoginRequest request = new LoginRequest(username, "password");
