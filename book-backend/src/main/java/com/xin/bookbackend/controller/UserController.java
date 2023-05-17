@@ -34,7 +34,7 @@ public class UserController {
         if (userService.findUserByUsername(username) != null) {
             MongoUser user = userService.findUserByUsername(username);
             if (encoder.matches(password, user.password())) {
-                return new ResponseEntity<>(SecurityContextHolder.getContext().getAuthentication().getName(), HttpStatus.OK);
+                return new ResponseEntity<>(username, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
