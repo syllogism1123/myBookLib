@@ -14,21 +14,15 @@ export default function useUser() {
                 password: password
             }, {
                 withCredentials: true,
-               /* auth: {
-                    username,
-                    password
-                }*/
+                /* auth: {
+                     username,
+                     password
+                 }*/
             });
             if (response.status === 200) {
                 setUsername(username);
                 setUser(response.data.user);
                 return true;
-            } else if (response.status === 401) {
-                if (response.data === "Invalid password") {
-                    console.log(response.data)
-                } else if (response.data === "User not found")
-                    console.log(response.data)
-                return false;
             } else {
                 return false;
             }
