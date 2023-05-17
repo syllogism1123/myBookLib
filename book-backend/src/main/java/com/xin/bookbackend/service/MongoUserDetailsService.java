@@ -2,7 +2,7 @@ package com.xin.bookbackend.service;
 
 
 import com.xin.bookbackend.model.user.MongoUser;
-import com.xin.bookbackend.repo.MongoUserRepository;
+import com.xin.bookbackend.repository.MongoUserRepository;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -2,8 +2,8 @@ package com.xin.bookbackend.controller;
 
 import com.xin.bookbackend.model.book.Book;
 import com.xin.bookbackend.model.user.MongoUser;
-import com.xin.bookbackend.repo.BookRepository;
-import com.xin.bookbackend.repo.MongoUserRepository;
+import com.xin.bookbackend.repository.BookRepository;
+import com.xin.bookbackend.repository.MongoUserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
