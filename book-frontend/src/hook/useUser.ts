@@ -18,6 +18,7 @@ export default function useUser() {
                     password
                 }*/
         }).then((r) => {
+            console.log(r.data)
             setUsername(r.data);
             setUser(r.data);
             return true;
