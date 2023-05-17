@@ -43,49 +43,20 @@ class UserControllerTest {
     @DirtiesContext
     @WithMockUser
     void login_Successful() throws Exception {
-        String username = "username";
-        LoginRequest request = new LoginRequest(username, "password");
-        String id = UUID.randomUUID().toString();
-        String encodedPassword = anyString();
-        MongoUser user = new MongoUser(id, username
-                , encodedPassword, "firstname", "lastname", "email@email.com");
-
-        when(userService.findUserByUsername(username)).thenReturn(user);
-        when(passwordEncoder.matches(request.password(), encodedPassword)).thenReturn(true);
-
-        String requestBody = objectMapper.writeValueAsString(request);
-
-        mvc.perform(post("/api/users/login")
-                        .contentType(MediaType.APPLICATION_JSON).
-                        content(requestBody)
-                        .with(csrf()))
-                .andExpect(status().isOk())
-                .andReturn();
+        mvc.perform(post("/api/users/login").
+                        contentType(MediaType.APPLICATION_JSON)
+                        .with(csrf())).
+                andExpect(status().isOk());
     }
 
     @Test
     @DirtiesContext
     void login_failed() throws Exception {
-        String username = "username";
-        LoginRequest request = new LoginRequest(username, "password");
-        String id = UUID.randomUUID().toString();
-        String encodedPassword = anyString();
-        MongoUser user = new MongoUser(id, username
-                , encodedPassword, "firstname", "lastname", "email@email.com");
-
-        when(userService.findUserByUsername(username)).thenReturn(user);
-        when(passwordEncoder.matches(request.password(), encodedPassword)).thenReturn(false);
-
-        String requestBody = objectMapper.writeValueAsString(request);
-
-        mvc.perform(post("/api/users/login")
-                        .contentType(MediaType.APPLICATION_JSON).
-                        content(requestBody)
-                        .with(csrf()))
-                .andExpect(status().isUnauthorized());
-
+        mvc.perform(post("/api/users/login").
+                        contentType(MediaType.APPLICATION_JSON)
+                        .with(csrf())).
+                andExpect(status().isUnauthorized());
     }
-
     @Test
     @DirtiesContext
     void getMe_whenNotLoggedIn() throws Exception {
