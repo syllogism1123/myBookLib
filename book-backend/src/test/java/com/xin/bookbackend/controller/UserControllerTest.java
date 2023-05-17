@@ -2,7 +2,6 @@ package com.xin.bookbackend.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xin.bookbackend.model.request.ChangePasswordRequest;
-import com.xin.bookbackend.model.request.LoginRequest;
 import com.xin.bookbackend.model.user.MongoUser;
 import com.xin.bookbackend.model.user.MongoUserDTO;
 import com.xin.bookbackend.service.UserService;
