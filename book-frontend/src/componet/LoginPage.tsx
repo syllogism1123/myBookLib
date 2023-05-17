@@ -33,7 +33,6 @@ export const LoginPage = (props: Props) => {
                 });
             } else {
                 setError(true);
-                console.log("invalid")
             }
         }).catch((error) => {
             console.error(error);
