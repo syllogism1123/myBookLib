@@ -3,7 +3,7 @@ package com.xin.bookbackend.service;
 import com.xin.bookbackend.model.book.Book;
 import com.xin.bookbackend.model.book.GoogleBook;
 import com.xin.bookbackend.model.book.GoogleBookResponse;
-import com.xin.bookbackend.repo.BookRepository;
+import com.xin.bookbackend.repository.BookRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;

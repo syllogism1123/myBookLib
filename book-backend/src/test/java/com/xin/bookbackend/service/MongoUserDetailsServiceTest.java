@@ -1,7 +1,7 @@
 package com.xin.bookbackend.service;
 
 import com.xin.bookbackend.model.user.MongoUser;
-import com.xin.bookbackend.repo.MongoUserRepository;
+import com.xin.bookbackend.repository.MongoUserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

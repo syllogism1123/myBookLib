@@ -1,4 +1,4 @@
-package com.xin.bookbackend.repo;
+package com.xin.bookbackend.repository;
 
 import com.xin.bookbackend.model.book.Book;
 import org.springframework.data.mongodb.repository.MongoRepository;

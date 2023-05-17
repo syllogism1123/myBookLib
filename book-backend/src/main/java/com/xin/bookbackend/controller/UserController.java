@@ -1,6 +1,7 @@
 package com.xin.bookbackend.controller;
 
 import com.xin.bookbackend.model.request.ChangePasswordRequest;
+import com.xin.bookbackend.model.request.LoginRequest;
 import com.xin.bookbackend.model.user.MongoUser;
 import com.xin.bookbackend.model.user.MongoUserDTO;
 import com.xin.bookbackend.service.UserService;
@@ -8,6 +9,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,14 +18,28 @@ import org.springframework.web.bind.annotation.*;
 
 public class UserController {
     private final UserService userService;
+    private final PasswordEncoder encoder;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, PasswordEncoder encoder) {
         this.userService = userService;
+        this.encoder = encoder;
     }
 
+
     @PostMapping("/login")
-    public String login() {
-        return SecurityContextHolder.getContext().getAuthentication().getName();
+    public ResponseEntity<String> login(@RequestBody LoginRequest loginForm) {
+        String username = loginForm.username();
+        String password = loginForm.password();
+
+        if (userService.findUserByUsername(username) != null) {
+            MongoUser user = userService.findUserByUsername(username);
+            if (encoder.matches(password, user.password())) {
+                return new ResponseEntity<>(HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/me")

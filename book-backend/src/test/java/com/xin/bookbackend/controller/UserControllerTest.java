@@ -2,6 +2,7 @@ package com.xin.bookbackend.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xin.bookbackend.model.request.ChangePasswordRequest;
+import com.xin.bookbackend.model.request.LoginRequest;
 import com.xin.bookbackend.model.user.MongoUser;
 import com.xin.bookbackend.model.user.MongoUserDTO;
 import com.xin.bookbackend.service.UserService;
@@ -19,6 +20,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.UUID;
 
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -40,21 +42,48 @@ class UserControllerTest {
 
     @Test
     @DirtiesContext
-    @WithMockUser
     void login_Successful() throws Exception {
-        mvc.perform(post("/api/users/login").
-                        contentType(MediaType.APPLICATION_JSON)
-                        .with(csrf())).
-                andExpect(status().isOk());
+        String username = "username";
+        LoginRequest request = new LoginRequest(username, "password");
+        String id = UUID.randomUUID().toString();
+        String encodedPassword = anyString();
+        MongoUser user = new MongoUser(id, username
+                , encodedPassword, "firstname", "lastname", "email@email.com");
+
+        when(userService.findUserByUsername(username)).thenReturn(user);
+        when(passwordEncoder.matches(request.password(), encodedPassword)).thenReturn(true);
+
+        String requestBody = objectMapper.writeValueAsString(request);
+
+        mvc.perform(post("/api/users/login")
+                        .contentType(MediaType.APPLICATION_JSON).
+                        content(requestBody)
+                        .with(csrf()))
+                .andExpect(status().isOk())
+                .andReturn();
     }
 
     @Test
     @DirtiesContext
     void login_failed() throws Exception {
-        mvc.perform(post("/api/users/login").
-                        contentType(MediaType.APPLICATION_JSON)
-                        .with(csrf())).
-                andExpect(status().isUnauthorized());
+        String username = "username";
+        LoginRequest request = new LoginRequest(username, "password");
+        String id = UUID.randomUUID().toString();
+        String encodedPassword = anyString();
+        MongoUser user = new MongoUser(id, username
+                , encodedPassword, "firstname", "lastname", "email@email.com");
+
+        when(userService.findUserByUsername(username)).thenReturn(user);
+        when(passwordEncoder.matches(request.password(), encodedPassword)).thenReturn(false);
+
+        String requestBody = objectMapper.writeValueAsString(request);
+
+        mvc.perform(post("/api/users/login")
+                        .contentType(MediaType.APPLICATION_JSON).
+                        content(requestBody)
+                        .with(csrf()))
+                .andExpect(status().isUnauthorized());
+
     }
 
     @Test
