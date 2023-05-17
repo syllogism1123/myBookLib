@@ -14,10 +14,10 @@ export default function useUser() {
                 password: password
             }, {
                 withCredentials: true,
-                auth: {
+               /* auth: {
                     username,
                     password
-                }
+                }*/
             });
             if (response.status === 200) {
                 setUsername(username);
