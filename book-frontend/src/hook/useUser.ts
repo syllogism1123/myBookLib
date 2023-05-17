@@ -8,25 +8,36 @@ export default function useUser() {
     const [username, setUsername] = useState<string>();
     const baseUrl = "https://my-booklibrary.fly.dev";
     const login = async (username: string, password: string) => {
-        return await axios.post(baseUrl + "/api/users/login", {
-            username: username,
-            password: password
-        }, {
-            withCredentials: true,
-            auth: {
-                username,
-                password
+        try {
+            const response = await axios.post(baseUrl + "/api/users/login", {
+                username: username,
+                password: password
+            }, {
+                withCredentials: true,
+                auth: {
+                    username,
+                    password
+                }
+            });
+            if (response.status === 200) {
+                setUsername(username);
+                setUser(response.data.user);
+                return true;
+            } else if (response.status === 401) {
+                if (response.data === "Invalid password") {
+                    console.log(response.data)
+                } else if (response.data === "User not found")
+                    console.log(response.data)
+                return false;
+            } else {
+                return false;
             }
-        }).then((r) => {
-            console.log(r.data)
-            setUsername(r.data);
-            setUser(r.data);
-            return true;
-        }).catch(error => {
+        } catch (error) {
             console.error(error);
             return false;
-        });
-    }
+        }
+    };
+
     const logout = async () => {
         return await axios.post(baseUrl + "/api/users/logout", undefined, {
             withCredentials: true,

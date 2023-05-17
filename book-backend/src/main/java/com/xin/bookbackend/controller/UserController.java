@@ -36,10 +36,10 @@ public class UserController {
             if (encoder.matches(password, user.password())) {
                 return new ResponseEntity<>(SecurityContextHolder.getContext().getAuthentication().getName(), HttpStatus.OK);
             } else {
-                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+                return new ResponseEntity<>("Invalid password", HttpStatus.UNAUTHORIZED);
             }
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/me")
