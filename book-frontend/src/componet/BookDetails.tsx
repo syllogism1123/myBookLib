@@ -50,7 +50,7 @@ export const BookDetails = () => {
                     <Typography>AverageRating: {book?.averageRating.toPrecision(2)}</Typography>
                 </div>
                 <div className='card-button'>
-                    <Button id='add-button' variant="text" type="submit" size="small" onClick={addToLib}>
+                    <Button id='add-button' variant="contained" color="secondary" type="submit" size="small" onClick={addToLib}>
                         Add to Lib
                     </Button>
                 </div>
