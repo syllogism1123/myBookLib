@@ -58,6 +58,7 @@ function ResponsiveAppBar(props: Props) {
                 });
                 navi("/login")
                 setAnchorElUser(null);
+                window.location.reload();
             }).catch((error) => {
                 console.error(error);
             });
