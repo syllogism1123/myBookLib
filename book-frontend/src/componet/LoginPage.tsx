@@ -6,6 +6,7 @@ import useUser from "../hook/useUser";
 import {toast} from "react-toastify";
 import SendIcon from '@mui/icons-material/Send';
 import Stack from "@mui/material/Stack";
+import Box from "@mui/material/Box";
 
 type Props = {
     onLogin: (username: string, password: string) => Promise<boolean>
@@ -76,16 +77,20 @@ export const LoginPage = (props: Props) => {
                             style={{marginBottom: '20px'}}
                             onChange={(e) => setPassword(e.target.value)}/>
                         <Button id="submit-button" variant="contained" type="submit" size="small">Login</Button>
-                        <Stack direction="row" spacing={2}>
-                            <Typography style={{marginTop: '20px'}}>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}>
+                            <Typography sx={{ textAlign: 'center' }}>
                                 create a new account
                             </Typography>
-                            <Button variant="contained" size="small" endIcon={<SendIcon/>} onClick={() => {
-                                navigate("/signup")
-                            }}>
+                            <Button
+                                variant="contained"
+                                size="small"
+                                endIcon={<SendIcon/>}
+                                onClick={() => {navigate("/signup")}}
+                                sx={{ marginTop: 1 }}
+                            >
                                 Signup
                             </Button>
-                        </Stack>
+                        </Box>
                         {error &&
                             <Alert id="error-msg" severity="error" className="no-book-found">
                                 <h3>Invalid Username or Password!</h3>
