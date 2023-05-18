@@ -43,11 +43,19 @@ export const BookDetails = () => {
                 <img id='book-img-details' src={book?.imageUrl} alt={book?.title}/>
                 <div className="details" style={{fontFamily: 'Arial', color: 'black', lineHeight: '1.6'}}>
                     <Typography style={{fontSize: '24px', fontWeight: 'bold'}}>Title: {book?.title}</Typography>
-                    <Typography style={{fontSize: '20px'}}>Authors: {book?.authors.join(', ')}</Typography>
-                    <Typography>Publisher: {book?.publisher}</Typography>
-                    <Typography>PublisherDate: {book?.publishedDate}</Typography>
-                    <Typography>Description: {book?.description.replace(/<[^>]*>/g, "")}</Typography>
-                    <Typography>AverageRating: {book?.averageRating.toPrecision(2)}</Typography>
+                    <Typography
+                        style={{fontSize: '18px', fontWeight: 'bold'}}>Authors: {book?.authors.join(', ')}</Typography>
+                    <Typography style={{fontSize: '18px', fontWeight: 'bold'}}>Publisher: {book?.publisher}</Typography>
+                    <Typography
+                        style={{fontSize: '18px', fontWeight: 'bold'}}>PublisherDate: {book?.publishedDate}</Typography>
+                    <Typography style={{
+                        fontSize: '18px',
+                        fontWeight: 'bold'
+                    }}>Description: {book?.description.replace(/<[^>]*>/g, "")}</Typography>
+                    <Typography style={{
+                        fontSize: '18px',
+                        fontWeight: 'bold'
+                    }}>AverageRating: {book?.averageRating.toPrecision(2)}</Typography>
                 </div>
                 <div className='card-button'>
                     <Button id='add-button' variant="contained" color="secondary" type="submit" size="small"
