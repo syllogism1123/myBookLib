@@ -1,9 +1,11 @@
 import React, {FormEvent, useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {Alert, Button, Card, CardContent, CardHeader, FormControl, TextField, Typography} from "@mui/material";
 import 'react-toastify/dist/ReactToastify.css';
 import useUser from "../hook/useUser";
 import {toast} from "react-toastify";
+import SendIcon from '@mui/icons-material/Send';
+import Stack from "@mui/material/Stack";
 
 type Props = {
     onLogin: (username: string, password: string) => Promise<boolean>
@@ -74,14 +76,16 @@ export const LoginPage = (props: Props) => {
                             style={{marginBottom: '20px'}}
                             onChange={(e) => setPassword(e.target.value)}/>
                         <Button id="submit-button" variant="contained" type="submit" size="small">Login</Button>
-                        <Typography style={{marginTop: '20px'}}>
-                            create a new account   <Link
-                            to="/signup"
-                            onClick={() => setError(false)}
-                        >
-                               Signup
-                        </Link>
-                        </Typography>
+                        <Stack direction="row" spacing={2}>
+                            <Typography style={{marginTop: '20px'}}>
+                                create a new account
+                            </Typography>
+                            <Button variant="contained" endIcon={<SendIcon/>} onClick={() => {
+                                navigate("/signup")
+                            }}>
+                                Signup
+                            </Button>
+                        </Stack>
                         {error &&
                             <Alert id="error-msg" severity="error" className="no-book-found">
                                 <h3>Invalid Username or Password!</h3>
