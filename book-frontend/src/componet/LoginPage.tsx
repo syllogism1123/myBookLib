@@ -80,7 +80,7 @@ export const LoginPage = (props: Props) => {
                             <Typography style={{marginTop: '20px'}}>
                                 create a new account
                             </Typography>
-                            <Button variant="contained" endIcon={<SendIcon/>} onClick={() => {
+                            <Button variant="contained" size="small" endIcon={<SendIcon/>} onClick={() => {
                                 navigate("/signup")
                             }}>
                                 Signup
