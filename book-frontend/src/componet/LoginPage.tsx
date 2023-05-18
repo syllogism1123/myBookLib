@@ -1,6 +1,6 @@
 import React, {FormEvent, useState} from "react";
-import {useNavigate, Link as RouterLink} from "react-router-dom";
-import {Button, Card, CardContent, CardHeader, FormControl, Link, TextField, Typography} from "@mui/material";
+import {useNavigate} from "react-router-dom";
+import {Alert, Button, Card, CardContent, CardHeader, FormControl, TextField, Typography} from "@mui/material";
 import 'react-toastify/dist/ReactToastify.css';
 import useUser from "../hook/useUser";
 import {toast} from "react-toastify";
@@ -13,7 +13,7 @@ export const LoginPage = (props: Props) => {
 
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const {setError} = useUser();
+    const {error, setError} = useUser();
     const navigate = useNavigate();
 
     function onSubmit(event: FormEvent<HTMLFormElement>) {
@@ -75,8 +75,13 @@ export const LoginPage = (props: Props) => {
                             onChange={(e) => setPassword(e.target.value)}/>
                         <Button id="submit-button" variant="contained" type="submit" size="small">Login</Button>
                         <Typography style={{marginTop: '20px'}}>
-                            create a new account <Link component={RouterLink} to="/signup">Signup</Link>
+                            create a new account <a href="/signup">Signup</a>
                         </Typography>
+                        {error &&
+                            <Alert id="error-msg" severity="error" className="no-book-found">
+                                <h3>Invalid Username or Password!</h3>
+                            </Alert>
+                        }
                     </FormControl>
                 </CardContent>
             </Card>
