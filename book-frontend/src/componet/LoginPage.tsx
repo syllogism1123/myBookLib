@@ -76,8 +76,8 @@ export const LoginPage = (props: Props) => {
                             style={{marginBottom: '20px'}}
                             onChange={(e) => setPassword(e.target.value)}/>
                         <Button id="submit-button" variant="contained" type="submit" size="small">Login</Button>
-                        <Box sx={{ display: 'flex', alignItems: 'center', width: '200px', justifyContent: 'space-between' }}>
-                            <Typography>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}>
+                            <Typography sx={{ textAlign: 'center' }}>
                                 create a new account
                             </Typography>
                             <Button
@@ -85,12 +85,11 @@ export const LoginPage = (props: Props) => {
                                 size="small"
                                 endIcon={<SendIcon/>}
                                 onClick={() => {navigate("/signup")}}
-                                sx={{ flexGrow: 1 }}
+                                sx={{ marginTop: 1 }}
                             >
                                 Signup
                             </Button>
                         </Box>
-
                         {error &&
                             <Alert id="error-msg" severity="error" className="no-book-found">
                                 <h3>Invalid Username or Password!</h3>
