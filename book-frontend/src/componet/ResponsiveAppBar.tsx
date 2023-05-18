@@ -32,7 +32,9 @@ function ResponsiveAppBar(props: Props) {
         setAnchorElNav(event.currentTarget);
     };
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorElUser(event.currentTarget);
+        if (props.isLoggedIn()) {
+            setAnchorElUser(event.currentTarget);
+        }
     };
 
     const handleCloseNavMenu = () => {
