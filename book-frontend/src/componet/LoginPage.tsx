@@ -1,5 +1,5 @@
 import React, {FormEvent, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {Alert, Button, Card, CardContent, CardHeader, FormControl, TextField, Typography} from "@mui/material";
 import 'react-toastify/dist/ReactToastify.css';
 import useUser from "../hook/useUser";
@@ -75,7 +75,12 @@ export const LoginPage = (props: Props) => {
                             onChange={(e) => setPassword(e.target.value)}/>
                         <Button id="submit-button" variant="contained" type="submit" size="small">Login</Button>
                         <Typography style={{marginTop: '20px'}}>
-                            create a new account <a href="/signup">Signup</a>
+                            create a new account <Link
+                            to="/signup"
+                            onClick={() => setError(false)}
+                        >
+                            Signup
+                        </Link>
                         </Typography>
                         {error &&
                             <Alert id="error-msg" severity="error" className="no-book-found">
