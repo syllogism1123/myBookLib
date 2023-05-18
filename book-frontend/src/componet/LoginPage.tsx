@@ -5,7 +5,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import useUser from "../hook/useUser";
 import {toast} from "react-toastify";
 import SendIcon from '@mui/icons-material/Send';
-import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 
 type Props = {
