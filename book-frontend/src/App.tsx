@@ -1,5 +1,5 @@
 import './App.css';
-import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {SignUpPage} from "./componet/SignUpPage";
 import {LoginPage} from "./componet/LoginPage";
 import useUser from "./hook/useUser";
