@@ -1,4 +1,4 @@
-import {Alert, Button, Card, CardContent, CardHeader, FormControl, TextField, Typography} from "@mui/material";
+import {Button, Card, CardContent, CardHeader, FormControl, TextField, Typography} from "@mui/material";
 import React, {ChangeEvent, FormEvent, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {UserModel} from "../model/UserModel";
@@ -15,7 +15,7 @@ export const SignUpPage = (props: createUserProps) => {
         username: "", password: "", firstname: "", lastname: "", email: ""
     }
     const [user, setUser] = useState<UserModel>(initial);
-    const {error, setError} = useUser();
+    const {setError} = useUser();
     const navigate = useNavigate();
 
     function onChange(event: ChangeEvent<HTMLInputElement>) {
@@ -29,8 +29,7 @@ export const SignUpPage = (props: createUserProps) => {
 
 
     function onSubmit(event: FormEvent<HTMLFormElement>) {
-        if (user.username && user.password && user.firstname && user.lastname && user.email)
-        {
+        if (user.username && user.password && user.firstname && user.lastname && user.email) {
             event.preventDefault();
             props.createUser(user).then((s) => {
                 if (s) {
@@ -131,11 +130,6 @@ export const SignUpPage = (props: createUserProps) => {
                         <Button id="submit-button" variant="contained" type="submit" size="small">
                             Sign Up
                         </Button>
-                        {error &&
-                            <Alert id="error-msg" severity="error" className="no-book-found">
-                                <h3>The username or email address already exists!</h3>
-                            </Alert>
-                        }
                     </FormControl>
                 </CardContent>
             </Card>
