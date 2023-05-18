@@ -29,6 +29,16 @@ export default function useUser() {
         return await axios.post(baseUrl + "/api/users/logout", undefined, {
             withCredentials: true,
         }).then(() => {
+            toast.info('YOU HAVE SUCCESSFULLY LOGGED OUT', {
+                position: "top-center",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
             setUser(null);
             localStorage.clear();
         }).catch(error => {
