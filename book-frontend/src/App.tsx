@@ -56,6 +56,8 @@ function App() {
                     {!isLoggedIn() &&
                         <Route path="/signup" element={<SignUpPage createUser={createUser}/>}>
                         </Route>}
+                    <Route path="/" element={<Navigate to="/home"/>}>
+                    </Route>
                     {isLoggedIn() && <Route path="/search" element={<SearchBooksPage/>}>
                     </Route>}
                     {isLoggedIn() && <Route path="/account" element={<AccountPage user={user}/>}>
@@ -63,8 +65,6 @@ function App() {
                     {isLoggedIn() && <Route path="/password" element={<ChangePasswordPage user={user}/>}>
                     </Route>}
                     {isLoggedIn() && <Route path="/mylibrary/" element={<UserBookGallery/>}>
-                    </Route>}
-                    {isLoggedIn() && <Route path="/" element={<Navigate to="/home"/>}>
                     </Route>}
                     {isLoggedIn() && <Route path="/home/:id" element={<BookDetails/>}/>}
                     {isLoggedIn() && <Route path="/mylibrary/:id" element={<BookDetails/>}/>}

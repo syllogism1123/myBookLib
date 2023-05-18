@@ -38,7 +38,7 @@ export const BookDetails = () => {
 
 
     return (
-        <div>
+        <div style={{fontSize: '18px'}} className="book-details-wrapper">
             <Card className='book-details' variant="elevation" style={{backgroundColor: 'cyan', marginTop: "20px"}}>
                 <img id='book-img-details' src={book?.imageUrl} alt={book?.title}/>
                 <div className="details">
