@@ -75,11 +75,11 @@ export const LoginPage = (props: Props) => {
                             onChange={(e) => setPassword(e.target.value)}/>
                         <Button id="submit-button" variant="contained" type="submit" size="small">Login</Button>
                         <Typography style={{marginTop: '20px'}}>
-                            create a new account <Link
+                            create a new account   <Link
                             to="/signup"
                             onClick={() => setError(false)}
                         >
-                            Signup
+                               Signup
                         </Link>
                         </Typography>
                         {error &&
