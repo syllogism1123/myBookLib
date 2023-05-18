@@ -42,23 +42,26 @@ export const BookDetails = () => {
             <Card className='book-details' variant="elevation" style={{backgroundColor: 'cyan', marginTop: "20px"}}>
                 <img id='book-img-details' src={book?.imageUrl} alt={book?.title}/>
                 <div className="details" style={{fontFamily: 'Arial', color: 'black', lineHeight: '1.6'}}>
-                    <Typography style={{fontSize: '24px', fontWeight: 'bold'}}>Title: {book?.title}</Typography>
-                    <Typography
-                        style={{fontSize: '18px', fontWeight: 'bold'}}>Authors: {book?.authors.join(', ')}</Typography>
-                    <Typography style={{fontSize: '18px', fontWeight: 'bold'}}>Publisher: {book?.publisher}</Typography>
-                    <Typography
-                        style={{fontSize: '18px', fontWeight: 'bold'}}>PublisherDate: {book?.publishedDate}</Typography>
-                    <Typography style={{
-                        fontSize: '18px',
+                    <Typography style={{fontSize: '24px', fontWeight: 'bold'}}>{book?.title}</Typography>
+                    <Typography><span
+                        style={{fontSize: '20px', fontWeight: 'bold'}}>Authors</span>: {book?.authors.join(', ')}
+                    </Typography>
+                    <Typography><span style={{fontSize: '20px', fontWeight: 'bold'}}>Publisher</span>: {book?.publisher}
+                    </Typography>
+                    <Typography><span
+                        style={{fontSize: '20px', fontWeight: 'bold'}}>PublisherDate</span>: {book?.publishedDate}
+                    </Typography>
+                    <Typography><span style={{
+                        fontSize: '20px',
                         fontWeight: 'bold'
-                    }}>Description: {book?.description.replace(/<[^>]*>/g, "")}</Typography>
-                    <Typography style={{
-                        fontSize: '18px',
+                    }}>Description</span>: {book?.description.replace(/<[^>]*>/g, "")}</Typography>
+                    <Typography><span style={{
+                        fontSize: '20px',
                         fontWeight: 'bold'
-                    }}>AverageRating: {book?.averageRating.toPrecision(2)}</Typography>
+                    }}>AverageRating</span>: {book?.averageRating.toPrecision(2)}</Typography>
                 </div>
                 <div className='card-button'>
-                    <Button id='add-button' variant="contained" color="secondary" type="submit" size="small"
+                    <Button id='add-button' variant="contained" color="success" type="submit" size="small"
                             onClick={addToLib}>
                         Add to Lib
                     </Button>
