@@ -13,7 +13,6 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import {useNavigate} from "react-router-dom";
-import {toast} from "react-toastify";
 
 const pages = ['Login', 'Home', 'Search'];
 const settings = ['Password', 'Account', 'MyLibrary', 'Logout'];
