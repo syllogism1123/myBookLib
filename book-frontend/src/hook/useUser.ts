@@ -1,6 +1,7 @@
 import axios from "axios";
 import {useState} from "react";
 import {User, UserModel} from "../model/UserModel";
+import {toast} from "react-toastify";
 
 export default function useUser() {
     const [user, setUser] = useState<User | null>(null);
@@ -35,7 +36,7 @@ export default function useUser() {
         })
     }
 
-    
+
     const createUser = async (newUser: UserModel) => {
         return await axios.post(baseUrl + "/api/users/signup", newUser, {
             withCredentials: true
@@ -44,6 +45,16 @@ export default function useUser() {
             return true;
         }).catch((error) => {
             if (error.response) {
+                toast.error(error.response.data, {
+                    position: "top-center",
+                    autoClose: 1000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                })
                 console.log(error.response.data);
             } else {
                 // Handle other errors
