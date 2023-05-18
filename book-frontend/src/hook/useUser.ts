@@ -35,6 +35,7 @@ export default function useUser() {
         })
     }
 
+    
     const createUser = async (newUser: UserModel) => {
         return await axios.post(baseUrl + "/api/users/signup", newUser, {
             withCredentials: true
@@ -42,10 +43,19 @@ export default function useUser() {
             setUser(response.data)
             return true;
         }).catch((error) => {
+            if (error.response) {
+                console.log(error.response.data);
+            } else {
+                // Handle other errors
+            }
             console.error(error);
             return false;
         })
     }
+
+
+
+
 
     const loadUser = async (username: string) => {
         return await axios.get(baseUrl + `/api/users/${username}`, {
