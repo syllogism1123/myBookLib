@@ -43,7 +43,7 @@ export const HomePage = () => {
             <Typography variant="h2" gutterBottom>Welcome to Our Book Library</Typography>
 
             <Box sx={{display: 'flex', justifyContent: 'center', marginBottom: '30px'}}>
-                <TextField label="Search for books" variant="outlined" onChange={onTextChange} value={query} />
+                <TextField label="Search for books" variant="outlined" onChange={onTextChange} value={query}/>
                 <Button variant="contained" color="primary" onClick={onSearch}>Search</Button>
             </Box>
 

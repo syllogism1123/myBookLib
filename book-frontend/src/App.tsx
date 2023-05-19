@@ -12,11 +12,8 @@ import ResponsiveAppBar from "./componet/ResponsiveAppBar";
 import {AccountPage} from "./componet/AccountPage";
 import {ChangePasswordPage} from "./componet/ChangePasswordPage";
 import 'react-toastify/dist/ReactToastify.css';
+import {HomePage} from "./componet/HomePage";
 
-
-function HomePage() {
-    return null;
-}
 
 function App() {
     const {login, logout, createUser, username, loadUser, user, setUser} = useUser();
