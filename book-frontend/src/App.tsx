@@ -12,7 +12,11 @@ import ResponsiveAppBar from "./componet/ResponsiveAppBar";
 import {AccountPage} from "./componet/AccountPage";
 import {ChangePasswordPage} from "./componet/ChangePasswordPage";
 import 'react-toastify/dist/ReactToastify.css';
-import {HomePage} from "./componet/HomePage";
+
+
+function HomePage() {
+    return null;
+}
 
 function App() {
     const {login, logout, createUser, username, loadUser, user, setUser} = useUser();
@@ -57,7 +61,7 @@ function App() {
                     {!isLoggedIn() &&
                         <Route path="/signup" element={<SignUpPage createUser={createUser}/>}>
                         </Route>}
-                    <Route path="/" element={<HomePage/>}>
+                    <Route path="/home" element={<HomePage/>}>
                     </Route>
                     {isLoggedIn() && <Route path="/search" element={<SearchBooksPage/>}>
                     </Route>}
