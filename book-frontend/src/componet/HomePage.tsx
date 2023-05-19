@@ -1,7 +1,8 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
 import {Container, Typography, Box, Grid, Card, CardMedia, CardContent, TextField, Button} from '@mui/material';
 import {Book} from "../model/Book";
-import axios from "axios/index";
+import axios from 'axios';
+
 
 export const HomePage = () => {
     const [latestBooks, setLatestBooks] = useState<Book[]>([]);
