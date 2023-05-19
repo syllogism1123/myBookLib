@@ -3,7 +3,7 @@ import {Container, Typography, Box, Grid, Card, CardMedia, CardContent, TextFiel
 import {Book} from "../model/Book";
 import axios from "axios/index";
 
-const HomePage = () => {
+export const HomePage = () => {
     const [latestBooks, setLatestBooks] = useState<Book[]>([]);
     const [query, setQuery] = useState<string>('');
     const [error, setError] = useState<string | null>(null);
