@@ -1,5 +1,5 @@
 import './App.css';
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import {SignUpPage} from "./componet/SignUpPage";
 import {LoginPage} from "./componet/LoginPage";
 import useUser from "./hook/useUser";
@@ -12,8 +12,6 @@ import ResponsiveAppBar from "./componet/ResponsiveAppBar";
 import {AccountPage} from "./componet/AccountPage";
 import {ChangePasswordPage} from "./componet/ChangePasswordPage";
 import 'react-toastify/dist/ReactToastify.css';
-import {HomePage} from "./componet/HomePage";
-
 
 function App() {
     const {login, logout, createUser, username, loadUser, user, setUser} = useUser();
@@ -58,8 +56,7 @@ function App() {
                     {!isLoggedIn() &&
                         <Route path="/signup" element={<SignUpPage createUser={createUser}/>}>
                         </Route>}
-                    <Route path="/home" element={<HomePage/>}>
-                    </Route>
+                    <Route element={<Navigate to='/home'/>}/>
                     {isLoggedIn() && <Route path="/search" element={<SearchBooksPage/>}>
                     </Route>}
                     {isLoggedIn() && <Route path="/account" element={<AccountPage user={user}/>}>
@@ -73,7 +70,8 @@ function App() {
                 </Routes>
             </BrowserRouter>
         </div>
-    );
+    )
+        ;
 }
 
 export default App;
