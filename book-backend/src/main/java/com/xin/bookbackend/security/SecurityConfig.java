@@ -33,7 +33,7 @@ public class SecurityConfig {
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                         .csrfTokenRequestHandler(requestHandler))
                 .authorizeHttpRequests()
-                .requestMatchers("/api/users/signup","/api/users/login")
+                .requestMatchers("/api/users/signup","/api/users/login","/")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
