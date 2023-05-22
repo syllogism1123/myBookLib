@@ -184,7 +184,7 @@ function ResponsiveAppBar(props: Props) {
                                 }
                                 return (
                                     <MenuItem key={setting} onClick={() => {
-                                        navi(`/${setting.toLowerCase()}`);
+                                        navi(`lib/${setting.toLowerCase()}`);
                                         setAnchorElUser(null);
                                     }
                                     }>
