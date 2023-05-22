@@ -20,25 +20,27 @@ export const AccountPage = (props: Props) => {
     const initial: User = {id: "", username: "", password: "", firstname: "", lastname: "", email: ""};
     const navigate = useNavigate();
     const [user, setUser] = useState<User>(initial);
-    const {updateUser} = useUser();
+    const {updateUser, getTokenString} = useUser();
     const [initialUser, setInitialUser] = useState<User>(initial);
     const baseUrl = "https://my-booklibrary.fly.dev";
+    const token = getTokenString();
 
     useEffect(() => {
         if (props.user) {
             axios.get(baseUrl + `/api/users/${props.user.username}`, {
-                withCredentials: true
+                withCredentials: true,
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
             })
                 .then((response) => {
                     setUser(response.data)
-                    setInitialUser(response.data);
-                    console.log(user)
                 })
                 .catch((error) => {
                     console.error(error)
                 })
         }
-//eslint-disable-next-line
+        //eslint-disable-next-line
     }, [props.user])
 
     function onChange(event: ChangeEvent<HTMLInputElement>) {
@@ -51,9 +53,10 @@ export const AccountPage = (props: Props) => {
                 [targetName]: value
             };
             setUser(updatedUser);
-            localStorage.setItem('token', JSON.stringify(updatedUser));
+            localStorage.setItem('user', JSON.stringify(updatedUser));
         }
     }
+
 
     function onSubmit(event: FormEvent<HTMLFormElement>) {
         if (user?.password) {
@@ -77,10 +80,19 @@ export const AccountPage = (props: Props) => {
     }
 
     useEffect(() => {
-        const savedUser = localStorage.getItem('token');
+        const savedUser = localStorage.getItem('user');
         if (savedUser) {
             setUser(JSON.parse(savedUser));
-        }//eslint-disable-next-line
+        }
+        //eslint-disable-next-line
+    }, []);
+
+    useEffect(() => {
+        const originSate = localStorage.getItem('user');
+        if (originSate) {
+            setInitialUser(JSON.parse(originSate));
+        }
+        //eslint-disable-next-line
     }, []);
 
 
@@ -90,7 +102,6 @@ export const AccountPage = (props: Props) => {
     };
 
     return (
-
         <div className="login-page-container">
             <Card variant="outlined" className="card-container">
                 <CardHeader

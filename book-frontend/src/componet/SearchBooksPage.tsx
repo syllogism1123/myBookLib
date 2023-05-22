@@ -5,10 +5,13 @@ import axios from "axios";
 import {Book} from "../model/Book";
 import {Box, TextField} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import useUser from "../hook/useUser";
 
 export default function SearchBooksPage() {
     const {books, setBooks, query, setQuery} = useBook();
+    const {getTokenString} = useUser();
     const baseUrl = "https://my-booklibrary.fly.dev";
+    const token = getTokenString();
     const onTextChange = (event: ChangeEvent<HTMLInputElement>) => {
         setQuery(event.target.value);
     }
@@ -26,7 +29,11 @@ export default function SearchBooksPage() {
     const onKeyPress = async (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
             await axios.get(baseUrl + `/api/books/search?query=${query}`, {
-                withCredentials: true
+                withCredentials: true,
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+
             }).then((response) => {
                 setBooks(response.data)
                 setQuery("")

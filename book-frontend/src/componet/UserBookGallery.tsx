@@ -9,7 +9,7 @@ export default function UserBookGallery() {
         loadAllBooks().catch(
             (e) => console.error(e)
         )//eslint-disable-next-line
-    }, [books]);
+    }, []);
 
     return (
         <div>

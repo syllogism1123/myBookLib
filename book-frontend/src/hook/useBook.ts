@@ -2,13 +2,19 @@ import axios from "axios";
 import {useState} from "react";
 import {toast} from "react-toastify";
 import {Book, BookModel} from "../model/Book";
+import useUser from "./useUser";
 
 export const useBook = () => {
     const [books, setBooks] = useState<Book[]>([]);
+    const {getTokenString} = useUser();
     const baseUrl = "https://my-booklibrary.fly.dev";
+    const token = getTokenString();
     const loadAllBooks = async () => {
         await axios.get(baseUrl + "/api/books", {
-            withCredentials: true
+            withCredentials: true,
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
         }).then((response) => {
             setBooks(response.data)
         })
@@ -18,7 +24,10 @@ export const useBook = () => {
     };
     const addBook = async (newBook: BookModel) => {
         await axios.post(baseUrl + "/api/books", newBook, {
-            withCredentials: true
+            withCredentials: true,
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
         }).then((response) => {
             setBooks([...books, response.data])
             toast.success(newBook.title + ' was successfully added to your library', {
@@ -47,7 +56,10 @@ export const useBook = () => {
 
     const updateBook = async (book: Book) => {
         await axios.put(baseUrl + `/api/books/${book.id}`, book, {
-            withCredentials: true
+            withCredentials: true,
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
         }).then((response) => {
             setBooks(books.map((currentBook) => {
                 if (currentBook.id === book.id) {
@@ -63,10 +75,13 @@ export const useBook = () => {
 
     const deleteBook = async (id: string) => {
         await axios.delete(baseUrl + `/api/books/${id}`, {
-            withCredentials: true
+            withCredentials: true,
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
         }).then(() => {
             setBooks(books.filter((book) => book.id !== id));
-            /*   window.location.reload()*/
+            window.location.reload()
         }).catch((error) => {
             console.error(error)
         })

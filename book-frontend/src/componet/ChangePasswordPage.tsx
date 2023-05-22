@@ -21,15 +21,21 @@ export const ChangePasswordPage = (props: Props) => {
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const navigate = useNavigate();
-    const {user, setUser} = useUser();
+    const {setUser, getTokenString} = useUser();
     const baseUrl = "https://my-booklibrary.fly.dev";
+    const token = getTokenString();
     const onPasswordChangeSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (props.user) {
             axios.post(baseUrl + `/api/users/changePassword`, {
                     oldPassword: oldPassword,
                     newPassword: newPassword
-                }, {withCredentials: true}
+                }, {
+                    withCredentials: true,
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    }
+                }
             )
                 .then(() => {
                     setOldPassword("")
@@ -64,22 +70,24 @@ export const ChangePasswordPage = (props: Props) => {
         }
     }
 
-
     useEffect(() => {
         if (props.user) {
             axios.get(baseUrl + `/api/users/${props.user.username}`, {
-                withCredentials: true
+                withCredentials: true,
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
             })
                 .then((response) => {
+                    console.log(response.data)
                     setUser(response.data)
-                    localStorage.setItem('token', JSON.stringify(response.data));
                 })
                 .catch((error) => {
                     console.error(error)
                 })
         }
-//eslint-disable-next-line
-    }, [user])
+        //eslint-disable-next-line
+    }, [props.user])
 
 
     const handleCancel = (event: React.MouseEvent<HTMLButtonElement>) => {
