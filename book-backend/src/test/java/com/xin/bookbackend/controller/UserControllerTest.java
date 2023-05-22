@@ -1,9 +1,11 @@
 package com.xin.bookbackend.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.xin.bookbackend.model.request.AuthenticationRequest;
 import com.xin.bookbackend.model.request.ChangePasswordRequest;
 import com.xin.bookbackend.model.user.MongoUser;
 import com.xin.bookbackend.model.user.MongoUserDTO;
+import com.xin.bookbackend.security.JwtService;
 import com.xin.bookbackend.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,10 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.DirtiesContext;
@@ -19,10 +25,13 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.UUID;
 
+import static org.hamcrest.Matchers.is;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -36,53 +45,72 @@ class UserControllerTest {
     PasswordEncoder passwordEncoder;
     @MockBean
     private UserService userService;
+    @MockBean
+    private JwtService jwtService;
+    @MockBean
+    private AuthenticationManager authenticationManager;
 
 
     @Test
     @DirtiesContext
-    @WithMockUser
     void login_Successful() throws Exception {
-        mvc.perform(post("/api/users/login").
-                        contentType(MediaType.APPLICATION_JSON)
-                        .with(csrf())).
-                andExpect(status().isOk());
+        String username = "username";
+        String password = "password";
+
+        AuthenticationRequest request = new AuthenticationRequest(username, password);
+        String requestBody = objectMapper.writeValueAsString(request);
+
+        MongoUser user = new MongoUser(UUID.randomUUID().toString(),
+                username, anyString(), "firstname", "lastname", "email@email.com");
+
+        String jwtToken = "jwtToken";
+        Authentication auth = new UsernamePasswordAuthenticationToken(username, password);
+        when(userService.findUserByUsername(username)).thenReturn(user);
+        when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class)))
+                .thenReturn(auth);
+        when(jwtService.generateToken(username)).thenReturn(jwtToken);
+
+
+        mvc.perform(post("/api/users/login")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestBody)
+                        .with(csrf()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.token", is(jwtToken)));
     }
+
 
     @Test
     @DirtiesContext
     void login_failed() throws Exception {
-        mvc.perform(post("/api/users/login").
-                        contentType(MediaType.APPLICATION_JSON)
-                        .with(csrf())).
-                andExpect(status().isUnauthorized());
-    }
-    @Test
-    @DirtiesContext
-    void getMe_whenNotLoggedIn() throws Exception {
-        mvc.perform(get("/api/users/me").
-                        contentType(MediaType.APPLICATION_JSON)).
-                andExpect(content().string("anonymousUser")).
-                andExpect(status().isOk());
-    }
 
-    @Test
-    @DirtiesContext
-    @WithMockUser
-    void getMe_whenLoggedIn() throws Exception {
-        mvc.perform(get("/api/users/me").
-                        contentType(MediaType.APPLICATION_JSON)).
-                andExpect(content().string("user")).
-                andExpect(status().isOk());
-    }
+        String username = "invalid";
+        String password = "invalid";
+
+        AuthenticationRequest request = new AuthenticationRequest(username, password);
+        String requestBody = objectMapper.writeValueAsString(request);
+
+        // Mock authentication failure
+        when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class)))
+                .thenThrow(new BadCredentialsException("Bad credentials"));
+
+        mvc.perform(post("/api/users/login")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestBody)
+                        .with(csrf()))
+                .andExpect(status().isUnauthorized());
+    } // assuming you handle invalid credentials by returning 401 Unauthorized status code
 
     @Test
     @DirtiesContext
     void testCreateUser() throws Exception {
-        MongoUserDTO mongoUserDTO = new MongoUserDTO(
+        MongoUserDTO dto = new MongoUserDTO(
                 "username", "password", "firstname", "lastname", "email@email.com");
 
-        String requestBody = objectMapper.writeValueAsString(mongoUserDTO);
+        MongoUser user = new MongoUser(dto.username(), passwordEncoder.encode(dto.password()), dto.firstname(), dto.lastname(), dto.email());
+        when(userService.createMongoUser(any(MongoUserDTO.class))).thenReturn(user);
 
+        String requestBody = objectMapper.writeValueAsString(dto);
         mvc.perform(post("/api/users/signup").
                         contentType(MediaType.APPLICATION_JSON).
                         content(requestBody).with(csrf())).
@@ -94,10 +122,13 @@ class UserControllerTest {
     @WithMockUser
     void testLoadMongoUserByName() throws Exception {
         String username = "username";
-        MongoUserDTO mongoUserDTO = new MongoUserDTO(username
-                , "password", "firstname", "lastname", "email@email.com");
+        MongoUserDTO dto = new MongoUserDTO(username,
+                "password", "firstname", "lastname", "email@email.com");
 
-        String requestBody = objectMapper.writeValueAsString(mongoUserDTO);
+        MongoUser user = new MongoUser(dto.username(), passwordEncoder.encode(dto.password()), dto.firstname(), dto.lastname(), dto.email());
+        when(userService.createMongoUser(any(MongoUserDTO.class))).thenReturn(user);
+
+        String requestBody = objectMapper.writeValueAsString(dto);
         mvc.perform(post("/api/users/signup").
                         contentType(MediaType.APPLICATION_JSON).
                         content(requestBody).with(csrf())).
@@ -115,14 +146,17 @@ class UserControllerTest {
     @WithMockUser
     void testUpdateMongoUser() throws Exception {
         String username = "username";
-        MongoUserDTO mongoUserDTO = new MongoUserDTO(username
-                , "password", "firstname", "lastname", "email@email.com");
+        MongoUserDTO dto = new MongoUserDTO(username,
+                "password", "firstname", "lastname", "email@email.com");
 
-        String requestBody = objectMapper.writeValueAsString(mongoUserDTO);
+        MongoUser user = new MongoUser(dto.username(), passwordEncoder.encode(dto.password()), dto.firstname(), dto.lastname(), dto.email());
+        when(userService.createMongoUser(any(MongoUserDTO.class))).thenReturn(user);
+
+        String requestBody = objectMapper.writeValueAsString(dto);
         mvc.perform(post("/api/users/signup").
                         contentType(MediaType.APPLICATION_JSON).
                         content(requestBody).with(csrf())).
-                andExpect(status().isCreated());
+                andExpect(MockMvcResultMatchers.status().isCreated());
 
         MongoUserDTO updatedMongoUserDTO = new MongoUserDTO(username
                 , "password", "firstname", "lastname", "newemail@email.com");
@@ -168,8 +202,7 @@ class UserControllerTest {
 
         mvc.perform(post("/api/users/changePassword")
                         .contentType(MediaType.APPLICATION_JSON).
-                        content(requestBody)
-                        .with(csrf()))
+                        content(requestBody).with(csrf()))
                 .andExpect(status().isOk())
                 .andReturn();
     }

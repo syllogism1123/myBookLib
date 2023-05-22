@@ -12,36 +12,32 @@ import ResponsiveAppBar from "./componet/ResponsiveAppBar";
 import {AccountPage} from "./componet/AccountPage";
 import {ChangePasswordPage} from "./componet/ChangePasswordPage";
 import 'react-toastify/dist/ReactToastify.css';
+import ProtectedRoutes from "./componet/ProtectedRoutes";
 
 function App() {
-    const {login, logout, createUser, username, loadUser, user, setUser} = useUser();
-    const data = localStorage.getItem('token')
-    const expiration = localStorage.getItem('expiration')
+    const {
+        login,
+        logout,
+        createUser,
+        username,
+        loadUser, user,
+        isTokenExpired
+    } = useUser();
+    const getToken = () => localStorage.getItem('token');
 
     function isLoggedIn() {
-        return data !== null && expiration != null;
+        const token = getToken();
+        return token !== null && !isTokenExpired(token);
     }
 
     useEffect(() => {
-        if (expiration && Date.now() > Number(expiration)) {
-            localStorage.clear();
-            window.location.reload();
-        } else {
-
-            if (data) {
-                setUser(JSON.parse(data));
-            }
-        }//eslint-disable-next-line
-    }, [data, expiration]);
-
-
-    useEffect(() => {
-        if (username) {
+        if (isLoggedIn() && username) {
             loadUser(username).catch(
                 (e) => console.error(e)
             );
-        }//eslint-disable-next-line
-    }, [username]);
+        }
+        //eslint-disable-next-line
+    }, [isLoggedIn, username]);
 
 
     return (
@@ -57,16 +53,19 @@ function App() {
                         <Route path="/signup" element={<SignUpPage createUser={createUser}/>}>
                         </Route>}
                     <Route element={<Navigate to='/home'/>}/>
-                    {isLoggedIn() && <Route path="/search" element={<SearchBooksPage/>}>
-                    </Route>}
-                    {isLoggedIn() && <Route path="/account" element={<AccountPage user={user}/>}>
-                    </Route>}
-                    {isLoggedIn() && <Route path="/password" element={<ChangePasswordPage user={user}/>}>
-                    </Route>}
-                    {isLoggedIn() && <Route path="/mylibrary/" element={<UserBookGallery/>}>
-                    </Route>}
-                    {isLoggedIn() && <Route path="/home/:id" element={<BookDetails/>}/>}
-                    {isLoggedIn() && <Route path="/mylibrary/:id" element={<BookDetails/>}/>}
+
+                    <Route element={<ProtectedRoutes isLoggedIn={isLoggedIn}/>}>
+                        <Route path="/search" element={<SearchBooksPage/>}>
+                        </Route>
+                        <Route path="/account" element={<AccountPage user={user}/>}>
+                        </Route>
+                        <Route path="/password" element={<ChangePasswordPage user={user}/>}>
+                        </Route>
+                        <Route path="/mylibrary/" element={<UserBookGallery/>}>
+                        </Route>
+                        <Route path="/home/:id" element={<BookDetails/>}/>
+                        <Route path="/mylibrary/:id" element={<BookDetails/>}/>
+                    </Route>
                 </Routes>
             </BrowserRouter>
         </div>

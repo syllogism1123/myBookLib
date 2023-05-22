@@ -1,12 +1,17 @@
 package com.xin.bookbackend.controller;
 
+import com.xin.bookbackend.model.request.AuthenticationRequest;
+import com.xin.bookbackend.model.request.AuthenticationResponse;
 import com.xin.bookbackend.model.request.ChangePasswordRequest;
 import com.xin.bookbackend.model.user.MongoUser;
 import com.xin.bookbackend.model.user.MongoUserDTO;
+import com.xin.bookbackend.security.JwtService;
 import com.xin.bookbackend.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,25 +21,31 @@ import org.springframework.web.bind.annotation.*;
 
 public class UserController {
     private final UserService userService;
+    private final AuthenticationManager authenticationManager;
+    private final JwtService jwtService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, AuthenticationManager authenticationManager, JwtService jwtService) {
         this.userService = userService;
-
+        this.authenticationManager = authenticationManager;
+        this.jwtService = jwtService;
     }
+
     @PostMapping("/login")
-    public String login() {
-        return SecurityContextHolder.getContext().getAuthentication().getName();
-    }
+    public ResponseEntity<AuthenticationResponse> auth(@RequestBody AuthenticationRequest request) {
 
-    @GetMapping("/me")
-    public String getMe() {
-        return SecurityContextHolder.getContext().getAuthentication().getName();
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+                request.username(), request.password()
+        ));
+        var user = userService.findUserByUsername(request.username());
+        var jwtToken = jwtService.generateToken(user.username());
+        return new ResponseEntity<>(AuthenticationResponse.builder().token(jwtToken).build(), HttpStatus.OK);
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<MongoUserDTO> createUser(@RequestBody MongoUserDTO mongoUserDTO) {
-        MongoUser mongoUser = userService.createMongoUser(mongoUserDTO);
-        return new ResponseEntity<>(userService.convertMongoUserToMongoUserDTO(mongoUser), HttpStatus.CREATED);
+    public ResponseEntity<AuthenticationResponse> createUser(@RequestBody MongoUserDTO mongoUserDTO) {
+        MongoUser user = userService.createMongoUser(mongoUserDTO);
+        var jwtToken = jwtService.generateToken(user.username());
+        return new ResponseEntity<>(AuthenticationResponse.builder().token(jwtToken).build(), HttpStatus.CREATED);
     }
 
     @GetMapping("/{username}")

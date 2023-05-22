@@ -4,16 +4,22 @@ import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import {Book} from "../model/Book";
 import {useBook} from "../hook/useBook";
+import useUser from "../hook/useUser";
 
 export const BookDetails = () => {
     const [book, setBook] = useState<Book>()
     const {id} = useParams<{ id: string }>();
-    const baseUrl = "https://my-booklibrary.fly.dev";
     const {addBook} = useBook();
     const navi = useNavigate();
+    const {getTokenString} = useUser();
+    const baseUrl = "https://my-booklibrary.fly.dev";
+    const token = getTokenString();
     const loadBookById = (id: string) => {
         axios.get(baseUrl + `/api/books/search/` + id, {
-            withCredentials: true
+            withCredentials: true,
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
         })
             .then((response) => {
                 setBook(response.data)

@@ -29,8 +29,11 @@ public class UserService {
             }
 
             String encodedPassword = encoder.encode(mongoUserDTO.password());
-            MongoUser encodedUser = new MongoUser(mongoUserDTO.username(), encodedPassword, mongoUserDTO.firstname(), mongoUserDTO.lastname(), mongoUserDTO.email());
+            MongoUser encodedUser = new MongoUser(mongoUserDTO.username(),
+                    encodedPassword, mongoUserDTO.firstname(), mongoUserDTO.lastname(),
+                    mongoUserDTO.email());
             return mongoUserRepository.save(encodedUser);
+
         }
     }
 

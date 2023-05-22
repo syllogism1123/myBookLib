@@ -49,7 +49,6 @@ function ResponsiveAppBar(props: Props) {
             props.onLogout().then(() => {
                 navi("/login")
                 setAnchorElUser(null);
-                window.location.reload();
             }).catch((error) => {
                 console.error(error);
             });
