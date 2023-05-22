@@ -31,7 +31,7 @@ export const BookDetails = () => {
     useEffect(() => {
         if (id) {
             loadBookById(id)
-        }
+        }//eslint-disable-next-line
     }, [id])
     const addToLib = () => {
         if (book) {
