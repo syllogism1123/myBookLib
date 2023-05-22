@@ -133,7 +133,6 @@ export default function useUser() {
         } else {
             // If token is expired or null, then logout
             await logout();
-            await logout();
             toast.error('YOUR SESSION HAS EXPIRED. PLEASE LOG IN AGAIN.', {
                 position: "top-center",
                 autoClose: 1000,
