@@ -31,14 +31,13 @@ function App() {
     }
 
     useEffect(() => {
-        if (isLoggedIn() && username) {
+        if (username) {
             loadUser(username).catch(
                 (e) => console.error(e)
             );
         }
         //eslint-disable-next-line
-    }, [isLoggedIn, username]);
-
+    }, [username]);
 
     return (
         <div className="App">
