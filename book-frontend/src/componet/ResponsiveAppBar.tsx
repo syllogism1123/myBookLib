@@ -64,7 +64,7 @@ function ResponsiveAppBar(props: Props) {
                         variant="h4"
                         noWrap
                         component="a"
-                        href="/mylibrary"
+                        href="/"
 
                         sx={{
                             mr: 2,
@@ -109,7 +109,10 @@ function ResponsiveAppBar(props: Props) {
                             }}
                         >
                             {pages.map((page) => (
-                                <MenuItem id="menu-page" key={page} onClick={handleCloseNavMenu}>
+                                <MenuItem id="menu-page" key={page} onClick={() => {
+                                    navi(`/${page.toLowerCase()}`);
+                                    handleCloseNavMenu();
+                                }}>
                                     <Typography textAlign="center">{page}</Typography>
                                 </MenuItem>
                             ))}

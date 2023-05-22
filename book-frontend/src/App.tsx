@@ -56,14 +56,14 @@ function App() {
                     <Route element={<ProtectedRoutes isLoggedIn={isLoggedIn}/>}>
                         <Route path="/search" element={<SearchBooksPage/>}>
                         </Route>
-                        <Route path="/account" element={<AccountPage user={user}/>}>
-                        </Route>
-                        <Route path="/password" element={<ChangePasswordPage user={user}/>}>
-                        </Route>
-                        <Route path="/mylibrary/" element={<UserBookGallery/>}>
-                        </Route>
                         <Route path="/home/:id" element={<BookDetails/>}/>
-                        <Route path="/mylibrary/:id" element={<BookDetails/>}/>
+                        <Route path="lib/account" element={<AccountPage user={user}/>}>
+                        </Route>
+                        <Route path="lib/password" element={<ChangePasswordPage user={user}/>}>
+                        </Route>
+                        <Route path="lib/mylibrary/" element={<UserBookGallery/>}>
+                        </Route>
+                        <Route path="lib/mylibrary/:id" element={<BookDetails/>}/>
                     </Route>
                 </Routes>
             </BrowserRouter>

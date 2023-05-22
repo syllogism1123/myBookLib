@@ -16,7 +16,7 @@ export default function UserBookCard(props: BookCardProps) {
     const navi = useNavigate();
     const {deleteBook, updateBook} = useBook();
     const toDetail = () => {
-        navi("/mylibrary/" + props.book.googleBookId)
+        navi("../lib/mylibrary/" + props.book.googleBookId)
     }
 
     const removeFromLib = () => {
@@ -31,8 +31,6 @@ export default function UserBookCard(props: BookCardProps) {
                     progress: undefined,
                     theme: "colored",
                 });
-
-                /*window.location.reload()*/
             }
         ).catch((r) => console.error(r));
     }

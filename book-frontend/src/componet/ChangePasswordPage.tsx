@@ -50,7 +50,7 @@ export const ChangePasswordPage = (props: Props) => {
                         progress: undefined,
                         theme: "colored",
                     });
-                    navigate("/mylibrary")
+                    navigate("../lib/mylibrary")
                 })
                 .catch(error => {
                     console.log(error);

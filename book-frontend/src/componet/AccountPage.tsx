@@ -73,7 +73,7 @@ export const AccountPage = (props: Props) => {
                         progress: undefined,
                         theme: "colored",
                     });
-                    navigate("/mylibrary")
+                    navigate("../lib/mylibrary")
                 }).catch((r) => console.error(r))
 
         }
