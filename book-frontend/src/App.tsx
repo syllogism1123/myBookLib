@@ -21,7 +21,9 @@ function App() {
         createUser,
         username,
         loadUser, user,
-        isTokenExpired
+        setUser,
+        isTokenExpired,
+        getUser
     } = useUser();
     const getToken = () => localStorage.getItem('token');
 
@@ -37,7 +39,7 @@ function App() {
 
     useEffect(() => {
         if (username) {
-            loadUser(username).catch(
+            loadUser(username).then(() => setUser(getUser)).catch(
                 (e) => console.error(e)
             );
         }

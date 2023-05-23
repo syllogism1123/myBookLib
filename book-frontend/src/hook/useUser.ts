@@ -3,6 +3,7 @@ import {User, UserModel} from "../model/UserModel";
 import {toast} from "react-toastify";
 import axios from 'axios';
 import jwtDecode, {JwtPayload} from 'jwt-decode';
+import {AES, enc} from "crypto-js";
 
 export default function useUser() {
     const [user, setUser] = useState<User | null>(null);
@@ -10,6 +11,19 @@ export default function useUser() {
     const [username, setUsername] = useState<string>();
     const baseUrl = "https://my-booklibrary.fly.dev";
 
+    const SECRET_KEY = 'MY_SECRET_KEY'; // Make sure to keep this secret key safe
+
+// Function to encrypt user data
+    const encrypt = (data: object) => {
+        return AES.encrypt(JSON.stringify(data), SECRET_KEY).toString();
+    };
+
+// Function to decrypt user data
+    const decrypt = (encryptedData: string) => {
+        const bytes = AES.decrypt(encryptedData, SECRET_KEY);
+        return JSON.parse(bytes.toString(enc.Utf8));
+
+    };
 
     const isTokenExpired = (token: string): boolean => {
         const decodedToken = jwtDecode<JwtPayload>(token);
@@ -111,12 +125,18 @@ export default function useUser() {
                 }
             }).then((response) => {
                 setUser(response.data);
-                localStorage.setItem('user', JSON.stringify(response.data));
+                localStorage.setItem('user', encrypt(response.data)); // Encrypt user data before storing
             }).catch((error) => {
                 console.error(error);
             });
         }
     }
+
+    const getUser = (): User | null => {
+        const encryptedUser = localStorage.getItem('user');
+        return encryptedUser ? decrypt(encryptedUser) : null; // Decrypt user data after retrieving
+    }
+
 
     const updateUser = async (user: User) => {
         const token = getTokenString();
@@ -143,7 +163,8 @@ export default function useUser() {
         loadUser,
         updateUser,
         getTokenString,
-        isTokenExpired
+        isTokenExpired,
+        getUser
     }
 }
 

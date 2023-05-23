@@ -17,6 +17,7 @@
     "@types/react-dom": "^18.2.4",
     "axios": "^1.4.0",
     "bootstrap": "^5.3.0-alpha3",
+    "crypto-js": "^4.1.1",
     "jwt-decode": "^3.1.2",
     "match-sorter": "^6.3.1",
     "react": "^18.2.0",
@@ -57,5 +58,8 @@
     "allowedHosts": [
       "localhost"
     ]
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^4.1.1"
   }
 }
