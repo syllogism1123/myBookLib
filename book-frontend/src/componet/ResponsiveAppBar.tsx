@@ -13,6 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import {useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
 
 const pages = ['Login', 'Home', 'Search'];
 const settings = ['Password', 'Account', 'MyLibrary', 'Logout'];
@@ -49,6 +50,16 @@ function ResponsiveAppBar(props: Props) {
             props.onLogout().then(() => {
                 navi("/login")
                 setAnchorElUser(null);
+                toast.info('YOU HAVE SUCCESSFULLY LOGGED OUT', {
+                    position: "top-center",
+                    autoClose: 1000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
             }).catch((error) => {
                 console.error(error);
             });

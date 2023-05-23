@@ -27,14 +27,13 @@ function App() {
 
     function isLoggedIn() {
         const token = getToken();
+        if (token) {
+            if (isTokenExpired(token)) {
+                logout().catch((e) => console.error(e))
+            }
+        }
         return token !== null && !isTokenExpired(token);
     }
-
-    useEffect(() => {
-        console.log(isLoggedIn())
-        //eslint-disable-next-line
-    }, []);
-
 
     useEffect(() => {
         if (username) {

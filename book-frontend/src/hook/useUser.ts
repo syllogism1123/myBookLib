@@ -24,8 +24,6 @@ export default function useUser() {
             const tokenObject = JSON.parse(token);
             tokenString = tokenObject.token;
             if (tokenString && isTokenExpired(tokenString)) {
-                console.log(token);
-                logout().catch((e) => console.error(e));
                 return null;
             }
         }
@@ -69,24 +67,13 @@ export default function useUser() {
     }
 
     const logout = async () => {
-        return await api.post("/api/users/logout", undefined, {
-
-        }).then(() => {
-            toast.info('YOU HAVE SUCCESSFULLY LOGGED OUT', {
-                position: "top-center",
-                autoClose: 1000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+        return await api.post("/api/users/logout", undefined, {}).then(() => {
             setUser(null);
-            window.location.reload()
+            setUsername("")
             localStorage.removeItem('token');
             localStorage.removeItem('user');
             localStorage.removeItem('books');
+            //  window.location.reload()
         });
     }
     const createUser = async (newUser: UserModel) => {
@@ -127,17 +114,6 @@ export default function useUser() {
                 localStorage.setItem('user', JSON.stringify(response.data));
             }).catch((error) => {
                 console.error(error);
-            });
-        } else {
-            toast.error('YOUR SESSION HAS EXPIRED. PLEASE LOG IN AGAIN.', {
-                position: "top-center",
-                autoClose: 1000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
             });
         }
     }
