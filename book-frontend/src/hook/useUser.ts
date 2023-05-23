@@ -8,7 +8,7 @@ export default function useUser() {
     const [user, setUser] = useState<User | null>(null);
     const [error, setError] = useState<boolean>();
     const [username, setUsername] = useState<string>();
-    const baseUrl = "http://localhost:8080";
+    const baseUrl = "https://my-booklibrary.fly.dev";
 
 
     const isTokenExpired = (token: string): boolean => {
@@ -19,7 +19,7 @@ export default function useUser() {
 
     const getTokenString = (): string | null => {
         const token = localStorage.getItem('token');
-        let tokenString: string | null = null; // 声明并初始化为 null
+        let tokenString: string | null = null;
         if (token) {
             const tokenObject = JSON.parse(token);
             tokenString = tokenObject.token;
