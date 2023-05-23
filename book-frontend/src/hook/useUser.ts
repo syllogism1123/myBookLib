@@ -8,8 +8,8 @@ export default function useUser() {
     const [user, setUser] = useState<User | null>(null);
     const [error, setError] = useState<boolean>();
     const [username, setUsername] = useState<string>();
-    const baseUrl = "https://my-booklibrary.fly.dev";
-    let tokenString: string | null = null;
+    const baseUrl = "http://localhost:8080";
+
 
     const isTokenExpired = (token: string): boolean => {
         const decodedToken = jwtDecode<JwtPayload>(token);
@@ -19,17 +19,18 @@ export default function useUser() {
 
     const getTokenString = (): string | null => {
         const token = localStorage.getItem('token');
+        let tokenString: string | null = null; // 声明并初始化为 null
         if (token) {
             const tokenObject = JSON.parse(token);
             tokenString = tokenObject.token;
             if (tokenString && isTokenExpired(tokenString)) {
+                console.log(token);
                 logout().catch((e) => console.error(e));
                 return null;
             }
         }
         return tokenString;
     };
-
     // create axios instance
     const api = axios.create({
         baseURL: baseUrl,
@@ -68,11 +69,8 @@ export default function useUser() {
     }
 
     const logout = async () => {
-        const token = getTokenString();
         return await api.post("/api/users/logout", undefined, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            }
+
         }).then(() => {
             toast.info('YOU HAVE SUCCESSFULLY LOGGED OUT', {
                 position: "top-center",
@@ -131,8 +129,6 @@ export default function useUser() {
                 console.error(error);
             });
         } else {
-            // If token is expired or null, then logout
-            await logout();
             toast.error('YOUR SESSION HAS EXPIRED. PLEASE LOG IN AGAIN.', {
                 position: "top-center",
                 autoClose: 1000,
