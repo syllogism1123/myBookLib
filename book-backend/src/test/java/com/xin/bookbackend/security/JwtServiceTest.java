@@ -27,10 +27,10 @@ class JwtServiceTest {
     @BeforeEach
     public void setUp() throws NoSuchFieldException, IllegalAccessException {
         testUsername = "user1";
-        token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTY4NDg3NDk0MCwiZXhwIjoxNjg0ODc1NTQwfQ.rGbpObRPRYS56_p5AmFQpoU_0WqB-bQZj_jR-3KVxsc";
+        token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTY4NDg3Njg1MywiZXhwIjoxNjg0ODc3NDUzfQ.MnjUAFCEhAwOtWI2wG5N5D58_CjW9qVCQzkKIsq2gl4";
         Field jwtSecretKeyField = JwtService.class.getDeclaredField("jwtSecretKey");
         jwtSecretKeyField.setAccessible(true);
-        jwtSecretKeyField.set(jwtService, "2D4A614E645267556A586E3272357538782F413F4428472B4B6250655368566D");
+        jwtSecretKeyField.set(jwtService, "36763979244226452948404D6351665468576D5A7134743777217A25432A462D");
     }
 
     @Test
