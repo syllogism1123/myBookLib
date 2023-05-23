@@ -20,7 +20,7 @@ export const AccountPage = (props: Props) => {
     const initial: User = {id: "", username: "", password: "", firstname: "", lastname: "", email: ""};
     const navigate = useNavigate();
     const [user, setUser] = useState<User>(initial);
-    const {updateUser, getTokenString} = useUser();
+    const {updateUser, getTokenString, getUser, encrypt} = useUser();
     const [initialUser, setInitialUser] = useState<User>(initial);
     const baseUrl = "https://my-booklibrary.fly.dev";
     const token = getTokenString();
@@ -53,7 +53,7 @@ export const AccountPage = (props: Props) => {
                 [targetName]: value
             };
             setUser(updatedUser);
-            localStorage.setItem('user', JSON.stringify(updatedUser));
+            localStorage.setItem('user', encrypt(updatedUser));
         }
     }
 
@@ -63,6 +63,7 @@ export const AccountPage = (props: Props) => {
             event.preventDefault();
             updateUser(user).then(
                 () => {
+                    localStorage.setItem('user', encrypt(user));
                     toast.success('YOUR PERSONAL INFORMATION HAS BEEN SUCCESSFULLY UPDATED', {
                         position: "top-center",
                         autoClose: 2000,
@@ -80,17 +81,17 @@ export const AccountPage = (props: Props) => {
     }
 
     useEffect(() => {
-        const savedUser = localStorage.getItem('user');
+        const savedUser = getUser();
         if (savedUser) {
-            setUser(JSON.parse(savedUser));
+            setUser(savedUser);
         }
         //eslint-disable-next-line
     }, []);
 
     useEffect(() => {
-        const originSate = localStorage.getItem('user');
-        if (originSate) {
-            setInitialUser(JSON.parse(originSate));
+        const originState = getUser();
+        if (originState) {
+            setInitialUser(originState);
         }
         //eslint-disable-next-line
     }, []);

@@ -11,7 +11,7 @@ export default function useUser() {
     const [username, setUsername] = useState<string>();
     const baseUrl = "https://my-booklibrary.fly.dev";
 
-    const SECRET_KEY = 'MY_SECRET_KEY'; // Make sure to keep this secret key safe
+    const SECRET_KEY = 'Xn2r5u8x/A?D(G+KbPeShVkYp3s6v9y$'; // Make sure to keep this secret key safe
 
 // Function to encrypt user data
     const encrypt = (data: object) => {
@@ -164,7 +164,9 @@ export default function useUser() {
         updateUser,
         getTokenString,
         isTokenExpired,
-        getUser
+        getUser,
+        encrypt,
+        decrypt
     }
 }
 
