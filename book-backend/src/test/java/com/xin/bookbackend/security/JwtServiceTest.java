@@ -18,7 +18,6 @@ import static org.mockito.Mockito.when;
 class JwtServiceTest {
     @InjectMocks
     private JwtService jwtService;
-
     @Mock
     private UserDetails userDetails;
     private String testUsername;
@@ -27,7 +26,7 @@ class JwtServiceTest {
     @BeforeEach
     public void setUp() throws NoSuchFieldException, IllegalAccessException {
         testUsername = "user1";
-        token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTY4NDg3Njg1MywiZXhwIjoxNjg0ODc3NDUzfQ.MnjUAFCEhAwOtWI2wG5N5D58_CjW9qVCQzkKIsq2gl4";
+        token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTY4NDkxMzA2NSwiZXhwIjoxNjg0OTEzNjY1fQ.bfhW8bGE0wB9Gg042ayQ66Jn2SbytKMS500egXOrJpY";
         Field jwtSecretKeyField = JwtService.class.getDeclaredField("jwtSecretKey");
         jwtSecretKeyField.setAccessible(true);
         jwtSecretKeyField.set(jwtService, "36763979244226452948404D6351665468576D5A7134743777217A25432A462D");
