@@ -79,7 +79,6 @@ export const ChangePasswordPage = (props: Props) => {
                 }
             })
                 .then((response) => {
-                    console.log(response.data)
                     setUser(response.data)
                 })
                 .catch((error) => {
@@ -92,7 +91,6 @@ export const ChangePasswordPage = (props: Props) => {
 
     const handleCancel = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        console.log(props.user)
         setOldPassword("")
         setNewPassword("")
     };
